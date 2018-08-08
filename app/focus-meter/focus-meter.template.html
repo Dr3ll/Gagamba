@@ -1,1 +1,10 @@
-{{kek}}
+<span class="focus-meter">
+<div>
+    Fokus {{maxFocus}}
+</div>
+<div class="point-wrapper">
+    <div class="consumed" ng-repeat="point in consumed"></div>
+    <div class="exhausted" ng-repeat="point in exhausted"></div>
+    <div class="fresh" ng-repeat="point in fresh"></div>
+</div>
+</span>

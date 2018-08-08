@@ -13,13 +13,14 @@
     <script src="../node_modules/angular-resource/angular-resource.js"></script>
     <script src="../node_modules/angular-route/angular-route.js"></script>
     <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../libs/sass/dist/sass.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
     <script src="app.animations.js"></script>
     <script src="core/core.module.js"></script>
     <script src="main/main.controller.js"></script>
     <script src="spell/spell.controller.js"></script>
-    <script src="navbar/navbar.controller.js"></script>
+    <script src="navigation/navigation.controller.js"></script>
     <script src="core/checkmark/checkmark.filter.js"></script>
     <script src="core/phone/phone.module.js"></script>
     <script src="core/phone/phone.service.js"></script>
@@ -27,10 +28,14 @@
     <script src="phone-list/phone-list.component.js"></script>
     <script src="phone-detail/phone-detail.module.js"></script>
     <script src="phone-detail/phone-detail.component.js"></script>
+    <script src="sass/sass.directive.js"></script>
     <script src="focus-meter/focus-meter.directive.js"></script>
+    <script src="services/SassService.js"></script>
 
 </head>
 <body>
+
+<sass></sass>
 
 <section class="view-container">
     <div ui-view="navbar" class="view-frame"></div>

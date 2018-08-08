@@ -4,7 +4,6 @@
 
 app.controller('MainController', ['$routeParams',
         function ($routeParams) {
-            console.log("sdfsadfasvfvas");
         }
     ]
 );
