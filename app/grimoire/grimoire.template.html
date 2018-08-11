@@ -1,0 +1,13 @@
+<div class="grimoire">
+    <div class="spell-wrapper">
+        <div class="spell" ng-repeat="spell in grimoire">
+            <button class="btn cast"><i class="fas fa-magic"></i></button>&nbsp;
+            <span class="spell-label">{{spell.name}}</span>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="spell-info-box">
+        {{acSpell.description}}
+    </div>
+</div>

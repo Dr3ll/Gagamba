@@ -3,24 +3,32 @@
 <head>
     <meta charset="utf-8">
     <title>Gagamba</title>
+
+    <base href="./">
+
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="app.animations.css" />
+    <link rel="stylesheet" href="app.animations.css" />
+
+    <script>
+        window.eval = global.eval = function () {
+            throw new Error(`no window.eval().`)
+        }
+    </script>
 
     <script src="../node_modules/jquery/dist/jquery.js"></script>
     <script src="../node_modules/angular/angular.js"></script>
     <script src="../node_modules/angular-animate/angular-animate.js"></script>
     <script src="../node_modules/angular-resource/angular-resource.js"></script>
     <script src="../node_modules/angular-route/angular-route.js"></script>
-    <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="../libs/sass/dist/sass.js"></script>
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
     <script src="app.animations.js"></script>
     <script src="core/core.module.js"></script>
-    <script src="main/main.controller.js"></script>
-    <script src="spell/spell.controller.js"></script>
-    <script src="navigation/navigation.controller.js"></script>
     <script src="core/checkmark/checkmark.filter.js"></script>
     <script src="core/phone/phone.module.js"></script>
     <script src="core/phone/phone.service.js"></script>
@@ -28,22 +36,32 @@
     <script src="phone-list/phone-list.component.js"></script>
     <script src="phone-detail/phone-detail.module.js"></script>
     <script src="phone-detail/phone-detail.component.js"></script>
-    <script src="sass/sass.directive.js"></script>
-    <script src="focus-meter/focus-meter.directive.js"></script>
-    <script src="services/SassService.js"></script>
+
+    <!--Modules-->
+    <script src="modules/main/main.controller.js"></script>
+    <script src="modules/spell/spell.controller.js"></script>
+    <script src="modules/navigation/navigation.controller.js"></script>
+
+    <!--Services-->
+    <script src="services/DatabaseService.js"></script>
+    <script src="services/CharacterService.js"></script>
+    <script src="services/GrimoireService.js"></script>
+
+    <!--Directives-->
+    <script src="directives/sass/sass.directive.js"></script>
+    <script src="directives/focus-meter/focus-meter.directive.js"></script>
+
 
 </head>
 <body>
 
-<sass></sass>
-
-<section class="view-container">
+<div class="view-container">
     <div ui-view="navbar" class="view-frame"></div>
-</section>
+</div>
 
-<section class="view-container">
+<div class="view-container">
     <div ui-view="main" class="view-frame"></div>
-</section>
+</div>
 
 </body>
 </html>

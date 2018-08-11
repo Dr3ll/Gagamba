@@ -2,8 +2,18 @@
 
 angular.
 module('gagambaApp').
-config(['$locationProvider' ,'$routeProvider', '$stateProvider',
-    function config($locationProvider, $routeProvider, $stateProvider) {
+config(['$locationProvider' ,'$routeProvider', '$stateProvider', '$urlRouterProvider', '$provide',
+    function config($locationProvider, $routeProvider, $stateProvider, $urlRouterProvider, $provide) {
+
+        /*$provide.decorator('$sniffer', function($delegate) {
+            $delegate.history = false;
+            return $delegate;
+        });*/
+
+        $urlRouterProvider.otherwise('/');
+
+        $locationProvider.html5Mode(true);
+
         $locationProvider.hashPrefix('!');
 
         $routeProvider.
@@ -13,23 +23,23 @@ config(['$locationProvider' ,'$routeProvider', '$stateProvider',
         when('/phones/:phoneId', {
             template: '<phone-detail></phone-detail>'
         }).
-        otherwise('');
+        otherwise('/');
 
         $stateProvider
             .state('root', {
-                url: '',
+                url: '/',
                 views:{
                     'main@': {
                         controller: 'MainController',
-                        templateUrl: 'main/main.template.html'
+                        templateUrl: 'modules/main/main.template.html'
                     },
                     'spells@': {
                         controller: 'SpellsController',
-                        templateUrl: 'spell/spell.template.html'
+                        templateUrl: 'modules/spell/spell.template.html'
                     },
                     'navbar@': {
                         controller: 'NavigationController',
-                        templateUrl: "navigation/navigation.template.html"
+                        templateUrl: "modules/navigation/navigation.template.html"
                     }
                 }
             })
@@ -38,7 +48,7 @@ config(['$locationProvider' ,'$routeProvider', '$stateProvider',
             views: {
                 'content@': {
                     controller: 'SpellController',
-                    templateUrl: 'spell/spell.template.html'
+                    templateUrl: 'modules/spell/spell.template.html'
                 }
             }
         })
