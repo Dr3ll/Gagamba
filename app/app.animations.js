@@ -1,7 +1,7 @@
 'use strict';
 
 angular.
-  module('gagambaApp').
+  module('app').
   animation('.phone', function phoneAnimationFactory() {
     return {
       addClass: animateIn,

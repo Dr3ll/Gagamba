@@ -1,4 +1,11 @@
-'use strict';
+define([
+        'modules/module',
+        'settings'
+    ],
+    function (module) {
+        'use strict';
 
-// Define the `core` module
-angular.module('core', ['core.phone']);
+        module('core', []);
+
+    }
+);

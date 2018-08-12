@@ -1,7 +1,7 @@
 // Module to control application life.
 const electron = require('electron');
 
-var app = electron.app;
+var e_app = electron.app;
 
 // Module to create native browser window.
 var BrowserWindow = electron.BrowserWindow;
@@ -9,16 +9,16 @@ var BrowserWindow = electron.BrowserWindow;
 var mainWindow = null;
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
+e_app.on('window-all-closed', function () {
   if (process.platform != 'darwin') {
-    app.quit();
+      e_app.quit();
   }
 });
 
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
-app.on('ready', function () {
+e_app.on('ready', function () {
 
   // Create the browser window.
   mainWindow = new BrowserWindow(
