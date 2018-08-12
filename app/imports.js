@@ -6,8 +6,7 @@ requirejs.config({
         'angular-animate': '../node_modules/angular-animate/angular-animate',
         'ngRoute': '../node_modules/angular-route/angular-route.min',
         'bootstrap': '../node_modules/bootstrap/dist/js/bootstrap.min',
-        'uiRouter': '../node_modules/angular-ui-router/release/angular-ui-router.min',
-        'domReady': '../node_modules/domready/ready.min',
+        'uiRouter': '../node_modules/angular-ui-router/release/angular-ui-router.min'
     },
     shim: {
         'domReady': {
@@ -32,8 +31,7 @@ requirejs.config({
         },
         'bootstrap': {
             deps: ['jquery']
-        },
-
+        }
     },
     waitSeconds: 25,
     urlArgs: "bust=" + (new Date()).getTime()
