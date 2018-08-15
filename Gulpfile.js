@@ -50,9 +50,9 @@ gulp.task('build', ['copy'], function () {
 
 
 gulp.task('run', function () {
-    gulp.src('./scss/**/*.scss')
+    gulp.src('./scss/style.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./app/css/'));
+        .pipe(gulp.dest('./app/css'));
     childProcess.spawn(electron, ['./app'], { stdio: 'inherit' });
 });
 
@@ -65,7 +65,7 @@ gulp.task('build-electron', function () {
             //execute build.linux.js
             break;
         case 'win32':
-        console.log('sdf')
+        console.log('sdf');
             return release_windows.build();
     }
 });

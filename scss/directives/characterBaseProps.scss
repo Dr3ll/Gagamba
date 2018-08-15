@@ -1,0 +1,65 @@
+@import '../common/constants';
+
+$charisma_bg: $pink_muted;
+$agility_bg: $nature_muted;
+$intellect_bg: $silver_muted;
+$constitution_bg: $life_muted;
+$mystic_bg: $mana_muted;
+$strength_bg: $orange_muted;
+$wit_bg: $violet_muted;
+$willpower_bg: $air_muted;
+
+.character-base-props {
+  width: 400px;
+  height: 100px;
+
+  .char-name {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 5px;
+  }
+  .char-attributes {
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      li {
+        padding: 5px;
+        border: 1px solid transparent;
+        text-align: center;
+        align-items: center;
+        width: 50px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 2px;
+        &.char {
+          background-color: $charisma_bg;
+        }
+        &.agi {
+          background-color: $agility_bg;
+        }
+        &.int {
+          background-color: $intellect_bg;
+        }
+        &.con {
+          background-color: $constitution_bg;
+        }
+        &.mys {
+          background-color: $mystic_bg;
+        }
+        &.str {
+          background-color: $strength_bg;
+        }
+        &.wit {
+          background-color: $wit_bg;
+        }
+        &.wil {
+          background-color: $willpower_bg;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@import '../common/constants';
+@import '../common/global';
+
+$focus-line-color: $mana;
+$focus-bg-color: $mana_muted;
+
+.focus-meter {
+  width: 324px;
+  height: 100px;
+  .point-wrapper {
+    width: 100%;
+  }
+  .fresh, .consumed, .exhausted, .channeled {
+    width: 25px;
+    height: 25px;
+    border: 1px solid $focus-line-color;
+    background-color: $focus-bg-color;
+    border-radius: 3px;
+    float: left;
+    margin: 1px;
+  }
+
+  .fresh {
+  }
+  .channeled {
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px);
+  }
+  .exhausted {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px),
+    repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px);
+  }
+  .consumed {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px),
+    repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px),
+    repeating-linear-gradient(0deg, transparent, transparent 0px, transparent 0px, transparent 11px, $focus-line-color 0px, $focus-line-color 13px)
+  }
+}

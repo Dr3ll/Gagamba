@@ -1,0 +1,29 @@
+@import '../common/constants';
+
+.navigation {
+  position: static;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 43px;
+  display: flex;
+  padding: 10px;
+  background-color: $char;
+  border-bottom: 1px solid $dust;
+
+  button {
+    padding: 5px;
+    background-color: $tar;
+    border-radius: 1px;
+    border: 1px solid $dust;
+    color: $ash;
+  }
+}
+
+.nav-spacer {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 25px;
+}

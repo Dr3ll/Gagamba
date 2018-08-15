@@ -2,8 +2,7 @@ define(
     [
         'modules/main/MainController',
         'modules/spell/SpellController',
-        'modules/navigation/NavigationController',
-        'directives/focus-meter/focus-meter.directive'
+        'modules/navigation/NavigationController'
     ], function() {
         'use strict';
 
@@ -30,7 +29,7 @@ define(
                     .state('root', {
                         url: '/',
                         views:{
-                            'main@': {
+                            'content@': {
                                 controller: 'MainController',
                                 templateUrl: 'modules/main/main.template.html'
                             },

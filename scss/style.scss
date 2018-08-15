@@ -1,40 +1,13 @@
-$ash: #CCC;
-$focus-line-color: #CCC;
-$focus-bg-color: #444;
+@import 'common/constants';
 
-body {
-  background-color: #212121;
-  color: $ash;
-}
+// Common
+@import 'common/global';
 
-.focus-meter {
-  .point-wrapper {
-    width: 324px;
-  }
-  .fresh, .consumed, .exhausted, .channeled {
-    width: 25px;
-    height: 25px;
-    border: 1px solid $focus-line-color;
-    border-radius: 3px;
-    float: left;
-    margin: 1px;
-  }
-  .fresh {
-    background-color: $focus-bg-color;
-  }
-  .channeled {
-    background-color: $focus-bg-color;
-    background-image: repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px);
-  }
-  .consumed {
-    background-color: $focus-bg-color;
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px),
-                      repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px);
-  }
-  .exhausted {
-    background-color: $focus-bg-color;
-    background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px),
-                      repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $focus-line-color 0px, $focus-line-color 17px),
-                      repeating-linear-gradient(0deg, transparent, transparent 0px, transparent 0px, transparent 11px, $focus-line-color 0px, $focus-line-color 13px)
-  }
-}
+// Modules
+@import 'modules/navigation';
+@import 'modules/main';
+
+// Directives
+@import 'directives/focusMeter';
+@import 'directives/healthMeter';
+@import 'directives/characterBaseProps';
