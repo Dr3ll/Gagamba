@@ -5,6 +5,7 @@ define(
         'directives/focusMeter/focusMeter',
         'directives/healthMeter/healthMeter',
         'directives/characterBaseProps/characterBaseProps',
+        'directives/moonshards/moonshards',
         'services/CharacterService'
     ], function (app) {
         'use strict';

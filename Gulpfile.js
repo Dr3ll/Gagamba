@@ -65,7 +65,6 @@ gulp.task('build-electron', function () {
             //execute build.linux.js
             break;
         case 'win32':
-        console.log('sdf');
             return release_windows.build();
     }
 });

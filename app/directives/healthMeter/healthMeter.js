@@ -21,6 +21,7 @@ define(
                                 $scope.injuredBox = [];
                                 $scope.badlyInjuredBox = [];
                                 $scope.dyingBox = [];
+                                $scope.remaining = 0;
 
                                 $scope.health = Character.health();
                             };
@@ -39,6 +40,7 @@ define(
                                     co: $scope.health.co
                                 };
 
+                                $scope.remaining = $scope.health.h * 5 - ($scope.health.ch + $scope.health.ex + $scope.health.co);
                                 $scope.unharmedBox = [];
                                 $scope.hurtBox = [];
                                 $scope.injuredBox = [];

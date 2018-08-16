@@ -1,6 +1,20 @@
 @import '../common/constants';
 
 #main {
-  background-color: $char;
   padding: 20px;
+
+  .layout-container {
+    display: flex;
+
+    .left-box {
+        width: 33.333333333333%;
+    }
+    .center-box {
+      display: table-cell;
+      width: 33.33333333333333%;
+    }
+    .right-box {
+      width: 33.3333333333333%;
+    }
+  }
 }

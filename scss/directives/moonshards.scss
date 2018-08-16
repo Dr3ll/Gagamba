@@ -1,0 +1,54 @@
+@import '../common/constants';
+
+$shard-line-color: $tar;
+$fresh_bg_img: url("../assets/images/full-bloom.png");
+$cracks: url("../assets/images/congruent_outline.png");
+
+.moonshards {
+  width: 324px;
+  height: 100px;
+  .shard-wrapper {
+    width: 100%;
+  }
+  .shard-outer {
+    border-radius: 50%;
+    border: 1px solid $shard-line-color;
+    width: 84px;
+    height: 80px;
+    float: left;
+    padding: 3px;
+    margin: 0 5px;
+    .shard {
+      position: relative;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%;
+      &.fresh {
+        background: $fresh_bg_img;
+        box-shadow: inset 25px -10px 22px 1px rgba(0,0,0,.5), inset -56px 14px 9px -53px rgba(255,255,255,.5);
+      }
+      &.spent {
+        background: $tar;
+        box-shadow: inset -9px 5px 26px 15px rgba(0,0,0,.4);
+      }
+    }
+    .cracks {
+      background: $cracks;
+      background-size: 129%;
+      display: none;
+      border-radius: 50%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    &:hover {
+      .fresh .cracks {
+        position: absolute;
+        display: block;
+      }
+    }
+
+  }
+
+}

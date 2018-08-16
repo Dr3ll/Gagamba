@@ -5,13 +5,17 @@ html {
 
 body {
   height: 100%;
-  background-color: #212121;
+  background: url("../assets/images/black_lozenge.png");
   color: #CCC; }
 
-.nav {
+#nav {
   position: static; }
 
-.content {
+#content {
+  background: url("../assets/images/gagamba_transparent.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 21%;
   position: absolute;
   top: 46px;
   bottom: 0;
@@ -22,7 +26,7 @@ body {
   width: 100%;
   height: 100%; }
 
-.fresh, .consumed, .exhausted, .channeled {
+.point-wrapper .fresh, .point-wrapper .consumed, .point-wrapper .exhausted, .point-wrapper .channeled {
   width: 25px;
   height: 25px;
   border-radius: 3px;
@@ -37,7 +41,7 @@ body {
   height: 43px;
   display: flex;
   padding: 10px;
-  background-color: #212121;
+  background-color: rgba(32, 32, 32, 0.5);
   border-bottom: 1px solid #dcdcdc; }
   .navigation button {
     padding: 5px;
@@ -54,39 +58,16 @@ body {
   height: 25px; }
 
 #main {
-  background-color: #212121;
   padding: 20px; }
-
-html {
-  height: 100%;
-  padding: 0;
-  margin: 0; }
-
-body {
-  height: 100%;
-  background-color: #212121;
-  color: #CCC; }
-
-.nav {
-  position: static; }
-
-.content {
-  position: absolute;
-  top: 46px;
-  bottom: 0;
-  left: 0;
-  right: 0; }
-
-.hundred {
-  width: 100%;
-  height: 100%; }
-
-.fresh, .consumed, .exhausted, .channeled {
-  width: 25px;
-  height: 25px;
-  border-radius: 3px;
-  float: left;
-  margin: 1px; }
+  #main .layout-container {
+    display: flex; }
+    #main .layout-container .left-box {
+      width: 33.333333333333%; }
+    #main .layout-container .center-box {
+      display: table-cell;
+      width: 33.33333333333333%; }
+    #main .layout-container .right-box {
+      width: 33.3333333333333%; }
 
 .focus-meter {
   width: 324px;
@@ -119,7 +100,10 @@ body {
       width: 100%; }
       .health-meter .box-stack .health .state-label {
         display: table-cell;
-        width: 37%; }
+        width: 37%;
+        color: #777; }
+        .health-meter .box-stack .health .state-label.active {
+          color: #CCC; }
       .health-meter .box-stack .health .malus {
         display: table-cell;
         text-align: right;
@@ -146,8 +130,12 @@ body {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #C66 0px, #C66 17px), repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #C66 0px, #C66 17px), repeating-linear-gradient(0deg, transparent, transparent 0px, transparent 0px, transparent 11px, #C66 0px, #C66 13px); }
 
 .character-base-props {
-  width: 400px;
-  height: 100px; }
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; }
   .character-base-props .char-name {
     width: 100%;
     height: 50px;
@@ -160,27 +148,84 @@ body {
     flex-direction: row;
     justify-content: space-between; }
     .character-base-props .char-attributes ul li {
-      padding: 5px;
-      border: 1px solid transparent;
+      border: 4px solid transparent;
       text-align: center;
       align-items: center;
-      width: 50px;
+      width: 35px;
+      height: 35px;
       display: flex;
       flex-direction: column;
-      margin: 0 2px; }
+      margin: 0 2px;
+      border-radius: 17%;
+      font-size: 16px;
+      line-height: .8;
+      background-color: #333; }
+      .character-base-props .char-attributes ul li label {
+        margin-bottom: .4em; }
       .character-base-props .char-attributes ul li.char {
-        background-color: #403535; }
+        border-color: #403535; }
       .character-base-props .char-attributes ul li.agi {
-        background-color: #303730; }
+        border-color: #303730; }
       .character-base-props .char-attributes ul li.int {
-        background-color: #373737; }
+        border-color: #373737; }
       .character-base-props .char-attributes ul li.con {
-        background-color: #373030; }
+        border-color: #373030; }
       .character-base-props .char-attributes ul li.mys {
-        background-color: #303037; }
+        border-color: #303037; }
       .character-base-props .char-attributes ul li.str {
-        background-color: #3C3535; }
+        border-color: #3C3535; }
       .character-base-props .char-attributes ul li.wit {
-        background-color: #373037; }
+        border-color: #373037; }
       .character-base-props .char-attributes ul li.wil {
-        background-color: #123036; }
+        border-color: #22303A; }
+  .character-base-props .char-properties {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; }
+    .character-base-props .char-properties table {
+      font-size: 13px;
+      width: 200px;
+      float: left; }
+      .character-base-props .char-properties table td {
+        vertical-align: top; }
+      .character-base-props .char-properties table tr {
+        background-color: rgba(48, 48, 48, 0.5); }
+      .character-base-props .char-properties table tr:nth-child(2n) {
+        background-color: rgba(48, 48, 48, 0.2); }
+
+.moonshards {
+  width: 324px;
+  height: 100px; }
+  .moonshards .shard-wrapper {
+    width: 100%; }
+  .moonshards .shard-outer {
+    border-radius: 50%;
+    border: 1px solid #1f1f1f;
+    width: 84px;
+    height: 80px;
+    float: left;
+    padding: 3px;
+    margin: 0 5px; }
+    .moonshards .shard-outer .shard {
+      position: relative;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%; }
+      .moonshards .shard-outer .shard.fresh {
+        background: url("../assets/images/full-bloom.png");
+        box-shadow: inset 25px -10px 22px 1px rgba(0, 0, 0, 0.5), inset -56px 14px 9px -53px rgba(255, 255, 255, 0.5); }
+      .moonshards .shard-outer .shard.spent {
+        background: #1f1f1f;
+        box-shadow: inset -9px 5px 26px 15px rgba(0, 0, 0, 0.4); }
+    .moonshards .shard-outer .cracks {
+      background: url("../assets/images/congruent_outline.png");
+      background-size: 129%;
+      display: none;
+      border-radius: 50%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0; }
+    .moonshards .shard-outer:hover .fresh .cracks {
+      position: absolute;
+      display: block; }

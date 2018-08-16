@@ -1,5 +1,6 @@
 // Module to control application life.
 const electron = require('electron');
+var path = require('path');
 
 var e_app = electron.app;
 
@@ -25,9 +26,9 @@ e_app.on('ready', function () {
       {
           width: 1400, height: 900,
           contentSecurityPolicy: `
-          script-src 'self';
-          unsafe-eval 'disable';
-          `
+            script-src 'self';
+            unsafe-eval 'disable';`,
+          icon: path.join(__dirname, 'assets/icons/png/64x64.png')
       });
 
   // and load the index.html of the app.

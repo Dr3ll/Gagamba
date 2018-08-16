@@ -72,7 +72,7 @@ define(
                     },
                     moonshards: {
                         total: 3,
-                        spend: 0
+                        spent: 0
                     },
                     attributes: {
                         CHARISMA: {base: 2, value: 2},
@@ -262,6 +262,15 @@ define(
                     _takeDamage(damage);
                 };
 
+                var _spendMoonshard = function () {
+                    if (_character.moonshards.spent >= _character.moonshards.total ) {
+                        return false;
+                    }
+
+                    _character.moonshards.spent++;
+                    return false;
+                };
+
                 return {
                     RSTATES: _RSTATES,
                     name: function () {
@@ -314,6 +323,9 @@ define(
                     },
                     cast: function (id) {
                         _cast(Grimoire.getSpell(id));
+                    },
+                    spendMoonshard: function () {
+                        _spendMoonshard();
                     },
                     subscribeLoadingDone: function (scope, handler) {
                         scope.handler$loadingDone = $rootScope.$on('CharacterLoadingDone', handler);

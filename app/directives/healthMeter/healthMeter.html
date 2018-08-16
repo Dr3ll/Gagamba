@@ -1,35 +1,35 @@
 <div class="health-meter">
     <div class="box-stack">
         <div class="health unharmed">
-            <span class="state-label">Unverletzt</span>
+            <span class="state-label" ng-class="health.h * 4 < remaining ? 'active' : ''">Unverletzt</span>
             <div class="malus">&nbsp;0</div>
             <div class="point-wrapper">
                 <div ng-repeat="point in unharmedBox track by $index" ng-class="point.state"></div>
             </div>
         </div>
         <div class="health hurt">
-            <span>Angeschlagen</span>
+            <span class="state-label" ng-class="health.h * 3 < remaining ? 'active' : ''">Angeschlagen</span>
             <div class="malus">-1</div>
             <div class="point-wrapper">
                 <div ng-repeat="point in hurtBox track by $index" ng-class="point.state"></div>
             </div>
         </div>
         <div class="health injured">
-            <span>Verletzt</span>
+            <span class="state-label" ng-class="health.h * 2 < remaining ? 'active' : ''">Verletzt</span>
             <div class="malus">-2</div>
             <div class="point-wrapper">
                 <div ng-repeat="point in injuredBox track by $index" ng-class="point.state"></div>
             </div>
         </div>
         <div class="health badly-injured">
-            <span>Schwer verletzt</span>
+            <span class="state-label" ng-class="health.h < remaining ? 'active' : ''">Schwer verletzt</span>
             <div class="malus">-4</div>
             <div class="point-wrapper">
                 <div ng-repeat="point in badlyInjuredBox track by $index" ng-class="point.state"></div>
             </div>
         </div>
         <div class="health dying">
-            <span>Todgeweiht</span>
+            <span class="state-label" ng-class="0 < remaining ? 'active' : ''">Todgeweiht</span>
             <div class="malus">-8</div>
             <div class="point-wrapper">
                 <div ng-repeat="point in dyingBox track by $index" ng-class="point.state"></div>
@@ -38,3 +38,4 @@
     </div>
 </div>
 
+<button ng-click="hit()">hit</button>

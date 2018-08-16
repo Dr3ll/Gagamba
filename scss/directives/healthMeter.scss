@@ -3,6 +3,8 @@
 $health-line-color: $life;
 $health-bg-color: $life_muted;
 
+$inactive-label: #777;
+
 .health-meter {
   width: 420px;
   height: 150px;
@@ -15,6 +17,10 @@ $health-bg-color: $life_muted;
       .state-label {
         display: table-cell;
         width: 37%;
+        color: $inactive-label;
+        &.active {
+          color: $ash;
+        }
       }
       .malus {
         display: table-cell;

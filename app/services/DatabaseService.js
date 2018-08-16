@@ -9,7 +9,7 @@ define([
 
                 const _SQLITE3 = require('sqlite3');
 
-                var _db = new _SQLITE3.Database('app/resources/db/gagamba.db');
+                var _db = new _SQLITE3.Database('app/assets/db/gagamba.s3db');
 
                 var _schools = [];
 

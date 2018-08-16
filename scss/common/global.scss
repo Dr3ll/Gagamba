@@ -8,15 +8,19 @@ html {
 
 body {
   height: 100%;
-  background-color: $char;
+  background: url("../assets/images/black_lozenge.png");
   color: $ash;
 }
 
-.nav {
+#nav {
   position: static;
 }
 
-.content {
+#content {
+  background: url("../assets/images/gagamba_transparent.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 21%;
   position: absolute;
   top: 46px;
   bottom: 0;
@@ -29,10 +33,12 @@ body {
   height: 100%;
 }
 
-.fresh, .consumed, .exhausted, .channeled {
-  width: 25px;
-  height: 25px;
-  border-radius: 3px;
-  float: left;
-  margin: 1px;
+.point-wrapper {
+  .fresh, .consumed, .exhausted, .channeled {
+    width: 25px;
+    height: 25px;
+    border-radius: 3px;
+    float: left;
+    margin: 1px;
+  }
 }

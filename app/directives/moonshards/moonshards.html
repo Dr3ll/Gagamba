@@ -1,0 +1,12 @@
+<div class="moonshards">
+    <div>
+        Splitterpunkte
+    </div>
+    <div class="shard-wrapper">
+        <div ng-repeat="shard in shardBox track by $index" class="shard-outer">
+            <div class="shard" ng-class="!shard.spent ? 'fresh' : 'spent'" ng-click="spend()">
+                <div class="cracks"></div>
+            </div>
+        </div>
+    </div>
+</div>
