@@ -5,14 +5,14 @@ html {
 
 body {
   height: 100%;
-  background: url("../assets/images/black_lozenge.png");
+  background: url("../../assets/images/black_lozenge.png");
   color: #CCC; }
 
 #nav {
   position: static; }
 
 #content {
-  background: url("../assets/images/gagamba_transparent.png");
+  background: url("../../assets/images/gagamba_transparent.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 21%;
@@ -212,13 +212,13 @@ body {
       width: 100%;
       height: 100%; }
       .moonshards .shard-outer .shard.fresh {
-        background: url("../assets/images/full-bloom.png");
+        background: url("../../assets/images/full-bloom.png");
         box-shadow: inset 25px -10px 22px 1px rgba(0, 0, 0, 0.5), inset -56px 14px 9px -53px rgba(255, 255, 255, 0.5); }
       .moonshards .shard-outer .shard.spent {
         background: #1f1f1f;
         box-shadow: inset -9px 5px 26px 15px rgba(0, 0, 0, 0.4); }
     .moonshards .shard-outer .cracks {
-      background: url("../assets/images/congruent_outline.png");
+      background: url("../../assets/images/congruent_outline.png");
       background-size: 129%;
       display: none;
       border-radius: 50%;

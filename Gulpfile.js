@@ -41,7 +41,7 @@ gulp.task('copy', ['clean'], function () {
 });
 
 gulp.task('build', ['copy'], function () {
-    return gulp.src('./app/index.html')
+    return gulp.src('./app/render/index.html')
         .pipe(usemin({
             js: [uglify()]
         }))
@@ -52,7 +52,7 @@ gulp.task('build', ['copy'], function () {
 gulp.task('run', function () {
     gulp.src('./scss/style.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./app/css'));
+        .pipe(gulp.dest('./app/render/css'));
     childProcess.spawn(electron, ['./app'], { stdio: 'inherit' });
 });
 

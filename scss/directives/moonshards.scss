@@ -1,8 +1,8 @@
 @import '../common/constants';
 
 $shard-line-color: $tar;
-$fresh_bg_img: url("../assets/images/full-bloom.png");
-$cracks: url("../assets/images/congruent_outline.png");
+$fresh_bg_img: $full_bloom;
+$cracks: $congruent_outline;
 
 .moonshards {
   width: 324px;

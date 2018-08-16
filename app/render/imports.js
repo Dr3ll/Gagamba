@@ -1,12 +1,12 @@
 requirejs.config({
     baseUrl: './',
     paths: {
-        'jquery': '../node_modules/jquery/dist/jquery.min',
-        'angular': '../node_modules/angular/angular',
-        'angular-animate': '../node_modules/angular-animate/angular-animate',
-        'ngRoute': '../node_modules/angular-route/angular-route.min',
-        'bootstrap': '../node_modules/bootstrap/dist/js/bootstrap.min',
-        'uiRouter': '../node_modules/angular-ui-router/release/angular-ui-router.min'
+        'jquery': '../../node_modules/jquery/dist/jquery.min',
+        'angular': '../../node_modules/angular/angular',
+        'angular-animate': '../../node_modules/angular-animate/angular-animate',
+        'ngRoute': '../../node_modules/angular-route/angular-route.min',
+        'bootstrap': '../../node_modules/bootstrap/dist/js/bootstrap.min',
+        'uiRouter': '../../node_modules/angular-ui-router/release/angular-ui-router.min'
     },
     shim: {
         'domReady': {

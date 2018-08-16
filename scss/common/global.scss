@@ -1,5 +1,8 @@
 @import '../common/constants';
 
+$transparent_logo: $gagamba_transparent;
+$bg_pattern: $black_lozenge;
+
 html {
   height: 100%;
   padding: 0;
@@ -8,7 +11,7 @@ html {
 
 body {
   height: 100%;
-  background: url("../assets/images/black_lozenge.png");
+  background: $bg_pattern;
   color: $ash;
 }
 
@@ -17,7 +20,7 @@ body {
 }
 
 #content {
-  background: url("../assets/images/gagamba_transparent.png");
+  background: $transparent_logo;
   background-position: center;
   background-repeat: no-repeat;
   background-size: 21%;
