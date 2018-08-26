@@ -16,14 +16,24 @@ define(
                     controller: ['$scope', 'Character', 'Grimoire',
                         function ($scope, Character, Grimoire) {
 
+                            Character.subscribeCharacterSelected($scope, function() {
+                                if (Character.characterLoaded()) {
+                                    $scope.init();
+                                }
+                            });
+
                             $scope.init = function () {
                                 $scope.freshBox = [];
                                 $scope.channeledBox = [];
                                 $scope.exhaustedBox = [];
                                 $scope.consumedBox = [];
+                                $scope.focus = {
+                                    ch: 0,
+                                    ex: 0,
+                                    co: 0
+                                };
 
-                                let char = Character.getCharacter();
-                                if (char === undefined || char === null) {
+                                if (!Character.characterLoaded()) {
                                     return;
                                 }
 

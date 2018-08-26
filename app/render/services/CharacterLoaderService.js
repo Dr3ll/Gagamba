@@ -13,16 +13,6 @@ define(
                 let _characters = [];
                 let _activeCharacter = undefined;
 
-                let _loadCharacter = function(fileName) {
-                    return $q( function (resolve, reject) {
-                        _store.loadCharacter(fileName, character => {
-                            _activeCharacter = character;
-
-                            resolve();
-                        }, this);
-                    });
-                };
-
                 let _loadCharacters = function () {
                     return $q(function (resolve, reject) {
                         _store.loadCharacters(characters => {
@@ -33,9 +23,29 @@ define(
                     });
                 };
 
+                let _loadCharacter = function(fileName) {
+                    return $q( function (resolve, reject) {
+                        _store.loadCharacter(fileName, character => {
+                            _activeCharacter = character;
+                            resolve();
+                        }, this);
+                    });
+                };
+
+                let _saveCharacter = function (character) {
+                    let self = this;
+                    return $q( function (resolve, reject) {
+                        _store.saveCharacter(character,
+                            () => {
+                                resolve();
+                            }, self);
+                    });
+                };
+
                 return {
                     loadCharacters: _loadCharacters,
                     loadCharacter: _loadCharacter,
+                    saveCharacter: _saveCharacter,
                     getActiveCharacter: function() {
                         return _activeCharacter;
                     },

@@ -12,7 +12,7 @@ define(
                 const _K = { DEFAULT_CHARACTER: 'character' }
 
                 let _store = Storage.Store;
-                let _settings = [];
+                let _settings = {};
 
                 let _loadSettings = function () {
                     return $q(function (resolve, reject) {
@@ -35,6 +35,9 @@ define(
                     loadSettings: _loadSettings,
                     getSettings: function() {
                         return _settings;
+                    },
+                    quicksaveEnabled: function () {
+                        return _settings.quicksave;
                     },
                     getDefaultCharacter: function() {
                         return _settings[_K.DEFAULT_CHARACTER];

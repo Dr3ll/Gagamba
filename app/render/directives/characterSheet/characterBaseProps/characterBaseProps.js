@@ -15,6 +15,12 @@ define(
                     controller: ['$scope', 'Character',
                         function ($scope, Character) {
 
+                            Character.subscribeCharacterSelected($scope, function() {
+                                if (Character.characterLoaded()) {
+                                    $scope.init();
+                                }
+                            });
+
                             $scope.init = function () {
                                 $scope.name = undefined;
                                 $scope.properties = {};
@@ -24,8 +30,7 @@ define(
                                 $scope.battle = {};
                                 $scope.attributes = {};
 
-                                let char = Character.getCharacter();
-                                if (char === undefined || char === null) {
+                                if (!Character.characterLoaded()) {
                                     return;
                                 }
 

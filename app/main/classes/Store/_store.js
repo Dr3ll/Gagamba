@@ -45,7 +45,7 @@ class Store {
     loadSettings() {
         this._appSettings = new SaveFile({
             configName: 'settings',
-            defaults: { }
+            defaults: { quicksave: true }
         }, this._settingsContainer);
 
         this._windowBounds = new SaveFile({
@@ -104,14 +104,16 @@ class Store {
 
     }
 
-    saveCharacter(character) {
+    saveCharacter(character, callback, target) {
         let file = this._charactersFiles.get(character.fileName);
         if (file === undefined) {
             file = new SaveFile({configName: file}, this._characterContainer);
             this._charactersFiles.set(fileName, file);
         }
 
-        file.save(character, () => {}, this);
+        file.save(character, () => {
+            callback.apply(target, [undefined]);
+        }, this);
     }
 
     saveBounds(value) {

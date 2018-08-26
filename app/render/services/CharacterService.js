@@ -2,13 +2,15 @@ define(
     [
         'app',
         'angular',
-        'services/GrimoireService'
+        'services/GrimoireService',
+        'services/CharacterLoaderService',
+        'services/SettingsService'
     ],
     function (app) {
         'use strict';
 
-        app.factory('Character', ['$rootScope', 'Grimoire',
-            function ($rootScope, Grimoire) {
+        app.factory('Character', ['$rootScope', '$timeout', 'Grimoire', 'Settings', 'CharacterLoader',
+            function ($rootScope, $timeout, Grimoire, Settings, CharacterLoader) {
 
                 const _RSTATES = {
                     FRESH: 'fresh',
@@ -46,92 +48,6 @@ define(
                     FOCUS_POOL: { name: "Erhöhter Fokuspool", description: "jeweils +5 Fokus", tier: 1 },
                     STABLE_MAGIC: { name: "Stabile Magie", description: "-1 Stufe f. verheerende Zauberauswirkungstabelle" },
                     LITERATE: { name: "Literat", description: "Lesen/Schreiben" },
-                };
-
-                let _debugCharacter = {
-                    name: "Bameth",
-                    level: 1,
-                    properties: {
-                        education: "Frei erschaffen",
-                        culture: "Frei erschaffen",
-                        race: _RACES.GNOME,
-                        hair: "dunkelbraun",
-                        eyes: "schwarz",
-                        skin: "",
-                        gender: _GENDERS.MALE,
-                        weight: 22,
-                        height: 108
-                    },
-                    moonSign: _LUNIAC.STRENGTH_OF_MIND,
-                    languages: [
-                        _LANGUAGES.BGNOME, _LANGUAGES.DRAGO
-                    ],
-                    experience: {
-                        total: 32,
-                        spend: 31
-                    },
-                    moonshards: {
-                        total: 3,
-                        spent: 0
-                    },
-                    attributes: {
-                        CHARISMA: {base: 2, value: 2},
-                        AGILITY: {base: 3, value: 3},
-                        INTUITION: {base: 2, value: 2},
-                        CONSTITUTION: {base: 2, value: 2},
-                        MYSTIC: {base: 5, value: 5},
-                        STRENGTH: {base: 0, value: 0},
-                        WIT: {base: 3, value: 3},
-                        WILLPOWER: {base: 3, value: 3}
-                    },
-                    battle: {
-                        dr: 2,
-                        speed: 7,
-                        initiative: 8,
-                        defense: 20,
-                        will: 20,
-                        body: 17
-                    },
-                    focus: {
-                        max: 21,
-                        f: 4,
-                        ch: 4,
-                        ex: 5,
-                        co: 8
-                    },
-                    health: {
-                        h: 7,
-                        ch: 0,
-                        ex: 0,
-                        co: 0
-                    },
-                    magic: {
-                        ILLUSION: {
-                            value: {base: 7, value: 13},
-                            //expertise: new Map[ [Grimoire.SCHOOLS.ILLUSION.MIRAGE], [1] ],
-                            masteries: [{name: "Sparsamer Zauberer", description: "Illusion Kosten -1"}],
-                            discount: 1
-                        }
-                    },
-                    abilities: { },
-                    weaknesses: [],
-                    resources: {
-                        public_image: { value: -1, description: "" },
-                        rank: { value: 1, description: "" },
-                        contacts: { value: 3, description: "" },
-                        fortune: { value: 1, description: "" },
-                        relic: { value: 4, item: { name: "Stimmgabel" } }
-                    },
-                    strengths: [
-                        _STRENGTHS.FAIRYSENSE,
-                        _STRENGTHS.HIGH_WILL,
-                        _STRENGTHS.NIMBLE,
-                        _STRENGTHS.NIGHT_VISION,
-                        _STRENGTHS.FOCUS_REG,
-                        _STRENGTHS.FOCUS_POOL,
-                        _STRENGTHS.STABLE_MAGIC,
-                        _STRENGTHS.LITERATE
-                    ]
                 };
 
                 let _character = undefined;
@@ -265,13 +181,34 @@ define(
                     return false;
                 };
 
+                let _saveDelay = undefined;
+
+                let _characterChanged = function () {
+                    if (Settings.quicksaveEnabled() &&
+                        _character !== undefined && _character !== null) {
+                        if (_saveDelay !== undefined) {
+                            $timeout.cancel(_saveDelay);
+                            _saveDelay = undefined;
+                        }
+                        _saveDelay = $timeout(
+                            function () {
+                                CharacterLoader.saveCharacter(_character);
+                            }, 500
+                        );
+                    }
+                };
+
                 return {
                     RSTATES: _RSTATES,
+                    characterLoaded: function() {
+                        return _character !== undefined && _character !== null;
+                    },
                     getCharacter: function() {
                         return _character;
                     },
                     setCharacter: function(character) {
                         _character = character;
+
                         $rootScope.$emit('characterSelected');
                     },
                     subscribeCharacterSelected: function(scope, handler) {
@@ -327,21 +264,21 @@ define(
                     },
                     hit: function (damage) {
                         _takeHit(damage);
+                        _characterChanged();
                     },
                     cast: function (id) {
                         _cast(Grimoire.getSpell(id));
+                        _characterChanged();
                     },
                     spendMoonshard: function () {
                         _spendMoonshard();
+                        _characterChanged();
                     },
                     subscribeLoadingDone: function (scope, handler) {
                         scope.handler$loadingDone = $rootScope.$on('CharacterLoadingDone', handler);
                         scope.$on('$destroy', function () {
                             scope.handler$loadingDone();
                         });
-                    },
-                    load: function () {
-                        _load();
                     }
                 };
 

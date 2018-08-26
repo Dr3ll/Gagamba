@@ -9,11 +9,11 @@ define([
 
                 const _SQLITE3 = require('sqlite3');
 
-                var _db = new _SQLITE3.Database('app/assets/db/gagamba.s3db');
+                let _db = new _SQLITE3.Database('../app/assets/db/gagamba.db');
 
-                var _schools = [];
+                let _schools = [];
 
-                var _loadData = function () {
+                let _loadData = function () {
                     return $q(function (resolve, reject) {
                         _db.serialize(
                             function () {

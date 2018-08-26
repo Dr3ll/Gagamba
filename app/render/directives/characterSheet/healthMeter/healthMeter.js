@@ -15,6 +15,12 @@ define(
                     controller: ['$scope', 'Character',
                         function ($scope, Character) {
 
+                            Character.subscribeCharacterSelected($scope, function() {
+                                if (Character.characterLoaded()) {
+                                    $scope.init();
+                                }
+                            });
+
                             $scope.init = function () {
                                 $scope.unharmedBox = [];
                                 $scope.hurtBox = [];
@@ -23,8 +29,7 @@ define(
                                 $scope.dyingBox = [];
                                 $scope.remaining = 0;
 
-                                let char = Character.getCharacter();
-                                if (char === undefined || char === null) {
+                                if (!Character.characterLoaded()) {
                                     return;
                                 }
 

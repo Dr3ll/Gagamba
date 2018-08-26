@@ -217,6 +217,7 @@ body {
       width: 150px; }
     .character-selection .character-wrapper .character span.level {
       width: 25px; }
+
 .character-selection .info {
   width: 100%;
   text-align: center; }
@@ -257,5 +258,3 @@ body {
     .moonshards .shard-outer:hover .fresh .cracks {
       position: absolute;
       display: block; }
-
-/*# sourceMappingURL=style.css.map */
