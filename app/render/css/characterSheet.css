@@ -1,0 +1,65 @@
+.character-base-props {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; }
+  .character-base-props .char-name {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 5px; }
+  .character-base-props .char-attributes ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .character-base-props .char-attributes ul li {
+      border: 4px solid transparent;
+      text-align: center;
+      align-items: center;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      flex-direction: column;
+      margin: 0 2px;
+      border-radius: 17%;
+      font-size: 16px;
+      line-height: .8;
+      background-color: #333; }
+      .character-base-props .char-attributes ul li label {
+        margin-bottom: .4em; }
+      .character-base-props .char-attributes ul li.char {
+        border-color: #403535; }
+      .character-base-props .char-attributes ul li.agi {
+        border-color: #303730; }
+      .character-base-props .char-attributes ul li.int {
+        border-color: #373737; }
+      .character-base-props .char-attributes ul li.con {
+        border-color: #373030; }
+      .character-base-props .char-attributes ul li.mys {
+        border-color: #303037; }
+      .character-base-props .char-attributes ul li.str {
+        border-color: #3C3535; }
+      .character-base-props .char-attributes ul li.wit {
+        border-color: #373037; }
+      .character-base-props .char-attributes ul li.wil {
+        border-color: #22303A; }
+  .character-base-props .char-properties {
+    display: flex;
+    justify-content: space-between;
+    width: 100%; }
+    .character-base-props .char-properties table {
+      font-size: 13px;
+      width: 200px;
+      float: left; }
+      .character-base-props .char-properties table td {
+        vertical-align: top; }
+      .character-base-props .char-properties table tr {
+        background-color: rgba(48, 48, 48, 0.5); }
+      .character-base-props .char-properties table tr:nth-child(2n) {
+        background-color: rgba(48, 48, 48, 0.2); }
+
+/*# sourceMappingURL=characterSheet.css.map */

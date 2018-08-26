@@ -11,7 +11,7 @@ define(
             function () {
                 return {
                     scope: {},
-                    templateUrl: 'directives/moonshards/moonshards.html',
+                    templateUrl: 'directives/characterSheet/moonshards/moonshards.html',
                     controller: ['$scope', 'Character',
                         function ($scope, Character) {
 
@@ -20,13 +20,13 @@ define(
                                 $scope.moonshards = Character.moonshards();
                             };
 
-                            var _shard = function(spent) {
+                            let _shard = function(spent) {
                                 return { spent: spent };
                             };
 
-                            var _updateBoxes = function () {
+                            let _updateBoxes = function () {
                                 $scope.shardBox = [];
-                                for (var i = 0; i < $scope.moonshards.total; i++) {
+                                for (let i = 0; i < $scope.moonshards.total; i++) {
                                     $scope.shardBox.push(_shard(i <= $scope.moonshards.spent));
                                 }
                             };

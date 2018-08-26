@@ -11,7 +11,7 @@ define(
             function () {
                 return {
                     scope: {},
-                    templateUrl: 'directives/healthMeter/healthMeter.html',
+                    templateUrl: 'directives/characterSheet/healthMeter/healthMeter.html',
                     controller: ['$scope', 'Character',
                         function ($scope, Character) {
 
@@ -26,15 +26,15 @@ define(
                                 $scope.health = Character.health();
                             };
 
-                            var _point = function (state) {
+                            let _point = function (state) {
                                 return {
                                     state: state
                                 };
                             };
 
-                            var _updateBoxes = function () {
+                            let _updateBoxes = function () {
 
-                                var tempHealth = {
+                                let tempHealth = {
                                     ch: $scope.health.ch,
                                     ex: $scope.health.ex,
                                     co: $scope.health.co
@@ -47,9 +47,9 @@ define(
                                 $scope.badlyInjuredBox = [];
                                 $scope.dyingBox = [];
 
-                                for (var m = 0; m < 5; m++) {
-                                    for (var p = $scope.health.h * m; p < $scope.health.h * (m + 1); p++) {
-                                        var point = { };
+                                for (let m = 0; m < 5; m++) {
+                                    for (let p = $scope.health.h * m; p < $scope.health.h * (m + 1); p++) {
+                                        let point = { };
                                         if (tempHealth.co > 0) {
                                             tempHealth.co--;
                                             point = _point(Character.RSTATES.CONSUMED);

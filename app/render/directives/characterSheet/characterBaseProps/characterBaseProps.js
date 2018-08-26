@@ -11,7 +11,7 @@ define(
             function () {
                 return {
                     scope: {},
-                    templateUrl: 'directives/characterBaseProps/characterBaseProps.html',
+                    templateUrl: 'directives/characterSheet/characterBaseProps/characterBaseProps.html',
                     controller: ['$scope', 'Character',
                         function ($scope, Character) {
 

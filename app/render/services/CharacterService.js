@@ -48,7 +48,7 @@ define(
                     LITERATE: { name: "Literat", description: "Lesen/Schreiben" },
                 };
 
-                var _debugCharacter = {
+                let _debugCharacter = {
                     name: "Bameth",
                     level: 1,
                     properties: {
@@ -134,21 +134,21 @@ define(
                     ]
                 };
 
-                var _character = undefined;
+                let _character = undefined;
 
-                var _channelList = [];
+                let _channelList = [];
 
-                var _load = function () {
+                let _load = function () {
                     _character = _debugCharacter;
 
                     $rootScope.$emit('CharacterLoadingDone');
                 };
 
-                var _calcSpellCost = function (spell, magic, successDiscount) {
+                let _calcSpellCost = function (spell, magic, successDiscount) {
                     successDiscount = successDiscount | {co: 0, ex: 0, ch: 0};
-                    var skillDiscount = {co: 0, ex: 0, ch: 0};
-                    var skillDiscountValue = magic[spell.school].discount;
-                    var cost = {ex: spell.cost.ex, ch: spell.cost.ch, co: spell.cost.co};
+                    let skillDiscount = {co: 0, ex: 0, ch: 0};
+                    let skillDiscountValue = magic[spell.school].discount;
+                    let cost = {ex: spell.cost.ex, ch: spell.cost.ch, co: spell.cost.co};
 
                     // Substract consumed
                     if (cost.ex !== 0) {
@@ -191,7 +191,7 @@ define(
                     return cost;
                 };
 
-                var _applyFocusCost = function (cost) {
+                let _applyFocusCost = function (cost) {
                     if (_character.focus.f < cost.ex + cost.ch + cost.co) {
                         return false; // not enough focus
                     }
@@ -204,15 +204,15 @@ define(
                     return true;
                 };
 
-                var _cast = function (spell, successDiscount) {
-                    var cost = _calcSpellCost(spell, _character.magic, successDiscount);
+                let _cast = function (spell, successDiscount) {
+                    let cost = _calcSpellCost(spell, _character.magic, successDiscount);
                     _applyFocusCost(cost);
                     if (cost.ch > 0) {
                         _channelList.push({spell: spell, value: cost.ch});
                     }
                 };
 
-                var _takeDamage = function(damage) {
+                let _takeDamage = function(damage) {
                     if (_character.health.h * 5 <=
                         damage.ex + damage.ch + damage.co +
                         _character.health.ch + _character.health.ex + _character.health.co) {
@@ -229,8 +229,8 @@ define(
                     return true;
                 };
 
-                var _takeHit = function (damage) {
-                    var dr = _character.battle.dr;
+                let _takeHit = function (damage) {
+                    let dr = _character.battle.dr;
                     while (dr > 0) {
                         if (damage.ch > 0) {
                             if (dr >= damage.ch) {
@@ -262,7 +262,7 @@ define(
                     _takeDamage(damage);
                 };
 
-                var _spendMoonshard = function () {
+                let _spendMoonshard = function () {
                     if (_character.moonshards.spent >= _character.moonshards.total ) {
                         return false;
                     }
@@ -273,6 +273,9 @@ define(
 
                 return {
                     RSTATES: _RSTATES,
+                    getCharacter: function() {
+                        return _character;
+                    },
                     name: function () {
                         return _character.name;
                     },
@@ -336,7 +339,6 @@ define(
                     load: function () {
                         _load();
                     }
-
                 };
 
             }]);

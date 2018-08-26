@@ -12,7 +12,7 @@ define(
             function () {
                 return {
                     scope: {},
-                    templateUrl: 'directives/focusMeter/focusMeter.html',
+                    templateUrl: 'directives/characterSheet/focusMeter/focusMeter.html',
                     controller: ['$scope', 'Character', 'Grimoire',
                         function ($scope, Character, Grimoire) {
 
@@ -25,18 +25,18 @@ define(
                                 $scope.focus = Character.focus();
                             };
 
-                            var _updateBoxes = function () {
+                            let _updateBoxes = function () {
                                 $scope.freshBox = [];
                                 $scope.channeledBox = [];
                                 $scope.exhaustedBox = [];
                                 $scope.consumedBox = [];
 
-                                var cap = Math.max(
+                                let cap = Math.max(
                                     $scope.focus.ch,
                                     $scope.focus.ex,
                                     $scope.focus.co);
 
-                                for (var i = 0; i < cap; i++) {
+                                for (let i = 0; i < cap; i++) {
                                     if ($scope.focus.f > i) {
                                         $scope.freshBox.push(2);
                                     }

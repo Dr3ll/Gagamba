@@ -1,0 +1,97 @@
+@import '../common/constants';
+
+$charisma_bg: $pink_muted;
+$agility_bg: $nature_muted;
+$intellect_bg: $silver_muted;
+$constitution_bg: $life_muted;
+$mystic_bg: $mana_muted;
+$strength_bg: $orange_muted;
+$wit_bg: $violet_muted;
+$willpower_bg: $air_muted;
+$bg_odd_rows: rgba(48,48,48, .5);
+$bg_even_rows: rgba(48,48,48, .2);
+
+.character-base-props {
+  width: 100%;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  .char-name {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    padding: 5px;
+  }
+  .char-attributes {
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      li {
+        border: 4px solid transparent;
+        text-align: center;
+        align-items: center;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        flex-direction: column;
+        margin: 0 2px;
+        border-radius: 17%;
+        font-size: 16px;
+        line-height: .8;
+        background-color: $pott;
+        label {
+          margin-bottom: .4em;
+        }
+        &.char {
+          border-color: $charisma_bg;
+        }
+        &.agi {
+          border-color: $agility_bg;
+        }
+        &.int {
+          border-color: $intellect_bg;
+        }
+        &.con {
+          border-color: $constitution_bg;
+        }
+        &.mys {
+          border-color: $mystic_bg;
+        }
+        &.str {
+          border-color: $strength_bg;
+        }
+        &.wit {
+          border-color: $wit_bg;
+        }
+        &.wil {
+          border-color: $willpower_bg;
+        }
+      }
+    }
+  }
+  .char-properties {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    table {
+      font-size: 13px;
+      width: 200px;
+      float: left;
+      td {
+        vertical-align: top;
+      }
+      tr {
+        background-color: $bg_odd_rows;
+      }
+      tr:nth-child(2n) {
+        background-color: $bg_even_rows;
+      }
+    }
+  }
+}

@@ -12,7 +12,7 @@ define(
             function () {
                 return {
                     scope: {},
-                    templateUrl: 'directives/grimoire/grimoire.template.html',
+                    templateUrl: 'directives/characterSheet/grimoire/grimoire.template.html',
                     controller: ['$scope', 'Grimoire',
                         function ($scope, Grimoire) {
 

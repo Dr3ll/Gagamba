@@ -1,0 +1,10 @@
+<div class="character-selection hundred">
+    <table class="character-wrapper">
+        <tr class="character" ng-repeat="char in characterList track by $index">
+            <td class="name">{{char.name}}</td>
+            <td class="level">{{char.level}}</td>
+            <td class="race">{{char.properties.race}}</td>
+            <td class="education">{{char.properties.education}}</td>
+        </tr>
+    </table>
+</div>
