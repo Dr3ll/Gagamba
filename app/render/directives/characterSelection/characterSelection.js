@@ -2,7 +2,9 @@ define(
     [
         'app',
         'angular',
-        'services/CharacterLoaderService'
+        'services/CharacterLoaderService',
+        'services/CharacterService',
+        'services/SettingsService'
     ],
     function (app) {
         'use strict';
@@ -12,8 +14,8 @@ define(
                 return {
                     scope: {},
                     templateUrl: 'directives/characterSelection/characterSelection.html',
-                    controller: ['$scope', 'CharacterLoader',
-                        function ($scope, CharacterLoader) {
+                    controller: ['$scope', 'CharacterLoader', 'Character', 'Settings',
+                        function ($scope, CharacterLoader, Character, Settings) {
 
                             $scope.characterList = [];
                             $scope.checked = false;
@@ -21,7 +23,7 @@ define(
                             $scope.loadCharacterList = function() {
                                 $scope.characterList = [];
                                 $scope.checked = false;
-                                return CharacterLoader.loadCharacters;
+                                return CharacterLoader.loadCharacters();
                             };
 
                             $scope.init = function () {
@@ -34,6 +36,11 @@ define(
                                         }
                                     }
                                 );
+                            };
+
+                            $scope.select = function(char) {
+                                Character.setCharacter(char);
+                                Settings.setDefaultCharacter(char.fileName)
                             };
 
                             $scope.init();

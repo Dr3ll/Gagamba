@@ -270,9 +270,9 @@ define([
                         return _spells.get(id);
                     },
                     subscribeLoadingDone: function (scope, handler) {
-                        var unsub = $rootScope.$on('SassLoadingDone', handler);
+                        scope.handler$sassLoadingDone = $rootScope.$on('SassLoadingDone', handler);
                         scope.$on('$destroy', function () {
-                            unsub();
+                            scope.handler$sassLoadingDone();
                         });
                     },
                     load: function () {

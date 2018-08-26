@@ -23,6 +23,11 @@ define(
                                 $scope.dyingBox = [];
                                 $scope.remaining = 0;
 
+                                let char = Character.getCharacter();
+                                if (char === undefined || char === null) {
+                                    return;
+                                }
+
                                 $scope.health = Character.health();
                             };
 
@@ -89,9 +94,6 @@ define(
                                 _updateBoxes();
                             }, true);
 
-                            Character.subscribeLoadingDone($scope, function () {
-                                $scope.init();
-                            });
 
                             $scope.hit = function () {
                                 Character.hit({ ch: 2, ex: 1, co: 3 });

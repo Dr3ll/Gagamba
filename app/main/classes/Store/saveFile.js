@@ -5,11 +5,11 @@ const fs = require('fs');
 
 class SaveFile {
     constructor(opts, container, sync) {
-        let filename = opts.configName;
-        if (filename.indexOf('.json') !== filename.length - 5) {
-            filename += '.json'
+        this.fileName = opts.configName;
+        if (this.fileName.indexOf('.json') !== this.fileName.length - 5) {
+            this.fileName += '.json'
         }
-        this.path = path.join(container, filename);
+        this.path = path.join(container, this.fileName);
         this.defaults = opts.defaults;
 
         if (!sync) {
@@ -24,13 +24,14 @@ class SaveFile {
         return this.loader.unify;
     }
 
-    // This will just return the property on the `data` object
     get(key) {
         return this.data[key];
     }
 
-    // ...and this will set it
     set(key, value, sync) {
+        if(this.data === undefined) {
+            this.data = {};
+        }
         this.data[key] = value;
 
         let jobId = this._busyBody.startJob(key);
@@ -39,9 +40,16 @@ class SaveFile {
             fs.writeFileSync(this.path, JSON.stringify(this.data));
         } else {
             fs.writeFile(this.path, JSON.stringify(this.data), () => {
-                this._busyBody.remove(jobId);
+                this._busyBody.removeJob(jobId);
             });
         }
+    }
+
+    save(data, callback, target) {
+        this.data = data;
+        fs.writeFile(this.path, JSON.stringify(this.data), () => {
+            callback.apply(target);
+        });
     }
 
     _parseDataFile(err, data) {

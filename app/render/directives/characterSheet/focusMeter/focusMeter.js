@@ -22,6 +22,11 @@ define(
                                 $scope.exhaustedBox = [];
                                 $scope.consumedBox = [];
 
+                                let char = Character.getCharacter();
+                                if (char === undefined || char === null) {
+                                    return;
+                                }
+
                                 $scope.focus = Character.focus();
                             };
 
@@ -55,10 +60,6 @@ define(
                             $scope.$watch('focus', function () {
                                 _updateBoxes();
                             }, true);
-
-                            Character.subscribeLoadingDone($scope, function () {
-                                $scope.init();
-                            });
 
                             $scope.init();
                         }],

@@ -2,10 +2,35 @@
 
 .character-selection {
   .character-wrapper {
+    text-align: center;
     .character {
-      td {
-        
+      &:hover {
+        background: $ash;
+        color: $char;
+      }
+      span {
+        display: inline-block;
+        text-align: left;
+        cursor: pointer;
+        user-select: none;
+        &.name {
+          width: 150px;
+        }
+        &.education {
+          width: 150px;
+        }
+        &.race {
+          width: 150px;
+        }
+        &.level {
+          width: 25px;
+        }
       }
     }
+  }
+
+  .info {
+    width: 100%;
+    text-align: center;
   }
 }

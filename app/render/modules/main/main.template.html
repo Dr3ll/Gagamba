@@ -1,7 +1,7 @@
 <div id="main" class="hundred">
 
-    <!--<character-sheet></character-sheet>-->
+    <character-sheet ng-if="checked && activeCharacter"></character-sheet>
 
-    <character-selection></character-selection>
+    <character-selection ng-if="checked && !activeCharacter"></character-selection>
 
 </div>

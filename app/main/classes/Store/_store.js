@@ -23,6 +23,7 @@ class Store {
         this._rootContainer = this._setupFolder(this._userDataPath);
         this._settingsContainer = this._setupFolder('settings', this._rootContainer);
         this._characterContainer = this._setupFolder('characters', this._rootContainer);
+        this._charactersFiles = new Map();
 
         this.loadSettings();
     }
@@ -58,9 +59,9 @@ class Store {
     loadAppSettings(callback, target) {
         let jobId = this._busyBody.startJob("Einstellungen");
         this._appSettings.load(undefined, () => {
-            callback.apply(target, this._appSettings.data);
+            callback.apply(target, [this._appSettings.data]);
             this._busyBody.removeJob(jobId);
-        });
+        }, this._appSettings.loader);
     }
 
     loadCharacters(callback, target) {
@@ -69,23 +70,48 @@ class Store {
 
         let jobId = this._busyBody.startJob("Charaktere");
 
-        let characterFiles = [];
+        this._charactersFiles.clear();
         dirLoader.asynch(fs.readdir, this._characterContainer, (err, files) => {
-            files.forEach( file => {
-                let char = { file: new SaveFile({configName: file}, this._characterContainer) };
-                characterFiles.push(char);
+            files.forEach( fileName => {
+                let char = { file: new SaveFile({configName: fileName}, this._characterContainer) };
+                this._charactersFiles.set(fileName, char);
                 fileLoader.asynch(char.file.load, undefined, undefined, char.file.loader);
             });
         }, fs).unify(undefined,  () => {
             fileLoader.unify(undefined, () => {
                 let characterData = [];
-                characterFiles.forEach( char => {
+                this._charactersFiles.forEach( char => {
+                    char.file.data.fileName = char.file.fileName;
                     characterData.push(char.file.data);
                 });
                 callback.apply(target, [characterData]);
                 this._busyBody.removeJob(jobId);
             });
         });
+    }
+
+    loadCharacter(fileName, callback, target) {
+        let file = this._charactersFiles.get(fileName);
+        if (file === undefined) {
+            file = new SaveFile({configName: fileName}, this._characterContainer);
+            file.load(undefined, () => {
+                file.data.fileName = file.fileName;
+                callback.apply(target, [file.data]);
+            }, file.loader);
+
+            this._charactersFiles.set(fileName, file);
+        }
+
+    }
+
+    saveCharacter(character) {
+        let file = this._charactersFiles.get(character.fileName);
+        if (file === undefined) {
+            file = new SaveFile({configName: file}, this._characterContainer);
+            this._charactersFiles.set(fileName, file);
+        }
+
+        file.save(character, () => {}, this);
     }
 
     saveBounds(value) {

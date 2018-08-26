@@ -6,7 +6,9 @@ define(
         'directives/characterSheet/healthMeter/healthMeter',
         'directives/characterSheet/characterBaseProps/characterBaseProps',
         'directives/characterSheet/moonshards/moonshards',
-        'services/CharacterService'
+        'services/CharacterService',
+        'services/SettingsService',
+        'services/CharacterLoaderService'
     ],
     function (app) {
         'use strict';
@@ -15,10 +17,32 @@ define(
             function () {
                 return {
                     scope: {},
-                    templateUrl: 'directives/characterSheet/characterBaseProps/characterBaseProps.html',
-                    controller: ['$scope', 'Character',
-                        function ($scope, Character) {
+                    templateUrl: 'directives/characterSheet/_characterSheet/characterSheet.html',
+                    controller: ['$scope', 'Character', 'CharacterLoader', 'Settings',
+                        function ($scope, Character, CharacterLoader, Settings) {
 
+                            $scope.init = function() {
+                                let char = Character.getCharacter();
+                                if (char === undefined || char === null) {
+                                    let defaultChar = Settings.getDefaultCharacter();
+                                    if (defaultChar !== undefined && defaultChar !== null) {
+                                        CharacterLoader.loadCharacter(defaultChar).then(
+                                            function () {
+                                                let char = CharacterLoader.getActiveCharacter();
+                                                if (char !== undefined && char !== null) {
+                                                    Character.setCharacter(char);
+                                                } else {
+                                                    Character.setCharacter(undefined);
+                                                }
+                                            }
+                                        );
+                                    } else {
+                                        Character.setCharacter(undefined);
+                                    }
+                                }
+                            };
+
+                            $scope.init();
 
                         }],
                 }

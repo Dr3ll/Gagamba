@@ -17,6 +17,12 @@ define(
 
                             $scope.init = function () {
                                 $scope.shardBox = [];
+
+                                let char = Character.getCharacter();
+                                if (char === undefined || char === null) {
+                                    return;
+                                }
+
                                 $scope.moonshards = Character.moonshards();
                             };
 
@@ -39,10 +45,6 @@ define(
                                 Character.spendMoonshard();
                                 $scope.moonshards = Character.moonshards();
                             };
-
-                            Character.subscribeLoadingDone($scope, function () {
-                                $scope.init();
-                            });
 
                             $scope.init();
                         }],

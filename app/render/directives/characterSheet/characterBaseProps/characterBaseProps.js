@@ -24,6 +24,11 @@ define(
                                 $scope.battle = {};
                                 $scope.attributes = {};
 
+                                let char = Character.getCharacter();
+                                if (char === undefined || char === null) {
+                                    return;
+                                }
+
                                 $scope.name = Character.name();
                                 $scope.properties = Character.properties();
                                 $scope.experience = Character.experience();
@@ -32,10 +37,6 @@ define(
                                 $scope.battle = Character.battle();
                                 $scope.attributes = Character.attributes();
                             };
-
-                            Character.subscribeLoadingDone($scope, function () {
-                                $scope.init();
-                            });
 
                             $scope.init();
                         }],

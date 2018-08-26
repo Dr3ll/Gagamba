@@ -40,6 +40,7 @@ body {
   right: 0;
   height: 43px;
   display: flex;
+  justify-content: space-between;
   padding: 10px;
   background-color: rgba(32, 32, 32, 0.5);
   border-bottom: 1px solid #dcdcdc; }
@@ -49,6 +50,10 @@ body {
     border-radius: 1px;
     border: 1px solid #dcdcdc;
     color: #CCC; }
+  .navigation .left-side {
+    display: flex; }
+  .navigation .right-side {
+    display: flex; }
 
 .nav-spacer {
   position: relative;
@@ -59,15 +64,6 @@ body {
 
 #main {
   padding: 20px; }
-  #main .layout-container {
-    display: flex; }
-    #main .layout-container .left-box {
-      width: 33.333333333333%; }
-    #main .layout-container .center-box {
-      display: table-cell;
-      width: 33.33333333333333%; }
-    #main .layout-container .right-box {
-      width: 33.3333333333333%; }
 
 .focus-meter {
   width: 324px;
@@ -192,6 +188,38 @@ body {
         background-color: rgba(48, 48, 48, 0.5); }
       .character-base-props .char-properties table tr:nth-child(2n) {
         background-color: rgba(48, 48, 48, 0.2); }
+
+.character-sheet .layout-container {
+  display: flex; }
+  .character-sheet .layout-container .left-box {
+    width: 33.333333333333%; }
+  .character-sheet .layout-container .center-box {
+    display: table-cell;
+    width: 33.33333333333333%; }
+  .character-sheet .layout-container .right-box {
+    width: 33.3333333333333%; }
+
+.character-selection .character-wrapper {
+  text-align: center; }
+  .character-selection .character-wrapper .character:hover {
+    background: #CCC;
+    color: #212121; }
+  .character-selection .character-wrapper .character span {
+    display: inline-block;
+    text-align: left;
+    cursor: pointer;
+    user-select: none; }
+    .character-selection .character-wrapper .character span.name {
+      width: 150px; }
+    .character-selection .character-wrapper .character span.education {
+      width: 150px; }
+    .character-selection .character-wrapper .character span.race {
+      width: 150px; }
+    .character-selection .character-wrapper .character span.level {
+      width: 25px; }
+.character-selection .info {
+  width: 100%;
+  text-align: center; }
 
 .moonshards {
   width: 324px;

@@ -9,6 +9,7 @@ $bg_nav: rgba(32, 32, 32, .5);
   right: 0;
   height: 43px;
   display: flex;
+  justify-content: space-between;
   padding: 10px;
   background-color: $bg_nav;
   border-bottom: 1px solid $dust;
@@ -19,6 +20,13 @@ $bg_nav: rgba(32, 32, 32, .5);
     border-radius: 1px;
     border: 1px solid $dust;
     color: $ash;
+  }
+
+  .left-side {
+    display: flex;
+  }
+  .right-side {
+    display: flex;
   }
 }
 

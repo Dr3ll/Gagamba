@@ -14,12 +14,14 @@ define(
                 let _store = Storage.Store;
                 let _settings = [];
 
-                let _loadSettings = $q( function (resolve, reject) {
-                    _store.loadAppSettings(settings => {
-                        _settings = settings;
-                        resolve();
-                    }, this);
-                });
+                let _loadSettings = function () {
+                    return $q(function (resolve, reject) {
+                        _store.loadAppSettings(settings => {
+                            _settings = settings;
+                            resolve();
+                        }, this);
+                    });
+                };
 
                 let _persistSetting = function (key, value) {
                     if (value === undefined) {
@@ -37,8 +39,8 @@ define(
                     getDefaultCharacter: function() {
                         return _settings[_K.DEFAULT_CHARACTER];
                     },
-                    setDefaultCharacter: function(characterName) {
-                        _persistSetting(key, characterName);
+                    setDefaultCharacter: function(fileName) {
+                        _persistSetting(_K.DEFAULT_CHARACTER, fileName);
                     }
                 };
             }]);

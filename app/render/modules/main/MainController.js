@@ -4,12 +4,13 @@ define(
         'modules/module',
         'directives/characterSheet/_characterSheet/characterSheet',
         'directives/characterSelection/characterSelection',
-        'services/SettingsService'
+        'services/SettingsService',
+        'services/CharacterService'
     ], function (app) {
         'use strict';
 
-        app.controller('MainController', ['$scope', 'Settings',
-                function ($scope, Settings) {
+        app.controller('MainController', ['$scope', 'Settings', 'Character',
+                function ($scope, Settings, Character) {
 
                     $scope.activeCharacter = undefined;
                     $scope.characterList = [];
@@ -17,8 +18,19 @@ define(
 
                     $scope.loadDefault = function() {
                         $scope.activeCharacter = undefined;
-                        return Settings.loadSettings;
+                        return Settings.loadSettings();
                     };
+
+                    Character.subscribeCharacterSelected($scope, function () {
+                        $scope.characterList = [];
+                        let char = Character.getCharacter();
+                        if (char !== undefined) {
+                            $scope.activeCharacter = char.fileName;
+                        } else {
+                            $scope.activeCharacter = undefined;
+                            $scope.init();
+                        }
+                    });
 
                     $scope.init = function() {
                         if ($scope.activeCharacter === undefined || $scope.activeCharacter === null) {
@@ -26,18 +38,12 @@ define(
                                 function() {
                                     let defaultChar = Settings.getDefaultCharacter();
                                     if (defaultChar === null || defaultChar === undefined) {
-                                        $scope.loadCharacterList().then(
-                                            function () {
-                                                let charList = CharacterLoader.getCharacters();
-                                                if (charList !== undefined) {
-                                                    $scope.characterList = charList;
-                                                    $scope.checked = true;
-                                                }
-                                            }
-                                        );
+                                        $scope.activeCharacter = undefined;
                                     } else {
-                                        $scope.checked = true;
+                                        $scope.activeCharacter = defaultChar;
                                     }
+
+                                    $scope.checked = true;
                                 }
                             );
                         } else {

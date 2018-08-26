@@ -1,10 +1,13 @@
 <div class="character-selection hundred">
-    <table class="character-wrapper">
-        <tr class="character" ng-repeat="char in characterList track by $index">
-            <td class="name">{{char.name}}</td>
-            <td class="level">{{char.level}}</td>
-            <td class="race">{{char.properties.race}}</td>
-            <td class="education">{{char.properties.education}}</td>
-        </tr>
-    </table>
+    <div class="character-wrapper" ng-if="checked && characterList.length > 0">
+        <div ng-click="select(char)" class="character" ng-repeat="char in characterList track by $index">
+            <span class="level">{{char.level}}</span>
+            <span class="name">{{char.name}}</span>
+            <span class="race">{{char.properties.race}}</span>
+            <span class="education">{{char.properties.education}}</span>
+        </div>
+    </div>
+    <div class="info" ng-if="checked && characterList.length === 0">
+        Keine Charaktere gefunden
+    </div>
 </div>

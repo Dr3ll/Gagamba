@@ -1,3 +1,14 @@
-
+.character-selection .character-wrapper .character:hover {
+  background: #CCC;
+  color: #212121;
+  border-radius: 5; }
+.character-selection .character-wrapper .character td.name {
+  width: 150px; }
+.character-selection .character-wrapper .character td.education {
+  width: 150px; }
+.character-selection .character-wrapper .character td.race {
+  width: 150px; }
+.character-selection .character-wrapper .character td.level {
+  width: 25px; }
 
 /*# sourceMappingURL=characterSelection.css.map */

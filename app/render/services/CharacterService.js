@@ -138,12 +138,6 @@ define(
 
                 let _channelList = [];
 
-                let _load = function () {
-                    _character = _debugCharacter;
-
-                    $rootScope.$emit('CharacterLoadingDone');
-                };
-
                 let _calcSpellCost = function (spell, magic, successDiscount) {
                     successDiscount = successDiscount | {co: 0, ex: 0, ch: 0};
                     let skillDiscount = {co: 0, ex: 0, ch: 0};
@@ -275,6 +269,16 @@ define(
                     RSTATES: _RSTATES,
                     getCharacter: function() {
                         return _character;
+                    },
+                    setCharacter: function(character) {
+                        _character = character;
+                        $rootScope.$emit('characterSelected');
+                    },
+                    subscribeCharacterSelected: function(scope, handler) {
+                        scope.handler$characterSelected = $rootScope.$on('characterSelected', handler);
+                        scope.$on('$destroy', function () {
+                            scope.handler$characterSelected();
+                        });
                     },
                     name: function () {
                         return _character.name;
