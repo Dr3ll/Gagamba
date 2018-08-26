@@ -38,7 +38,7 @@ define(
                             let _updateBoxes = function () {
                                 $scope.shardBox = [];
                                 for (let i = 0; i < $scope.moonshards.total; i++) {
-                                    $scope.shardBox.push(_shard(i <= $scope.moonshards.spent));
+                                    $scope.shardBox.push(_shard(i < $scope.moonshards.spent));
                                 }
                             };
 
@@ -48,6 +48,11 @@ define(
 
                             $scope.spend = function () {
                                 Character.spendMoonshard();
+                                $scope.moonshards = Character.moonshards();
+                            };
+
+                            $scope.refresh = function () {
+                                Character.refreshMoonshards();
                                 $scope.moonshards = Character.moonshards();
                             };
 

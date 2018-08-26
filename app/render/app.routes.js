@@ -1,7 +1,7 @@
 define(
     [
         'modules/main/MainController',
-        'modules/spell/SpellController',
+        'modules/grimoire/GrimoireController',
         'modules/navigation/NavigationController'
     ], function() {
         'use strict';
@@ -16,39 +16,34 @@ define(
 
                 $locationProvider.hashPrefix('!');
 
-                $routeProvider.
-                when('/phones', {
-                    template: '<phone-list></phone-list>'
-                }).
-                when('/phones/:phoneId', {
-                    template: '<phone-detail></phone-detail>'
-                }).
-                otherwise('/');
+                $routeProvider.otherwise('/');
 
                 $stateProvider
                     .state('root', {
+                        url: '',
+                        abstract: true,
+                        views:{
+                            'navbar@': {
+                                controller: 'NavigationController',
+                                templateUrl: "modules/navigation/navigation.html"
+                            }
+                        }
+                    })
+                    .state('root.main', {
                         url: '/',
                         views:{
                             'content@': {
                                 controller: 'MainController',
-                                templateUrl: 'modules/main/main.template.html'
-                            },
-                            'spells@': {
-                                controller: 'SpellsController',
-                                templateUrl: 'modules/spell/spell.template.html'
-                            },
-                            'navbar@': {
-                                controller: 'NavigationController',
-                                templateUrl: "modules/navigation/navigation.template.html"
+                                templateUrl: 'modules/main/main.html'
                             }
                         }
                     })
-                    .state('root.kek', {
-                        url: '/kek',
+                    .state('root.grimoire', {
+                        url: '/',
                         views: {
                             'content@': {
-                                controller: 'SpellController',
-                                templateUrl: 'modules/spell/spell.template.html'
+                                controller: 'GrimoireController',
+                                templateUrl: 'modules/grimoire/grimoire.html'
                             }
                         }
                     })

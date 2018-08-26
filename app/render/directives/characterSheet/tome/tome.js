@@ -8,11 +8,11 @@ define(
     function (app) {
         'use strict';
 
-        app.directive('grimoire', [
+        app.directive('tome', [
             function () {
                 return {
                     scope: {},
-                    templateUrl: 'directives/characterSheet/grimoire/grimoire.template.html',
+                    templateUrl: 'directives/characterSheet/tome/tome.html',
                     controller: ['$scope', 'Grimoire',
                         function ($scope, Grimoire) {
 

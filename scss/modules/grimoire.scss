@@ -1,0 +1,11 @@
+@import '../common/constants';
+
+#grimoire {
+  padding: $modulePadding;
+
+  .spell-wrapper {
+    width: 20%;
+    float: left;
+  }
+
+}

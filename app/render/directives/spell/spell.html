@@ -1,0 +1,17 @@
+<div class="spell">
+    <div class="name">
+        <span ng-bind-html="spellData.name"></span>
+    </div>
+    <div class="description">
+        <span ng-bind-html="spellData.description"></span>
+    </div>
+    <div class="cost">
+        <span ng-if="spellData.cost_ch !== 0">K{{spellData.cost_ch}}</span>
+        <span ng-if="spellData.cost_ex !== 0">{{spellData.cost_ex}}</span>
+        <span ng-if="spellData.cost_co !== 0">-{{spellData.cost_co}}</span>
+    </div>
+    <div class="empower-description">
+
+        <span ng-bind-html="spellData.empower_description"></span>
+    </div>
+</div>

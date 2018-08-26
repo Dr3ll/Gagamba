@@ -3,6 +3,7 @@ class Future {
         this._closed = false;
         this._count = 0;
         this._joblist = new Map();
+        this._doneJobs = new Map();
 
         this._callBack = function() {};
         this._callBackArgs = undefined;
@@ -46,9 +47,12 @@ class Future {
     }
 
     _jobDone(id) {
+        this._doneJobs.set(id, this._joblist.get(id));
         this._joblist.delete(id);
 
         if (this._joblist.size === 0) {
+            this._joblist = this._doneJobs;
+            this._doneJobs = new Map();
             this._callBack(this._callBackArgs);
         }
     }

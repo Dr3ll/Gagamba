@@ -40,7 +40,7 @@ define(
 
                             $scope.select = function(char) {
                                 Character.setCharacter(char);
-                                Settings.setDefaultCharacter(char.fileName)
+                                Settings.setDefaultCharacter(char.fileName);
                             };
 
                             $scope.init();

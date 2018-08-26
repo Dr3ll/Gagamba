@@ -4,6 +4,9 @@
   .layout-container {
     display: flex;
 
+    .left-box, .center-box, .right-box {
+      padding: 0 15px;
+    }
     .left-box {
       width: 33.333333333333%;
     }

@@ -44,7 +44,7 @@ body {
   padding: 10px;
   background-color: rgba(32, 32, 32, 0.5);
   border-bottom: 1px solid #dcdcdc; }
-  .navigation button {
+  .navigation .btn {
     padding: 5px;
     background-color: #1f1f1f;
     border-radius: 1px;
@@ -64,6 +64,12 @@ body {
 
 #main {
   padding: 20px; }
+
+#grimoire {
+  padding: 20px; }
+  #grimoire .spell-wrapper {
+    width: 20%;
+    float: left; }
 
 .focus-meter {
   width: 324px;
@@ -191,6 +197,8 @@ body {
 
 .character-sheet .layout-container {
   display: flex; }
+  .character-sheet .layout-container .left-box, .character-sheet .layout-container .center-box, .character-sheet .layout-container .right-box {
+    padding: 0 15px; }
   .character-sheet .layout-container .left-box {
     width: 33.333333333333%; }
   .character-sheet .layout-container .center-box {
@@ -217,14 +225,22 @@ body {
       width: 150px; }
     .character-selection .character-wrapper .character span.level {
       width: 25px; }
-
 .character-selection .info {
   width: 100%;
   text-align: center; }
 
 .moonshards {
-  width: 324px;
-  height: 100px; }
+  width: 100%;
+  height: 100px;
+  position: relative; }
+  .moonshards .refresh {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0; }
+  .moonshards:hover .refresh {
+    display: block;
+    z-index: 300; }
   .moonshards .shard-wrapper {
     width: 100%; }
   .moonshards .shard-outer {
@@ -258,3 +274,5 @@ body {
     .moonshards .shard-outer:hover .fresh .cracks {
       position: absolute;
       display: block; }
+
+/*# sourceMappingURL=style.css.map */

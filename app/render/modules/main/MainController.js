@@ -9,8 +9,8 @@ define(
     ], function (app) {
         'use strict';
 
-        app.controller('MainController', ['$scope', 'Settings', 'Character',
-                function ($scope, Settings, Character) {
+        app.controller('MainController', ['$scope', 'Settings', 'Database', 'Character',
+                function ($scope, Settings, Database, Character) {
 
                     $scope.activeCharacter = undefined;
                     $scope.characterList = [];
@@ -34,18 +34,24 @@ define(
 
                     $scope.init = function() {
                         if ($scope.activeCharacter === undefined || $scope.activeCharacter === null) {
-                            $scope.loadDefault().then(
-                                function() {
-                                    let defaultChar = Settings.getDefaultCharacter();
-                                    if (defaultChar === null || defaultChar === undefined) {
-                                        $scope.activeCharacter = undefined;
-                                    } else {
-                                        $scope.activeCharacter = defaultChar;
-                                    }
+                            if (Character.characterLoaded()) {
+                                let char = Character.getCharacter();
+                                $scope.activeCharacter = char.fileName;
+                                $scope.checked = true;
+                            } else {
+                                $scope.loadDefault().then(
+                                    function () {
+                                        let defaultChar = Settings.getDefaultCharacter();
+                                        if (defaultChar === null || defaultChar === undefined) {
+                                            $scope.activeCharacter = undefined;
+                                        } else {
+                                            $scope.activeCharacter = defaultChar;
+                                        }
 
-                                    $scope.checked = true;
-                                }
-                            );
+                                        $scope.checked = true;
+                                    }
+                                );
+                            }
                         } else {
                             $scope.checked = true;
                         }

@@ -1,0 +1,15 @@
+<div id="grimoire" class="hundred">
+
+    <div class="school-wrapper" ng-repeat="school in schools">
+        <div class="school-name" ng-bind-html="school.name">
+        </div>
+
+        <div class="spell-list-wrapper">
+            <div class="spell-wrapper" ng-repeat="spellId in school.spells track by $index">
+                <spell spell-id="spellId">
+
+                </spell>
+            </div>
+        </div>
+    </div>
+</div>

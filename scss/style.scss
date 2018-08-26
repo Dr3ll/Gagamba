@@ -6,6 +6,7 @@
 // Modules
 @import 'modules/navigation';
 @import 'modules/main';
+@import 'modules/grimoire';
 
 // Directives
 @import 'directives/focusMeter';
@@ -14,3 +15,4 @@
 @import 'directives/characterSheet';
 @import 'directives/characterSelection';
 @import 'directives/moonshards';
+@import 'directives/spell';

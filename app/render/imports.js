@@ -3,6 +3,7 @@ requirejs.config({
     paths: {
         'jquery': '../../node_modules/jquery/dist/jquery.min',
         'angular': '../../node_modules/angular/angular',
+        'angular-sanitize': '../../node_modules/angular-sanitize/angular-sanitize',
         'angular-animate': '../../node_modules/angular-animate/angular-animate',
         'ngRoute': '../../node_modules/angular-route/angular-route.min',
         'bootstrap': '../../node_modules/bootstrap/dist/js/bootstrap.min',
@@ -21,6 +22,9 @@ requirejs.config({
             exports: 'ngRoute'
         },
         'angular-animate': {
+            deps: ['angular']
+        },
+        'angular-sanitize': {
             deps: ['angular']
         },
         'uiRouter': {

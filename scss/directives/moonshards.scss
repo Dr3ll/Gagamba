@@ -5,8 +5,21 @@ $fresh_bg_img: $full_bloom;
 $cracks: $congruent_outline;
 
 .moonshards {
-  width: 324px;
+  width: 100%;
   height: 100px;
+  position: relative;
+  .refresh {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &:hover {
+    .refresh {
+      display: block;
+      z-index: 300;
+    }
+  }
   .shard-wrapper {
     width: 100%;
   }

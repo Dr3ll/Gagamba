@@ -181,6 +181,10 @@ define(
                     return false;
                 };
 
+                let _refreshMoonshards = function () {
+                    _character.moonshards.spent = 0;
+                };
+
                 let _saveDelay = undefined;
 
                 let _characterChanged = function () {
@@ -208,6 +212,12 @@ define(
                     },
                     setCharacter: function(character) {
                         _character = character;
+
+                        if (_character !== null && _character !== undefined) {
+                            Settings.setDefaultCharacter(_character.fileName);
+                        } else {
+                            Settings.setDefaultCharacter(null);
+                        }
 
                         $rootScope.$emit('characterSelected');
                     },
@@ -274,11 +284,9 @@ define(
                         _spendMoonshard();
                         _characterChanged();
                     },
-                    subscribeLoadingDone: function (scope, handler) {
-                        scope.handler$loadingDone = $rootScope.$on('CharacterLoadingDone', handler);
-                        scope.$on('$destroy', function () {
-                            scope.handler$loadingDone();
-                        });
+                    refreshMoonshards: function () {
+                        _refreshMoonshards();
+                        _characterChanged();
                     }
                 };
 
