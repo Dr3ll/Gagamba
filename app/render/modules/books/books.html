@@ -1,3 +1,9 @@
-<div id="books" class="hundred">
-    <webview class="pdf-view" src="../assets/Splittermond_Regelwerk.pdf" plugins></webview>
+<div id="books" class="hundred" ng-keydown="keypress($event)">
+    <style>
+        .electron-in-page-search-window {
+            display: {{!searchWindowOpen ? 'none' : 'block'}};
+        }
+    </style>
+    <button class="search-button" ng-click="openSearch()"><i class="fas fa-search"></i></button>
+    <webview id="rules" class="pdf-view" src="../assets/Splittermond_Regelwerk.pdf" plugins></webview>
 </div>
