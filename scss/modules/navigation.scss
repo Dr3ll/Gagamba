@@ -3,7 +3,9 @@
 $bg_nav: rgba(32, 32, 32, .5);
 
 .navigation {
-  position: static;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
   top: 0;
   left: 0;
   right: 0;

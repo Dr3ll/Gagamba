@@ -31,6 +31,9 @@ app.on('ready', function () {
     // Create the browser window.
     mainWindow = new BrowserWindow(
         {
+            webPreferences: {
+                plugins: true
+            },
             width: width, height: height,
             contentSecurityPolicy: `
             script-src 'self';

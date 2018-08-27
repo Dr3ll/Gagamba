@@ -2,6 +2,7 @@ define(
     [
         'modules/main/MainController',
         'modules/grimoire/GrimoireController',
+        'modules/books/BooksController',
         'modules/navigation/NavigationController'
     ], function() {
         'use strict';
@@ -44,6 +45,15 @@ define(
                             'content@': {
                                 controller: 'GrimoireController',
                                 templateUrl: 'modules/grimoire/grimoire.html'
+                            }
+                        }
+                    })
+                    .state('root.books', {
+                        url: '/',
+                        views: {
+                            'content@': {
+                                controller: 'BooksController',
+                                templateUrl: 'modules/books/books.html'
                             }
                         }
                     })

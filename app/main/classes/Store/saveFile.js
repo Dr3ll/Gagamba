@@ -12,8 +12,9 @@ class SaveFile {
         this.path = path.join(container, this.fileName);
         this.defaults = opts.defaults;
 
+        this._busyBody = BusyBody.getInstance();
+
         if (!sync) {
-            this._busyBody = BusyBody.getInstance();
             this.loader = new Future(fs.readFile, this.path, this._parseDataFile, fs, this);
         } else {
             this.data = parseDataFileSynch(this.path, this.defaults);
@@ -34,13 +35,13 @@ class SaveFile {
         }
         this.data[key] = value;
 
-        let jobId = this._busyBody.startJob(key);
-
         if (sync) {
+            let jobId = this._busyBody.startJob(key);
+            let bb = this._busyBody;
             fs.writeFileSync(this.path, JSON.stringify(this.data));
         } else {
             fs.writeFile(this.path, JSON.stringify(this.data), () => {
-                this._busyBody.removeJob(jobId);
+                bb.removeJob(jobId);
             });
         }
     }
