@@ -36,12 +36,11 @@ class SaveFile {
         this.data[key] = value;
 
         if (sync) {
-            let jobId = this._busyBody.startJob(key);
-            let bb = this._busyBody;
             fs.writeFileSync(this.path, JSON.stringify(this.data));
         } else {
+            let jobId = this._busyBody.startJob(key);
             fs.writeFile(this.path, JSON.stringify(this.data), () => {
-                bb.removeJob(jobId);
+                this._busyBody.removeJob(jobId);
             });
         }
     }
