@@ -1,7 +1,59 @@
 @import '../common/constants';
 
+$seperatorColor: $stone;
 
-.moonshards {
-
+.spell {
+  .spell-label {
+    display: inline-flex;
+    padding-left: 5px;
+    .tier {
+      width: 20px;
+      display: inline-block;
+    }
+  }
+  .spell-cost {
+    span {
+      &:first-of-type {
+        margin-right: -3px;
+      }
+      &:nth-of-type(2) {
+        margin-right: 0px;
+      }
+    }
+  }
+  .close-blow {
+    position: absolute;
+    left: -6px;
+    top: 10px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $ash;
+    background: $char;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .spell-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 100%;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    .description, .empower-description {
+      width: 100%;
+      border: 1px solid $seperatorColor;
+      border-width: 1px 0;
+    }
+    table {
+      width: 100%;
+      tr {
+        td:first-of-type {
+          width: 135px;
+        }
+      }
+    }
+  }
 
 }

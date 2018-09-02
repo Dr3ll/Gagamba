@@ -1,0 +1,40 @@
+@import '../../common/constants';
+
+$openBg: $ash;
+$openFontColor: $char;
+
+.expanel {
+  // Base
+  .exp-label {
+    cursor: pointer;
+    user-select: none;
+    &:hover {
+      color: $openFontColor;
+      background-color: $openBg;
+    }
+  }
+
+  .exp-content {
+    overflow: hidden;
+  }
+
+  &.open { // Open
+    margin-bottom: 10px;
+
+    .exp-label {
+      color: $openFontColor;
+      background-color: $openBg;
+    }
+
+    .exp-content {
+      margin-top: 5px;
+    }
+  }
+
+  &.closed { // Closed
+    .exp-content {
+      height: 0px;
+    }
+  }
+
+}

@@ -6,7 +6,7 @@ define(
         'directives/characterSelection/characterSelection',
         'services/SettingsService',
         'services/CharacterService'
-    ], function (app) {
+    ], function (app, module) {
         'use strict';
 
         app.controller('MainController', ['$scope', 'Settings', 'Database', 'Character',
@@ -34,7 +34,7 @@ define(
 
                     $scope.init = function() {
                         if ($scope.activeCharacter === undefined || $scope.activeCharacter === null) {
-                            if (Character.characterLoaded()) {
+                            if (Character.isCharacterLoaded()) {
                                 let char = Character.getCharacter();
                                 $scope.activeCharacter = char.fileName;
                                 $scope.checked = true;

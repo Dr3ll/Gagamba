@@ -1,4 +1,4 @@
-@import '../common/constants';
+@import '../../common/constants';
 
 $charisma_bg: $pink_muted;
 $agility_bg: $nature_muted;
@@ -24,6 +24,7 @@ $bg_even_rows: rgba(48,48,48, .2);
     height: 50px;
     text-align: center;
     padding: 5px;
+    font-size: 25px;
   }
   .char-attributes {
     ul {
@@ -44,7 +45,7 @@ $bg_even_rows: rgba(48,48,48, .2);
         border-radius: 17%;
         font-size: 16px;
         line-height: .8;
-        background-color: $pott;
+        background-color: $stone;
         label {
           margin-bottom: .4em;
         }

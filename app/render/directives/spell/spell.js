@@ -2,8 +2,10 @@ define(
     [
         'app',
         'angular',
+        'directives/utils/blowup/blowup',
         'services/CharacterService',
-        'services/GrimoireService'
+        'services/GrimoireService',
+        'services/BlowupService'
     ],
     function (app) {
         'use strict';
@@ -12,22 +14,29 @@ define(
             function () {
                 return {
                     scope: {
-                        spellId: "<",
-                        character: "<"
+                        spellId: '<',
+                        view: '@'
                     },
                     templateUrl: 'directives/spell/spell.html',
-                    controller: ['$scope', '$sce', 'Character', 'Grimoire',
-                        function ($scope, $sce, Character, Grimoire) {
+                    controller: ['$scope', 'Character', 'Grimoire', 'Blowup',
+                        function ($scope, Character, Grimoire, Blowup) {
 
                             $scope.spellData = {};
+                            $scope.stickyToggled = false;
+
+                            $scope.isTome = $scope.view === 'TOME';
+                            $scope.isGrimoire = $scope.view === 'GRIMOIRE';
 
                             $scope.init = function () {
-                                let uncleanSpell = Grimoire.getSpell($scope.spellId);
-                                uncleanSpell.name = $sce.trustAsHtml(uncleanSpell.name);
-                                uncleanSpell.description = $sce.trustAsHtml(uncleanSpell.description);
-                                uncleanSpell.range = $sce.trustAsHtml(uncleanSpell.range);
-                                uncleanSpell.empower_description = $sce.trustAsHtml(uncleanSpell.empower_description);
-                                $scope.spellData = uncleanSpell;
+                                $scope.spellData = Grimoire.getSpell($scope.spellId);
+                            };
+
+                            $scope.closeSticky = function () {
+                                Blowup.pop();
+                            };
+
+                            $scope.cast = function () {
+                                Character.cast($scope.spellId);
                             };
 
                             $scope.init();

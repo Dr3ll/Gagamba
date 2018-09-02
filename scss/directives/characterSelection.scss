@@ -28,9 +28,26 @@
       }
     }
   }
-
   .info {
     width: 100%;
     text-align: center;
+  }
+  .actions {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  &:hover {
+    .actions {
+      display: block;
+      z-index: 300;
+      .ac {
+
+      }
+    }
+  }
+  .shard-wrapper {
+    width: 100%;
   }
 }

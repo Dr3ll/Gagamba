@@ -2,7 +2,9 @@ define(
     [
         'app',
         'angular',
-        'services/CharacterService'
+        'directives/characterSheet/_sheetComponent/sheetComponent',
+        'services/CharacterService',
+        'services/GlossaryService'
     ],
     function (app) {
         'use strict';
@@ -12,23 +14,23 @@ define(
                 return {
                     scope: {},
                     templateUrl: 'directives/characterSheet/moonshards/moonshards.html',
-                    controller: ['$scope', 'Character',
-                        function ($scope, Character) {
+                    controller: ['$scope', '$controller', 'Character', 'Glossary',
+                        function ($scope, $controller, Character, Glossary) {
 
-                            Character.subscribeCharacterSelected($scope, function() {
-                                if (Character.characterLoaded()) {
-                                    $scope.init();
-                                }
-                            });
+                            angular.extend(this, $controller('sheetComponentController', { $scope: $scope } ));
+                            $scope.setField(Character.FIELD.MOONSHARDS);
 
                             $scope.init = function () {
                                 $scope.shardBox = [];
 
-                                if (!Character.characterLoaded()) {
+                                if (!Character.isCharacterLoaded()) {
                                     return;
                                 }
 
                                 $scope.moonshards = Character.moonshards();
+                                $scope.level = Character.level();
+                                $scope.moonSign = Glossary.LUNIAC[Character.moonSign()];
+                                _updateBoxes();
                             };
 
                             let _shard = function(spent) {
@@ -42,18 +44,12 @@ define(
                                 }
                             };
 
-                            $scope.$watch('moonshards', function () {
-                                _updateBoxes();
-                            }, true);
-
                             $scope.spend = function () {
                                 Character.spendMoonshard();
-                                $scope.moonshards = Character.moonshards();
                             };
 
                             $scope.refresh = function () {
                                 Character.refreshMoonshards();
-                                $scope.moonshards = Character.moonshards();
                             };
 
                             $scope.init();

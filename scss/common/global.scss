@@ -13,6 +13,11 @@ body {
   height: 100%;
   background: $bg_pattern;
   color: $ash;
+  font-family: Titillium Web;
+  font-size: 1em;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 #nav {
@@ -45,4 +50,8 @@ body {
     float: left;
     margin: 1px;
   }
+}
+
+.electron-in-page-search-window {
+  display: none;
 }

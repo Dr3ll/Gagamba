@@ -1,0 +1,46 @@
+@import '../../common/constants';
+
+.character-sheet {
+  .layout-container {
+    .component {
+      position: relative;
+    }
+    .component > .actions {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: none;
+      .btn.ac {
+
+      }
+    }
+    .component:hover {
+      .actions {
+        display: inline-block;
+      }
+    }
+    .left-box, .center-box, .right-box {
+      padding: 0 15px;
+    }
+    .left-box {
+      *width: 33.333333333333%;
+    }
+    .center-box {
+      display: table-cell;
+      *width: 33.33333333333333%;
+    }
+    .right-box {
+      *width: 33.3333333333333%;
+    }
+  }
+  .blow-content {
+    font-size: .8em;
+    right: 33.33333333% !important;
+    left: 33.33333333% !important;
+    top: 44% !important;
+    bottom: 20px !important;
+    border-radius: 0 !important;
+    border-width: 1px !important;
+    background: none !important;
+  }
+}

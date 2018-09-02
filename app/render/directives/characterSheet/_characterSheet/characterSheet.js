@@ -6,6 +6,7 @@ define(
         'directives/characterSheet/healthMeter/healthMeter',
         'directives/characterSheet/characterBaseProps/characterBaseProps',
         'directives/characterSheet/moonshards/moonshards',
+        'directives/characterSheet/tome/tome',
         'services/CharacterService',
         'services/SettingsService',
         'services/CharacterLoaderService'

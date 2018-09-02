@@ -1,0 +1,4 @@
+<div class="blowup" ng-class="toggled ? 'open' : 'closed'">
+    <div class="blow-label" ng-click="toggle()" ng-transclude="label"></div>
+    <div class="blow-content" ng-hide="blocker.enabled" ng-transclude="content"></div>
+</div>

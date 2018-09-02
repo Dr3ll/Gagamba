@@ -1,15 +1,63 @@
 <div id="grimoire" class="hundred">
+    <expanel class="school-wrapper" ng-repeat="school in schools track by $index">
+        <ex-label>
+            <div class="school-label" ng-bind-html="school.name"></div>
+        </ex-label>
+        <ex-content>
+            <div class="spell-list-wrapper" ng-class="">
+                <div class="spell-wrapper" ng-repeat="spellId in school.spells track by $index">
+                    <spell spell-id="spellId" view="GRIMOIRE">
 
-    <div class="school-wrapper" ng-repeat="school in schools">
-        <div class="school-name" ng-bind-html="school.name">
-        </div>
-
-        <div class="spell-list-wrapper">
-            <div class="spell-wrapper" ng-repeat="spellId in school.spells track by $index">
-                <spell spell-id="spellId">
-
-                </spell>
+                    </spell>
+                </div>
             </div>
-        </div>
-    </div>
+        </ex-content>
+    </expanel>
+    <!--
+    <div><i class="fas fa-gavel"></i> Bannmagie</div>
+    <div><i class="fab fa-empire"></i> Beherrschung</div>
+    <div><i class="fas fa-exclamation"></i> Erkenntnis</div>
+    <div><i class="fas fa-"></i> Fels</div>
+    <div><i class="fas fire"></i> Feuer</div>
+    <div><i class="far fa-plus-square"></i> Heilung</div>
+    <div><i class="fab fa-phabricator"></i> Illusion</div>
+    <div><i class="fas fa-"></i> Kampf</div>
+    <div><i class="fas fa-sun"></i> Licht</div>
+    <div><i class="fas fa-leaf"></i> Natur</div>
+    <div><i class="fas fa-moon"></i> Schatten</div>
+    <div><i class="fas fa-dice-six"></i> Schicksal</div>
+    <div><i class="fas fa-shield-alt"></i> Schutz</div>
+    <div><i class="fas fa-"></i> Stärkung</div>
+    <div><i class="fas fa-skull"></i> Tod</div>
+    <div><i class="fas fa-"></i> Verwandlung</div>
+    <div><i class="fas fa-tint"></i> Wasser</div>
+    <div><i class="fas fa-cloud"></i> Wind</div>
+    <div><i class="fas fa-"></i> Akrobatik</div>
+    <div><i class="fas fa-mortar-pestle"></i> Alchemie</div>
+    <div><i class="fas fa-atom"></i> Arkane Kunde</div>
+    <div><i class="fas fa-crown"></i> Anführen</div>
+    <div><i class="fas fa-walking"></i> Athetik</div>
+    <div><i class="fas fa-theater-masks"></i> Darbietung</div>
+    <div><i class="fas fa-hands-helping"></i> Diplomatie</div>
+    <div><i class="fas fa-gem"></i> Edelhandwerk</div>
+    <div><i class="far fa-heart"></i> Empathie</div>
+    <div><i class="far fa-hand-rock"></i> Entschlossenheit</div>
+    <div><i class="fas fa-hand-scissors"></i> Fingerfertigkeit</div>
+    <div><i class="fas fa-book"></i> Geschichte und Mythen</div>
+    <div><i class="fas fa-wrench"></i> Handwerk</div>
+    <div><i class="fas fa-plus-square"></i> Heilkunde</div>
+    <div><i class="fas fa-user-secret"></i> Heimlichkeit</div>
+    <div><i class="fab fa-paw"></i> Jagdkunst</div>
+    <div><i class="fas fa-drafting-compass"></i> Länderkunde</div>
+    <div><i class="fas fa-tree"></i> Naturkunde</div>
+    <div><i class="fab fa-comment-dots"></i> Redegewandheit</div>
+    <div><i class="fas fa-unlock-alt"></i> Schlösser und Fallen</div>
+    <div><i class="fas fa-swimmer"></i> Schwimmen</div>
+    <div><i class="fab fa-servicestack"></i> Seefahrt</div>
+    <div><i class="fas fa-map-signs"></i> Straßenkunde</div>
+    <div><i class="fas fa-crow"></i> Tierführung</div>
+    <div><i class="far fa-compass"></i> Überleben</div>
+    <div><i class="fas fa-eye"></i> Wahrnehmung</div>
+    <div><i class="fas fa-teeth"></i> Zähigkeit</div>-->
+
 </div>

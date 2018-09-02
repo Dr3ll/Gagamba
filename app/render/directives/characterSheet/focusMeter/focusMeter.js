@@ -1,7 +1,9 @@
 define(
     [
         'app',
+        'modules/module',
         'angular',
+        'directives/characterSheet/_sheetComponent/sheetComponent',
         'services/CharacterService',
         'services/GrimoireService'
     ],
@@ -13,14 +15,11 @@ define(
                 return {
                     scope: {},
                     templateUrl: 'directives/characterSheet/focusMeter/focusMeter.html',
-                    controller: ['$scope', 'Character', 'Grimoire',
-                        function ($scope, Character, Grimoire) {
+                    controller: ['$scope', '$controller', 'Character', 'Grimoire',
+                        function ($scope, $controller, Character, Grimoire) {
 
-                            Character.subscribeCharacterSelected($scope, function() {
-                                if (Character.characterLoaded()) {
-                                    $scope.init();
-                                }
-                            });
+                            angular.extend(this, $controller('sheetComponentController', { $scope: $scope } ));
+                            $scope.setField(Character.FIELD.FOCUS);
 
                             $scope.init = function () {
                                 $scope.freshBox = [];
@@ -33,11 +32,12 @@ define(
                                     co: 0
                                 };
 
-                                if (!Character.characterLoaded()) {
+                                if (!Character.isCharacterLoaded()) {
                                     return;
                                 }
 
                                 $scope.focus = Character.focus();
+                                _updateBoxes();
                             };
 
                             let _updateBoxes = function () {
@@ -46,30 +46,24 @@ define(
                                 $scope.exhaustedBox = [];
                                 $scope.consumedBox = [];
 
-                                let cap = Math.max(
-                                    $scope.focus.ch,
-                                    $scope.focus.ex,
-                                    $scope.focus.co);
+                                let fresh = $scope.focus.t - ($scope.focus.ex + $scope.focus.ch + $scope.focus.co);
+                                let cap = Math.max(fresh, $scope.focus.ex, $scope.focus.ch, $scope.focus.co);
 
                                 for (let i = 0; i < cap; i++) {
-                                    if ($scope.focus.f > i) {
-                                        $scope.freshBox.push(2);
+                                    if (fresh > i) {
+                                        $scope.freshBox.push(1);
                                     }
                                     if ($scope.focus.ch > i) {
                                         $scope.channeledBox.push(2);
                                     }
                                     if ($scope.focus.ex > i) {
-                                        $scope.exhaustedBox.push(2);
+                                        $scope.exhaustedBox.push(3);
                                     }
                                     if ($scope.focus.co > i) {
-                                        $scope.consumedBox.push(2);
+                                        $scope.consumedBox.push(4);
                                     }
                                 }
                             };
-
-                            $scope.$watch('focus', function () {
-                                _updateBoxes();
-                            }, true);
 
                             $scope.init();
                         }],

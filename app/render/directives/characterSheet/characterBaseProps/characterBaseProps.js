@@ -16,7 +16,7 @@ define(
                         function ($scope, Character) {
 
                             Character.subscribeCharacterSelected($scope, function() {
-                                if (Character.characterLoaded()) {
+                                if (Character.isCharacterLoaded()) {
                                     $scope.init();
                                 }
                             });
@@ -30,7 +30,7 @@ define(
                                 $scope.battle = {};
                                 $scope.attributes = {};
 
-                                if (!Character.characterLoaded()) {
+                                if (!Character.isCharacterLoaded()) {
                                     return;
                                 }
 

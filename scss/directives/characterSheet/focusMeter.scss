@@ -1,4 +1,4 @@
-@import '../common/constants';
+@import '../../common/constants';
 
 $focus-line-color: $mana;
 $focus-bg-color: $mana_muted;
@@ -18,7 +18,6 @@ $focus-bg-color: $mana_muted;
     float: left;
     margin: 1px;
   }
-
   .fresh {
   }
   .channeled {

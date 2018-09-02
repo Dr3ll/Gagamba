@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC|Didact+Gothic|Titillium+Web");
 html {
   height: 100%;
   padding: 0;
@@ -6,7 +7,11 @@ html {
 body {
   height: 100%;
   background: url("../../assets/images/black_lozenge.png");
-  color: #CCC; }
+  color: #CCC;
+  font-family: Titillium Web;
+  font-size: 1em; }
+  body::-webkit-scrollbar {
+    display: none; }
 
 #nav {
   position: static; }
@@ -34,6 +39,22 @@ body {
   float: left;
   margin: 1px; }
 
+.electron-in-page-search-window {
+  display: none; }
+
+.btn-action {
+  padding: 0;
+  border-radius: 0;
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .7em;
+  background: none;
+  color: #CCC;
+  -webkit-transform: scaleX(-1); }
+
 .navigation {
   position: fixed;
   width: 100%;
@@ -45,7 +66,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  background-color: rgba(32, 32, 32, 0.5);
+  background-color: rgba(32, 32, 32, 0.8);
   border-bottom: 1px solid #dcdcdc; }
   .navigation .btn {
     padding: 5px;
@@ -70,8 +91,20 @@ body {
 
 #grimoire {
   padding: 20px; }
+  #grimoire .school-label {
+    padding-left: 2px;
+    border: 0px solid #333;
+    border-top-width: 1px; }
+  #grimoire .spell-list-wrapper {
+    padding: 10px;
+    padding-top: 2px;
+    width: 50%;
+    height: 444px;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap; }
   #grimoire .spell-wrapper {
-    width: 20%;
+    width: 48%;
     float: left; }
 
 #books {
@@ -96,6 +129,34 @@ body {
   height: 37px;
   background: #323639;
   border-radius: 5px 0 0 5px; }
+
+.character-sheet .layout-container .component {
+  position: relative; }
+.character-sheet .layout-container .component > .actions {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: none; }
+.character-sheet .layout-container .component:hover .actions {
+  display: inline-block; }
+.character-sheet .layout-container .left-box, .character-sheet .layout-container .center-box, .character-sheet .layout-container .right-box {
+  padding: 0 15px; }
+.character-sheet .layout-container .left-box {
+  *width: 33.333333333333%; }
+.character-sheet .layout-container .center-box {
+  display: table-cell;
+  *width: 33.33333333333333%; }
+.character-sheet .layout-container .right-box {
+  *width: 33.3333333333333%; }
+.character-sheet .blow-content {
+  font-size: .8em;
+  right: 33.33333333% !important;
+  left: 33.33333333% !important;
+  top: 44% !important;
+  bottom: 20px !important;
+  border-radius: 0 !important;
+  border-width: 1px !important;
+  background: none !important; }
 
 .focus-meter {
   width: 324px;
@@ -168,7 +229,8 @@ body {
     width: 100%;
     height: 50px;
     text-align: center;
-    padding: 5px; }
+    padding: 5px;
+    font-size: 25px; }
   .character-base-props .char-attributes ul {
     list-style: none;
     padding: 0;
@@ -221,17 +283,44 @@ body {
       .character-base-props .char-properties table tr:nth-child(2n) {
         background-color: rgba(48, 48, 48, 0.2); }
 
-.character-sheet .layout-container {
-  display: flex; }
-  .character-sheet .layout-container .left-box, .character-sheet .layout-container .center-box, .character-sheet .layout-container .right-box {
-    padding: 0 15px; }
-  .character-sheet .layout-container .left-box {
-    width: 33.333333333333%; }
-  .character-sheet .layout-container .center-box {
-    display: table-cell;
-    width: 33.33333333333333%; }
-  .character-sheet .layout-container .right-box {
-    width: 33.3333333333333%; }
+.moonshards {
+  width: 100%;
+  height: 100px;
+  position: relative; }
+  .moonshards .shard-outer {
+    border-radius: 50%;
+    border: 1px solid #1f1f1f;
+    width: 50px;
+    height: 48px;
+    float: left;
+    padding: 2px; }
+    .moonshards .shard-outer .shard {
+      position: relative;
+      border-radius: 50%;
+      width: 100%;
+      height: 100%; }
+      .moonshards .shard-outer .shard.fresh {
+        background: url("../../assets/images/full-bloom.png");
+        box-shadow: inset 18px -13px 22px 2px rgba(0, 0, 0, 0.5), inset -56px 14px 9px -53px rgba(255, 255, 255, 0.52); }
+      .moonshards .shard-outer .shard.spent {
+        background: #1f1f1f;
+        box-shadow: inset -9px 5px 26px 15px rgba(0, 0, 0, 0.4); }
+    .moonshards .shard-outer .cracks {
+      background: url("../../assets/images/congruent_outline.png");
+      background-size: 129%;
+      display: none;
+      border-radius: 50%;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0; }
+    .moonshards .shard-outer:hover .fresh .cracks {
+      position: absolute;
+      display: block; }
+
+.tome .spell {
+  display: flex;
+  align-items: center; }
 
 .character-selection .character-wrapper {
   text-align: center; }
@@ -254,51 +343,105 @@ body {
 .character-selection .info {
   width: 100%;
   text-align: center; }
+.character-selection .actions {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0; }
+.character-selection:hover .actions {
+  display: block;
+  z-index: 300; }
+.character-selection .shard-wrapper {
+  width: 100%; }
 
-.moonshards {
-  width: 100%;
-  height: 100px;
-  position: relative; }
-  .moonshards .refresh {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0; }
-  .moonshards:hover .refresh {
-    display: block;
-    z-index: 300; }
-  .moonshards .shard-wrapper {
+.spell .spell-label {
+  display: inline-flex;
+  padding-left: 5px; }
+  .spell .spell-label .tier {
+    width: 20px;
+    display: inline-block; }
+.spell .spell-cost span:first-of-type {
+  margin-right: -3px; }
+.spell .spell-cost span:nth-of-type(2) {
+  margin-right: 0px; }
+.spell .close-blow {
+  position: absolute;
+  left: -6px;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #CCC;
+  background: #212121;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+.spell .spell-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 100%; }
+  .spell .spell-info-wrapper::-webkit-scrollbar {
+    display: none; }
+  .spell .spell-info-wrapper .description, .spell .spell-info-wrapper .empower-description {
+    width: 100%;
+    border: 1px solid #333;
+    border-width: 1px 0; }
+  .spell .spell-info-wrapper table {
     width: 100%; }
-  .moonshards .shard-outer {
-    border-radius: 50%;
-    border: 1px solid #1f1f1f;
-    width: 84px;
-    height: 80px;
-    float: left;
-    padding: 3px;
-    margin: 0 5px; }
-    .moonshards .shard-outer .shard {
-      position: relative;
-      border-radius: 50%;
-      width: 100%;
-      height: 100%; }
-      .moonshards .shard-outer .shard.fresh {
-        background: url("../../assets/images/full-bloom.png");
-        box-shadow: inset 25px -10px 22px 1px rgba(0, 0, 0, 0.5), inset -56px 14px 9px -53px rgba(255, 255, 255, 0.5); }
-      .moonshards .shard-outer .shard.spent {
-        background: #1f1f1f;
-        box-shadow: inset -9px 5px 26px 15px rgba(0, 0, 0, 0.4); }
-    .moonshards .shard-outer .cracks {
-      background: url("../../assets/images/congruent_outline.png");
-      background-size: 129%;
-      display: none;
-      border-radius: 50%;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0; }
-    .moonshards .shard-outer:hover .fresh .cracks {
-      position: absolute;
-      display: block; }
+    .spell .spell-info-wrapper table tr td:first-of-type {
+      width: 135px; }
+
+.expanel .exp-label {
+  cursor: pointer;
+  user-select: none; }
+  .expanel .exp-label:hover {
+    color: #212121;
+    background-color: #CCC; }
+.expanel .exp-content {
+  overflow: hidden; }
+.expanel.open {
+  margin-bottom: 10px; }
+  .expanel.open .exp-label {
+    color: #212121;
+    background-color: #CCC; }
+  .expanel.open .exp-content {
+    margin-top: 5px; }
+.expanel.closed .exp-content {
+  height: 0px; }
+
+.blowup .blow-label {
+  cursor: pointer;
+  user-select: none; }
+  .blowup .blow-label:hover {
+    color: #212121;
+    background-color: #CCC; }
+.blowup .blow-content {
+  position: fixed;
+  right: 0;
+  top: 42px;
+  border: 1px solid transparent;
+  border-width: 0 0 1px 1px;
+  background: url("../../assets/images/black_lozenge.png");
+  background-position-x: -1px;
+  background-position-x: -4px;
+  padding: 20px 20px;
+  opacity: 0;
+  border-radius: 0 0 0 50%;
+  -webkit-transition: opacity 200ms, border-color 400ms; }
+.blowup.closed .blow-content {
+  left: 100%;
+  opacity: 0;
+  pointer-events: none; }
+.blowup:hover .blow-label, .blowup.open .blow-label {
+  color: #212121;
+  background-color: #CCC; }
+.blowup:hover .blow-content, .blowup.open .blow-content {
+  right: 0;
+  left: 50%;
+  opacity: .98;
+  border-color: #CCC;
+  border-radius: 0%; }
+.blowup.open .blow-content {
+  display: block !important; }
 
 /*# sourceMappingURL=style.css.map */

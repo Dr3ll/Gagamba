@@ -5,3 +5,5 @@ tmp
 .idea
 .DS_Store
 app/resources/db/gagamba.s3db
+app/assets/Splittermond_Regelwerk.pdf
+app/assets/db

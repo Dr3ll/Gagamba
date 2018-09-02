@@ -1,11 +1,27 @@
 @import '../common/constants';
 
+$seperatorColor: $stone;
+
 #grimoire {
   padding: $modulePadding;
 
-  .spell-wrapper {
-    width: 20%;
-    float: left;
+  .school-label {
+    padding-left: 2px;
+    border: 0px solid $seperatorColor;
+    border-top-width: 1px;
   }
 
+  .spell-list-wrapper {
+    padding: 10px;
+    padding-top: 2px;
+    width: 50%;
+    height: 444px;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  .spell-wrapper {
+    width: 48%;
+    float: left;
+  }
 }

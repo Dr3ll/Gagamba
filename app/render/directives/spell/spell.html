@@ -1,17 +1,86 @@
 <div class="spell">
-    <div class="name">
-        <span ng-bind-html="spellData.name"></span>
-    </div>
-    <div class="description">
-        <span ng-bind-html="spellData.description"></span>
-    </div>
-    <div class="cost">
-        <span ng-if="spellData.cost_ch !== 0">K{{spellData.cost_ch}}</span>
-        <span ng-if="spellData.cost_ex !== 0">{{spellData.cost_ex}}</span>
-        <span ng-if="spellData.cost_co !== 0">-{{spellData.cost_co}}</span>
-    </div>
-    <div class="empower-description">
-
-        <span ng-bind-html="spellData.empower_description"></span>
-    </div>
+    <button ng-if="isTome" class="btn btn-action" ng-click="cast()"><i class="fas fa-magic"></i></button>
+    <blowup toggled="stickyToggled">
+        <blow-label>
+            <div class="spell-label">
+                <span class="tier">
+                    <span>{{spellData.tier}}</span>
+                </span>
+                <span class="name">
+                    <span ng-bind-html="spellData.name"></span>
+                </span>
+            </div>
+        </blow-label>
+        <blow-content>
+            <div class="close-blow" ng-show="stickyToggled" ng-click="closeSticky()"><i class="fas fa-times"></i></div>
+            <div class="spell-info-wrapper">
+                <span class="name">
+                    <span ng-bind-html="spellData.name"></span>
+                </span>
+                <table>
+                    <tbody>
+                    <tr class="tier">
+                        <td>Stufe:</td>
+                        <td>{{spellData.tier}}</td>
+                    </tr>
+                    <tr class="difficulty">
+                        <td>Schwierigkeit:</td>
+                        <td ng-bind-html="spellData.difficulty"></td>
+                    </tr>
+                    <tr class="cost">
+                        <td>Kosten:</td>
+                        <td class="spell-cost">
+                            <span ng-if="spellData.cost_ch !== 0">K{{spellData.cost_ch}}</span>
+                            <span ng-if="spellData.cost_ex !== 0">{{spellData.cost_ex}}</span>
+                            <span ng-if="spellData.cost_co !== 0">V{{spellData.cost_co}}</span>
+                        </td>
+                    </tr>
+                    <tr class="cast-time">
+                        <td>Zauberdauer:</td>
+                        <td>
+                            <span>{{spellData.cast_time}}</span><span ng-if="spellData.ticking">T</span>
+                        </td>
+                    </tr>
+                    <tr class="range">
+                        <td>Reichweite:</td>
+                        <td ng-bind-html="spellData.range"></td>
+                    </tr>
+                    <tr ng-if="spellData.duration !== null" class="duration">
+                        <td>Wirkungsdauer:</td>
+                        <td>{{spellData.duration}}</td>
+                    </tr>
+                    <tr ng-if="spellData.aoe !== null" class="range">
+                        <td>Reichweite:</td>
+                        <td>{{spellData.aoe}}</td>
+                    </tr>
+                    <tr ng-if="spellData.requirement !== null" class="requirement">
+                        <td>Voraussetzung:</td>
+                        <td>{{spellData.requirement}}</td>
+                    </tr>
+                    <tr class="description">
+                        <td colspan="2" ng-bind-html="spellData.description"></td>
+                    </tr>
+                    <tr class="empower">
+                        <td colspan="2">Verstärkung:</td>
+                    </tr>
+                    <tr class="empower-req">
+                        <td>Erfolgsgrade:</td>
+                        <td>{{spellData.empower_req}}</td>
+                    </tr>
+                    <tr class="empower-cost">
+                        <td>Kosten:</td>
+                        <td class="spell-cost">
+                            <span ng-if="spellData.empower_cost_ch !== 0">K{{spellData.empower_cost_ch}}</span>
+                            <span ng-if="spellData.empower_cost_ex !== 0">{{spellData.empower_cost_ex}}</span>
+                            <span ng-if="spellData.empower_cost_co !== 0">V{{spellData.empower_cost_co}}</span>
+                        </td>
+                    </tr>
+                    <tr class="empower-description">
+                        <td colspan="2" ng-bind-html="spellData.empower_description"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </blow-content>
+    </blowup>
 </div>
