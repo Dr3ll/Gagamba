@@ -60,7 +60,7 @@ define([
                     Storage.SQLLoader.getPack(_dbPath);
                     crafts.push(_QUERRIES.GENERAL_CRAFTS, 'CRAFTS', 'id',
                         function (row, ct) {
-                            row.name = _trust(row.name)
+                            row.name = _trust(row.name);
                         });
                     return crafts;
                 };

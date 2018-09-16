@@ -413,6 +413,13 @@ body {
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+.crafts-table {
+  width: 324px;
+  height: 100px; }
+
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 .moonshards {
   width: 100%;
   height: 100px;

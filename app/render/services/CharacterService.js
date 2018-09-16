@@ -25,7 +25,11 @@ define(
                     HEALTH: 'HEALTH',
                     MOONSHARDS: 'MOONSHARDS',
                     MAGIC: 'MAGIC',
-                    CHANNELS: 'CHANNELS'
+                    CHANNELS: 'CHANNELS',
+                    PROPERTIES: 'PROPERTIES',
+                    NAME: 'NAME',
+                    ATTRIBUTES: 'ATTRIBUTES',
+                    CRAFTS: 'CRAFTS'
                 };
                 const _ATTRIBUTES = {
                     AGILITY: 'AGILITY',

@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+.focus-meter {
+  width: 324px;
+  height: 100px; }
+  .focus-meter .point-wrapper {
+    width: 100%; }
+  .focus-meter .fresh, .focus-meter .consumed, .focus-meter .exhausted, .focus-meter .channeled {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #9CF;
+    background-color: #303037;
+    border-radius: 3px;
+    float: left;
+    margin: 1px; }
+  .focus-meter .channeled {
+    background-image: repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px); }
+  .focus-meter .exhausted {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px), repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px); }
+  .focus-meter .consumed {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px), repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px), repeating-linear-gradient(0deg, transparent, transparent 0px, transparent 0px, transparent 11px, #9CF 0px, #9CF 13px); }
+
+/*# sourceMappingURL=craftsTable.css.map */

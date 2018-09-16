@@ -24,12 +24,15 @@ define([
 
         let getDB = function (filePath) {
             let key = hashDat(filePath);
-            let db = databases.get(key);
-            if (db === undefined) {
-                db = new _SQLITE3.Database(filePath);
-                databases.set(key, db);
+            let dbConnection = databases.get(key);
+            if (dbConnection === undefined) {
+                let connection = new _SQLITE3.Database(filePath);
+                dbConnection = {db: connection, count: 1};
+                databases.set(key, dbConnection);
+            } else {
+                dbConnection.count++;
             }
-            return db;
+            return dbConnection;
         };
 
         app.$sqlLoader.getPack = function (dbFile) {
@@ -46,7 +49,8 @@ define([
                 if (this.q.length <= 0) {
                     return undefined;
                 }
-                let db = getDB(this.db);
+                let dbCon = getDB(this.db);
+                let db = dbCon.db;
                 let i = 0;
                 let container = new Map();
                 this.q.forEach(function (set) {
@@ -74,7 +78,11 @@ define([
                         let j = i++;
                         processQuery(self.q[j].query, self.q[j].alias, self.q[j].f, self.q[j].keyField, container, next);
                     } else {
-                        db.close();
+                        dbCon.count--;
+                        if (dbCon.count <= 0) {
+                            db.close();
+                        }
+
                         callback(container);
                     }
                 };

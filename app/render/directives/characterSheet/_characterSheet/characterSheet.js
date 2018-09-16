@@ -7,6 +7,7 @@ define(
         'directives/characterSheet/channelList/channelList',
         'directives/characterSheet/characterBaseProps/characterBaseProps',
         'directives/characterSheet/moonshards/moonshards',
+        'directives/characterSheet/craftsTable/craftsTable',
         'directives/characterSheet/tome/tome',
         'services/CharacterService',
         'services/SettingsService',

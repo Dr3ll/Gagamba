@@ -1,5 +1,12 @@
 <div class="crafts-table">
     <table>
-
+        <tr ng-repeat="craft in crafts track by $index">
+            <td>
+                <span ng-bind-html="craft.name"></span>
+            </td>
+            <td>
+                <span>{{craft.stat0}}  {{craft.stat0}}</span>
+            </td>
+        </tr>
     </table>
 </div>

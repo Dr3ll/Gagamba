@@ -2,7 +2,8 @@ define(
     [
         'app',
         'angular',
-        'services/CharacterService'
+        'services/CharacterService',
+        'services/DatabaseService'
     ],
     function (app) {
         'use strict';
@@ -15,14 +16,22 @@ define(
                         type: '<'
                     },
                     templateUrl: 'directives/characterSheet/craftsTable/craftsTable.html',
-                    controller: ['$scope', 'Character',
-                        function ($scope, Character) {
+                    controller: ['$scope', '$controller', 'Character', 'Database',
+                        function ($scope, $controller, Character, Database) {
 
-                            Character.subscribeCharacterSelected($scope, function() {
-                                if (Character.isCharacterLoaded()) {
-                                    $scope.init();
-                                }
-                            });
+                            angular.extend(this, $controller('sheetComponentController', { $scope: $scope } ));
+                            $scope.setField(Character.FIELD.ATTRIBUTES);
+
+                            let _fetchCraftInfo = function () {
+                                let craftsData = Database.getCrafts();
+                                for(let craftId in $scope.crafts) {
+                                    let data = craftsData.get(parseInt(craftId));
+                                    let c = $scope.crafts[craftId];
+                                    for(let att in data) {
+                                        c[att] = data[att];
+                                    }
+                                };
+                            };
 
                             let _kickZeros = function () {
                                 let swap = [];
@@ -35,13 +44,14 @@ define(
                             };
 
                             $scope.init = function () {
-                                $scope.crafts = [];
+                                $scope.crafts = undefined;
 
-                                if (!Character.isLoaded()) {
+                                if (!Character.isCharacterLoaded()) {
                                     return;
                                 }
 
                                 $scope.crafts = Character.crafts($scope.type);
+                                _fetchCraftInfo();
 
                                 if (!$scope.showZeros) {
                                     _kickZeros();

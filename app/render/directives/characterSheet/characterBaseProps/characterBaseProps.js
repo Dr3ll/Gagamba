@@ -12,14 +12,11 @@ define(
                 return {
                     scope: {},
                     templateUrl: 'directives/characterSheet/characterBaseProps/characterBaseProps.html',
-                    controller: ['$scope', 'Character',
-                        function ($scope, Character) {
+                    controller: ['$scope', '$controller', 'Character',
+                        function ($scope, $controller, Character) {
 
-                            Character.subscribeCharacterSelected($scope, function() {
-                                if (Character.isCharacterLoaded()) {
-                                    $scope.init();
-                                }
-                            });
+                            angular.extend(this, $controller('sheetComponentController', { $scope: $scope } ));
+                            $scope.setField(Character.FIELD.ATTRIBUTES);
 
                             $scope.init = function () {
                                 $scope.name = undefined;
