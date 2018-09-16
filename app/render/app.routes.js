@@ -3,6 +3,7 @@ define(
         'modules/main/MainController',
         'modules/grimoire/GrimoireController',
         'modules/books/BooksController',
+        'modules/booksDummy/BooksDummyController',
         'modules/navigation/NavigationController'
     ], function() {
         'use strict';
@@ -27,6 +28,10 @@ define(
                             'navbar@': {
                                 controller: 'NavigationController',
                                 templateUrl: "modules/navigation/navigation.html"
+                            },
+                            'books@': {
+                                controller: 'BooksController',
+                                templateUrl: "modules/books/books.html"
                             }
                         }
                     })
@@ -52,8 +57,8 @@ define(
                         url: '/',
                         views: {
                             'content@': {
-                                controller: 'BooksController',
-                                templateUrl: 'modules/books/books.html'
+                                controller: 'BooksDummyController',
+                                templateUrl: 'modules/booksDummy/booksDummy.html'
                             }
                         }
                     })

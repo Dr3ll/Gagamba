@@ -14,12 +14,13 @@ define(
                         'content': 'exContent'
                     },
                     scope: {
+                        toggled: '=?'
                     },
                     templateUrl: 'directives/utils/expanel/expanel.html',
                     controller: ['$scope',
                         function ($scope) {
 
-                            $scope.toggled = false;
+                            $scope.toggled = $scope.toggled || false;
 
                             $scope.init = function () {
                             };

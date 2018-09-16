@@ -7,7 +7,8 @@ requirejs.config({
         'angular-animate': '../../node_modules/angular-animate/angular-animate',
         'ngRoute': '../../node_modules/angular-route/angular-route.min',
         'bootstrap': '../../node_modules/bootstrap/dist/js/bootstrap.min',
-        'uiRouter': '../../node_modules/angular-ui-router/release/angular-ui-router.min'
+        'uiRouter': '../../node_modules/angular-ui-router/release/angular-ui-router.min',
+        'sqlLoader': '../main/classes/SQLLoader/sqlLoader'
     },
     shim: {
         'domReady': {

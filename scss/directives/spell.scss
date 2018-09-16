@@ -11,6 +11,9 @@ $seperatorColor: $stone;
       display: inline-block;
     }
   }
+  .charSkill {
+    margin-left: 5px;
+  }
   .spell-cost {
     span {
       &:first-of-type {

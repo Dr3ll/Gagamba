@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,KAAM;EACJ,OAAO,ECmBO,IAAI",
-"sources": ["../../../scss/modules/books.scss","../../../scss/common/constants.scss"],
-"names": [],
-"file": "books.css"
-}

@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAEA,SAAU;EACR,OAAO,ECmBO,IAAI",
-"sources": ["../../../scss/modules/grimoire.scss","../../../scss/common/constants.scss"],
-"names": [],
-"file": "grimoire.css"
-}

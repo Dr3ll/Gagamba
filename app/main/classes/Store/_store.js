@@ -21,6 +21,7 @@ class Store {
         this._busyBody = BusyBody.getInstance();
 
         this._rootContainer = this._setupFolder(this._userDataPath);
+        this._booksContainer = this._setupFolder('books', this._rootContainer);
         this._settingsContainer = this._setupFolder('settings', this._rootContainer);
         this._characterContainer = this._setupFolder('characters', this._rootContainer);
         this._charactersFiles = new Map();
@@ -40,6 +41,18 @@ class Store {
 
     registerLoadingCallback(callback, target) {
         this._busyBody.registerCallback(callback, target);
+    }
+
+    loadBooks(callback, target) {
+        fs.readdir(this._booksContainer, (err, files) => {
+            let books = [];
+            files.forEach(fileName =>  {
+                if (fileName.indexOf('.pdf') === fileName.length - 4) {
+                    books.push({path: this._booksContainer + '\\' + fileName, fileName: fileName});
+                }
+            });
+            callback.apply(target, [books]);
+        });
     }
 
     loadSettings() {

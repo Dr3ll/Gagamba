@@ -1,32 +1,28 @@
 define(
     [
         'app',
-        'modules/module'
+        'modules/module',
+        'directives/book/book',
+        'services/BooksService'
     ], function (app) {
         'use strict';
 
-        app.controller('BooksController', ['$scope',
-                function ($scope) {
+        app.controller('BooksController', ['$scope', 'Books',
+                function ($scope, Books) {
+
+                    Books.subscribeBookSelected($scope, function () {
+                        $scope.selected = Books.selected();
+                    });
 
                     $scope.init = function() {
-                        $scope.searchWindowOpen = false;
-                        const searchInWebview = require('electron-in-page-search').default;
-                        const webView = document.getElementById('rules');
-                        //searchInWebview.customSearchWindowHtmlPath =
-                        $scope.search = searchInWebview(webView);
-                        $scope.search.openSearchWindow();
-                    };
-
-                    $scope.keypress = function($event) {
-                        if (!$scope.searchWindowOpen) {
-                            if ($event.ctrlKey && $event.key === 'f') {
-                                $scope.openSearch();
-                            }
+                        if (Books.isLoaded()) {
+                            $scope.books = Books.books();
+                        } else {
+                            Books.subscribeLoadingDone($scope, function () {
+                                $scope.books = Books.books();
+                            });
                         }
-                    };
-
-                    $scope.openSearch = function() {
-                        $scope.searchWindowOpen = !$scope.searchWindowOpen;
+                        $scope.selected = Books.selected();
                     };
 
                     $scope.init();

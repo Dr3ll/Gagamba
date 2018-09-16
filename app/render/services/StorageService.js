@@ -1,6 +1,7 @@
 define([
         'app',
-        'modules/module'
+        'modules/module',
+        'sqlLoader'
     ], function (app) {
         'use strict';
 
@@ -9,9 +10,11 @@ define([
 
                 const _electron = require('electron');
                 const _store = _electron.remote.app.getStore();
+                const _sqlLoader = app.$sqlLoader;
 
                 return {
-                    Store: _store
+                    Store: _store,
+                    SQLLoader: _sqlLoader
                 };
             }]);
     }

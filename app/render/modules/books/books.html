@@ -1,9 +1,5 @@
 <div id="books" class="hundred" ng-keydown="keypress($event)">
-    <style>
-        .electron-in-page-search-window {
-            display: {{!searchWindowOpen ? 'none' : 'block'}} !important;
-        }
-    </style>
-    <button class="search-button" ng-click="openSearch()"><i class="fas fa-search"></i></button>
-    <webview id="rules" class="pdf-view" src="../assets/Splittermond_Regelwerk.pdf" plugins></webview>
+    <span ng-repeat="book in books track by $index">
+        <book ng-show="$index === selected" file="book" id="$index"></book>
+    </span>
 </div>

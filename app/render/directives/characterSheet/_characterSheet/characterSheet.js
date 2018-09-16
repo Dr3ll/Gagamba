@@ -4,6 +4,7 @@ define(
         'angular',
         'directives/characterSheet/focusMeter/focusMeter',
         'directives/characterSheet/healthMeter/healthMeter',
+        'directives/characterSheet/channelList/channelList',
         'directives/characterSheet/characterBaseProps/characterBaseProps',
         'directives/characterSheet/moonshards/moonshards',
         'directives/characterSheet/tome/tome',

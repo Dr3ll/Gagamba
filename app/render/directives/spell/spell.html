@@ -9,6 +9,9 @@
                 <span class="name">
                     <span ng-bind-html="spellData.name"></span>
                 </span>
+                <span ng-if="isTome" class="charSkill">
+                    <span>{{charSkill}}</span>
+                </span>
             </div>
         </blow-label>
         <blow-content>
@@ -25,7 +28,12 @@
                     </tr>
                     <tr class="difficulty">
                         <td>Schwierigkeit:</td>
-                        <td ng-bind-html="spellData.difficulty"></td>
+                        <td>
+                            <span ng-bind-html="spellData.difficulty"></span>
+                            <span ng-if="isTome" class="charSkill">
+                                <span>({{charSkill}})</span>
+                            </span>
+                        </td>
                     </tr>
                     <tr class="cost">
                         <td>Kosten:</td>

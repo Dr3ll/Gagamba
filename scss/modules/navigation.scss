@@ -15,13 +15,23 @@ $bg_nav: rgba(32, 32, 32, .8);
   padding: 10px;
   background-color: $bg_nav;
   border-bottom: 1px solid $dust;
-
   .btn {
     padding: 5px;
     background-color: $tar;
     border-radius: 1px;
     border: 1px solid $dust;
     color: $ash;
+    min-width: 36px;
+    &:hover {
+      background-color: $ash;
+      color: $char;
+    }
+  }
+  .space {
+    width: 20px;
+  }
+  .warning {
+    color: $hblood;
   }
 
   .left-side {
@@ -29,6 +39,36 @@ $bg_nav: rgba(32, 32, 32, .8);
   }
   .right-side {
     display: flex;
+  }
+  .dropout-anchor {
+    position: relative;
+    .dropout {
+      display: none;
+      flex-direction: column;
+      background-color: $char_t;
+      position: absolute;
+      top: 33px;
+      left: -12px;
+      width: 190px;
+      z-index: -100;
+      border: 1px solid $ash_t;
+      a, a:visited, a:focus, a:active {
+        color: $ash;
+        padding: 4px 17px;
+        line-height: 1.2;
+        text-decoration: none;
+        &:hover, &:visited:hover {
+          background-color: $ash_t;
+          color: $char;
+          text-decoration: none;
+        }
+      }
+    }
+    &:hover {
+      .dropout {
+        display: flex;
+      }
+    }
   }
 }
 

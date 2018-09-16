@@ -34,8 +34,7 @@ define(
 
                                 $timeout(function() {
                                     $scope.tome = Character.tome();
-                                    }
-                                );
+                                });
                             };
 
                             $scope.init();

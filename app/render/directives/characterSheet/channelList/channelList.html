@@ -1,0 +1,15 @@
+<div class="channel-list component">
+    <div class="channels">
+        <expanel toggled="toggled">
+            <ex-label>
+                <span>Kanalisiert <i class="fas fa-eye-slash" ng-if="toggled"></i><i class="fas fa-eye" ng-if="!toggled"></i></span>
+            </ex-label>
+            <ex-content>
+                <div class="channel-entry" ng-repeat="spell in channels track by $index">
+                    <span><button class="btn btn-action" ng-click="dropChannel($index);"><i class="fas fa-times"></i></button></span>
+                    <spell spell-id="spell.spellId" view="GRIMOIRE"></spell>
+                </div>
+            </ex-content>
+        </expanel>
+    </div>
+</div>

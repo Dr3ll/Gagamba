@@ -1,0 +1,14 @@
+@import '../../common/constants';
+
+$focus-line-color: $mana;
+$focus-bg-color: $mana_muted;
+
+.channel-list {
+  width: 324px;
+  height: 100px;
+
+  .channel-entry {
+    display: flex;
+    flex-direction: row;
+  }
+}

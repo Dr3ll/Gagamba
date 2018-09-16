@@ -7,7 +7,7 @@ define([
         app.factory('Rules', [
             function () {
 
-                let _cheatsEnabled = true;
+                let _cheatsEnabled = false;
 
                 return {
                     cheatEnabled: function () {

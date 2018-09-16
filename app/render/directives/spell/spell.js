@@ -29,6 +29,10 @@ define(
 
                             $scope.init = function () {
                                 $scope.spellData = Grimoire.getSpell($scope.spellId);
+                                if ($scope.isTome) {
+                                    let spell = Grimoire.getSpell($scope.spellId);
+                                    $scope.charSkill = Character.getSkillLevel(spell.school);
+                                }
                             };
 
                             $scope.closeSticky = function () {

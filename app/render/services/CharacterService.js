@@ -19,6 +19,7 @@ define(
                     EXHAUSTED: 'exhausted',
                     CONSUMED: 'consumed'
                 };
+                const _CRAFT_TYPES = { GENERAL: 0, WEAPON: 1, MAGIC: 2 };
                 const _FIELD = {
                     FOCUS: 'FOCUS',
                     HEALTH: 'HEALTH',
@@ -97,15 +98,14 @@ define(
                 };
 
                 let _cast = function (spell, successDiscount) {
-                    let cost = _calcSpellCost(spell, _character.magic, successDiscount);
-                    _applyFocusCost(cost);
-                    if (cost.ch > 0) {
-                        let temp = _character.status.channels;
-                        temp.push({spellId: spell.id, value: cost.ch, index: _character.status.channels.length});
-                        _character.status.channels = temp;
+                    let cost = _calcSpellCost(spell, _character.crafts(Character.CRAFT_TYPES.MAGIC), successDiscount);
+                    if (_applyFocusCost(cost)) {
+                        if (cost.ch > 0) {
+                            let temp = _character.status.channels;
+                            temp.push({spellId: spell.id, value: cost.ch});
+                            _character.status.channels = temp;
+                        }
                     }
-
-                    _callFieldChange(_FIELD.FOCUS);
                 };
 
                 let _dropAllChannels = function () {
@@ -117,9 +117,20 @@ define(
 
                 let _dropChannel = function (index) {
                     if (_character) {
-                        _character.status.channels.splice(index, 1);
-                        _callFieldChange(_FIELD.CHANNELS);
-                    }};
+                        let temp = _character.status.channels;
+                        let f = _character.focus.ch - temp[index].value;
+                        if (f < 0 || f !== f) {
+                            f = 0;
+                        }
+                        _character.focus.ch = f;
+                        _character.focus.ex += temp[index].value;
+
+                        temp.splice(index, 1);
+                        _character.status.channels = temp;
+                        return true;
+                    }
+                    return false;
+                }
 
                 let _takeDamage = function(damage) {
                     if (_character.health.pt * 5 <=
@@ -139,37 +150,40 @@ define(
                 };
 
                 let _takeHit = function (damage) {
-                    let dr = _character.battle.dr;
-                    while (dr > 0) {
-                        if (damage.ch > 0) {
-                            if (dr >= damage.ch) {
-                                dr -= damage.ch;
-                                damage.ch = 0;
-                            } else {
-                                damage.ch -= dr;
-                                dr = 0;
-                            }
-                        } else if (damage.ex > 0) {
-                            if (dr >= damage.ex) {
-                                dr -= damage.ex;
-                                damage.ex = 0;
-                            } else {
-                                damage.ex -= dr;
-                                dr = 0;
-                            }
-                        } else if (damage.co > 0) {
-                            if (dr >= damage.co) {
-                                dr -= damage.co;
-                                damage.co = 0;
-                            } else {
-                                damage.co -= dr;
-                                dr = 0;
+                    if (_character) {
+                        let dr = _character.battle.dr;
+                        while (dr > 0) {
+                            if (damage.ch > 0) {
+                                if (dr >= damage.ch) {
+                                    dr -= damage.ch;
+                                    damage.ch = 0;
+                                } else {
+                                    damage.ch -= dr;
+                                    dr = 0;
+                                }
+                            } else if (damage.ex > 0) {
+                                if (dr >= damage.ex) {
+                                    dr -= damage.ex;
+                                    damage.ex = 0;
+                                } else {
+                                    damage.ex -= dr;
+                                    dr = 0;
+                                }
+                            } else if (damage.co > 0) {
+                                if (dr >= damage.co) {
+                                    dr -= damage.co;
+                                    damage.co = 0;
+                                } else {
+                                    damage.co -= dr;
+                                    dr = 0;
+                                }
                             }
                         }
-                    }
+                        _takeDamage(damage);
 
-                    _takeDamage(damage);
-                    _callFieldChange(_FIELD.HEALTH);
+                        return true;
+                    }
+                    return false;
                 };
 
                 let _spendMoonshard = function () {
@@ -182,8 +196,12 @@ define(
                 };
 
                 let _refreshMoonshards = function () {
-                    _character.moonshards.spent = 0;
-                    _callFieldChange(_FIELD.MOONSHARDS);
+                    if (_character) {
+                        _character.moonshards.spent = 0;
+
+                        return true;
+                    }
+                    return false;
                 };
 
                 let _saveDelay = undefined;
@@ -222,7 +240,7 @@ define(
                         // Focus
                         let will = (_character.attributes[_ATTRIBUTES.WILLPOWER] || 0);
                         let multiplierf = 2;
-                        if (_character.strengths.contains('FOCUS_REG')) { // TODO: Item strengths
+                        if (_character.strengths.indexOf('FOCUS_REG') >= 0) { // TODO: Item strengths
                             multiplierf = 3;
                         }
                         let regf  = multiplierf * will;
@@ -237,7 +255,7 @@ define(
                         // Health
                         let con = (_character.attributes[_ATTRIBUTES.WILLPOWER] || 0);
                         let multiplierh = 2;
-                        if (_character.strengths.contains('HEALTH_REG')) { // TODO: Item strengths
+                        if (_character.strengths.indexOf('HEALTH_REG') >= 0) { // TODO: Item strengths
                             multiplierh = 3;
                         }
                         let regh  = multiplierh * will;
@@ -249,9 +267,9 @@ define(
 
                         _character.status.tookBreath = false;
 
-                        _callFieldChange(_FIELD.FOCUS);
-                        _callFieldChange(_FIELD.HEALTH);
+                        return true;
                     }
+                    return false;
                 };
 
                 let _rest = function () {
@@ -260,9 +278,9 @@ define(
                         _character.health.ex = 0;
                         _character.status.tookBreath = false;
 
-                        _callFieldChange(_FIELD.FOCUS);
-                        _callFieldChange(_FIELD.HEALTH);
+                        return true;
                     }
+                    return false;
                 };
 
                 let _takeBreath = function () {
@@ -273,8 +291,9 @@ define(
                             : 0;
                         _character.status.tookBreath = true;
 
-                        _callFieldChange(_FIELD.HEALTH);
+                        return true;
                     }
+                    return false;
                 };
 
                 let _refreshField = function (field) {
@@ -285,6 +304,8 @@ define(
                                     _character.focus.ch = 0;
                                     _character.focus.ex = 0;
                                     _character.focus.co = 0;
+                                    _character.status.channels = [];
+                                    _callFieldChange(_FIELD.CHANNELS);
                                 }
                                 break;
                             }
@@ -310,6 +331,7 @@ define(
                 return {
                     RSTATES: _RSTATES,
                     FIELD: _FIELD,
+                    CRAFT_TYPES: _CRAFT_TYPES,
                     isCharacterLoaded: function() {
                         return _character !== undefined && _character !== null;
                     },
@@ -357,6 +379,9 @@ define(
                     battle: function () {
                         return _character.battle;
                     },
+                    crafts: function (type) {
+                        return _character.crafts[type];
+                    },
                     tookBreath: function () {
                         return _character.status.tookBreath;
                     },
@@ -371,6 +396,9 @@ define(
                     },
                     health: function () {
                         return _character.health;
+                    },
+                    channels: function () {
+                        return _character.status.channels;
                     },
                     properties: function () {
                         return _character.properties;
@@ -387,9 +415,6 @@ define(
                     moonshards: function () {
                         return _character.moonshards;
                     },
-                    magic: function () {
-                        return _character.magic;
-                    },
                     tome: function () {
                         return _character.tome;
                     },
@@ -400,28 +425,54 @@ define(
                         return _character.health;
                     },
                     hit: function (damage) {
-                        _takeHit(damage);
+                        if(_takeHit(damage)) {
+                            _callFieldChange(_FIELD.HEALTH);
+                        }
                     },
                     cast: function (id) {
                         _cast(Grimoire.getSpell(id));
+                        _callFieldChange(_FIELD.FOCUS);
+                        _callFieldChange(_FIELD.CHANNELS);
                     },
                     sleep: function () {
-                        _sleep();
+                        if(_sleep()) {
+                            _callFieldChange(_FIELD.FOCUS);
+                            _callFieldChange(_FIELD.HEALTH);
+                            _callFieldChange(_FIELD.CHANNELS);
+                        }
                     },
                     rest: function () {
-                        _rest();
+                        if (_rest()) {
+                            _callFieldChange(_FIELD.FOCUS);
+                            _callFieldChange(_FIELD.HEALTH);
+                        }
                     },
                     takeBreath: function () {
-                        _takeBreath();
+                        if (_takeBreath()) {
+                            _callFieldChange(_FIELD.HEALTH);
+                        }
+                    },
+                    dropChannel: function (index) {
+                        if (_dropChannel(index)) {
+                            _callFieldChange(_FIELD.CHANNELS);
+                            _callFieldChange(_FIELD.FOCUS);
+                        }
+                    },
+                    getSkillLevel: function (craftId) {
+                        return _character.crafts[_CRAFT_TYPES.MAGIC][craftId].skill.value;
                     },
                     refresh: function (field) {
                         _refreshField(field);
                     },
                     spendMoonshard: function () {
-                        _spendMoonshard();
+                        if (_spendMoonshard()) {
+                            _callFieldChange(_FIELD.MOONSHARDS);
+                        }
                     },
                     refreshMoonshards: function () {
-                        _refreshMoonshards();
+                        if (_refreshMoonshards()) {
+                            _callFieldChange(_FIELD.MOONSHARDS);
+                        }
                     }
                 };
 

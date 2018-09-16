@@ -6,8 +6,11 @@
         <div>
             <a class="btn" ui-sref="root.grimoire">Grimoire</a>
         </div>
-        <div>
-            <a class="btn" ui-sref="root.books">Bücher</a>
+        <div class="dropout-anchor">
+            <span class="btn">Bücher</span>
+            <div class="dropout">
+                <a ng-repeat="book in books track by $index" ui-sref="root.books" ng-click="setBook($index)">{{book.label || book.fileName}}</a>
+            </div>
         </div>
         <div>
             <a class="btn">Another thing</a>
@@ -15,9 +18,22 @@
     </div>
     <div class="right-side">
         <div>
-            <button class="btn" ng-click="backToCharSelection()">Charakterauswahl</button>
+            <button class="btn" ng-click="toggleCheats()" title="Cheatmodus"><i ng-show="cheatsOn" class="fas fa-lock-open warning"></i><i ng-show="!cheatsOn" class="fas fa-lock"></i></button>
+        </div>
+        <div>
+            <button class="btn" ng-click="sleep()" title="Ruhephase"><i class="fas fa-hourglass"></i></button>
+        </div>
+        <div>
+            <button class="btn" ng-click="rest()" title="Verschnaufpause"><i class="fas fa-hourglass-end"></i></button>
+        </div>
+        <div class="space"></div>
+        <div>
+            <button class="btn" ng-click="backToCharSelection()" title="Charakterauswahl"><i class="fas fa-reply"></i></button>
         </div>
     </div>
+    <!--<div>
+        <button class="btn" ng-click="debug()" title="Charakterauswahl">käsekuchen</button>
+    </div>-->
 </div>
 <div class="nav-spacer">
 

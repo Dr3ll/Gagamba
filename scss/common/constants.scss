@@ -3,9 +3,17 @@
 $char: #212121;
 $tar: #1f1f1f;
 $tar2: #1b1e21;
+$char_t: rgba(33,33,33,.9);
+$tar_t: rgba(31,31,31,.9);
+$tar2_t: rgba(28,30,33,.9);
 $ash: #CCC;
 $dust: #dcdcdc;
 $stone: #333;
+$ash_t: rgba(204,204,204,.9);
+$dust_t: rgba(220,220,220,.9);
+$stone_t: rgba(51,51,51,.9);
+
+$hblood: #BB0000;
 
 $mana: #9CF;
 $mana_muted: #303037;
@@ -24,12 +32,16 @@ $modulePadding: 20px;
 $navbarMargin: 42px;
 
 // Textures
-
 $congruent_outline: url("../../assets/images/congruent_outline.png");
 $black_lozenge: url("../../assets/images/black_lozenge.png");
 $zwartevilt: url("../../assets/images/zwartevilt.png");
 $full_bloom: url("../../assets/images/full-bloom.png");
 
-
 // Images
 $gagamba_transparent: url("../../assets/images/gagamba_transparent.png");
+
+// Fonts
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf");
+}

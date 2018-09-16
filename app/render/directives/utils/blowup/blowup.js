@@ -25,6 +25,11 @@ define(
 
                             $scope.init = function () {
                                 $scope.blocker = Blowup.blocker();
+                                $scope.$on('$destroy', function () {
+                                    if ($scope.toggled) {
+                                        Blowup.pop();
+                                    }
+                                });
                             };
 
                             $scope.toggle = function (state) {
