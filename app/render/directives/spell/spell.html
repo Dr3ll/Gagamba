@@ -1,7 +1,7 @@
 <div class="spell">
     <button ng-if="isTome" class="btn btn-action" ng-click="cast()"><i class="fas fa-magic"></i></button>
     <blowup toggled="stickyToggled">
-        <blow-label>
+        <blowlabel>
             <div class="spell-label">
                 <span class="tier">
                     <span>{{spellData.tier}}</span>
@@ -13,8 +13,8 @@
                     <span>{{charSkill}}</span>
                 </span>
             </div>
-        </blow-label>
-        <blow-content>
+        </blowlabel>
+        <blowcontent>
             <div class="close-blow" ng-show="stickyToggled" ng-click="closeSticky()"><i class="fas fa-times"></i></div>
             <div class="spell-info-wrapper">
                 <span class="name">
@@ -89,6 +89,6 @@
                     </tbody>
                 </table>
             </div>
-        </blow-content>
+        </blowcontent>
     </blowup>
 </div>

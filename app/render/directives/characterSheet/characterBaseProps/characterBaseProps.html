@@ -38,41 +38,66 @@
             </li>
         </ul>
     </div>
-    <div class="char-properties">
-        <table>
-            <tr>
-                <td>Ausbildung:</td><td>{{properties.education}}</td>
-            </tr>
-            <tr>
-                <td>Kultur:</td><td>{{properties.culture}}</td>
-            </tr>
-            <tr>
-                <td>Rasse:</td><td>{{properties.race}}</td>
-            </tr>
-            <tr>
-                <td>Sprachen:</td><td><div ng-repeat="lang in languages">{{lang}}</div></td>
-            </tr>
-        </table>
-        <table>
-            <tr>
-                <td>Haarfarbe:</td><td>{{properties.hair}}</td>
-            </tr>
-            <tr>
-                <td>Augenfarbe:</td><td>{{properties.eyes}}</td>
-            </tr>
-            <tr>
-                <td>Hautfarbe:</td><td>{{properties.skin}}</td>
-            </tr>
-            <tr>
-                <td>Geschlecht:</td><td>{{properties.gender}}</td>
-            </tr>
-            <tr>
-                <td>Größe:</td><td>{{properties.height}}</td>
-            </tr>
-            <tr>
-                <td>Gewicht:</td><td>{{properties.weight}}</td>
-            </tr>
-        </table>
+    <div class="prop-nav">
+        <blowup scope="props">
+            <blowlabel>
+                <span>Eigenschaften</span>
+            </blowlabel>
+            <blowcontent>
+                <div class="char-properties">
+                    <table>
+                        <tr>
+                            <td>Ausbildung:</td><td>{{properties.education}}</td>
+                        </tr>
+                        <tr>
+                            <td>Kultur:</td><td>{{properties.culture}}</td>
+                        </tr>
+                        <tr>
+                            <td>Rasse:</td><td>{{properties.race}}</td>
+                        </tr>
+                        <tr>
+                            <td>Sprachen:</td><td><div ng-repeat="lang in languages">{{lang}}</div></td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td>Haarfarbe:</td><td>{{properties.hair}}</td>
+                        </tr>
+                        <tr>
+                            <td>Augenfarbe:</td><td>{{properties.eyes}}</td>
+                        </tr>
+                        <tr>
+                            <td>Hautfarbe:</td><td>{{properties.skin}}</td>
+                        </tr>
+                        <tr>
+                            <td>Geschlecht:</td><td>{{properties.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td>Größe:</td><td>{{properties.height}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gewicht:</td><td>{{properties.weight}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </blowcontent>
+        </blowup>
+        <blowup scope="props">
+            <blowlabel>
+                <span>Stärken</span>
+            </blowlabel>
+            <blowcontent>
+
+            </blowcontent>
+        </blowup>
+        <blowup scope="props">
+            <blowlabel>
+                <span>Schwächen</span>
+            </blowlabel>
+            <blowcontent>
+
+            </blowcontent>
+        </blowup>
     </div>
 
 </div>

@@ -49,6 +49,10 @@ $seperatorColor: $stone;
       border: 1px solid $seperatorColor;
       border-width: 1px 0;
     }
+    .name {
+      font-size: $fontBig;
+      font-weight: 700;
+    }
     table {
       width: 100%;
       tr {

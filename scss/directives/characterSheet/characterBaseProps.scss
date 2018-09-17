@@ -12,6 +12,7 @@ $bg_odd_rows: rgba(48,48,48, .5);
 $bg_even_rows: rgba(48,48,48, .2);
 
 .character-base-props {
+  position: absolute;
   width: 100%;
   height: 250px;
   display: flex;
@@ -94,5 +95,18 @@ $bg_even_rows: rgba(48,48,48, .2);
         background-color: $bg_even_rows;
       }
     }
+  }
+
+  .prop-nav {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  .blow-content, .blowup.open .blow-content, .blowup:hover .blow-content {
+    position: absolute;
+    top: 50%;
+    right: 13px;
+    left: -17px;
+    height: fit-content;
   }
 }

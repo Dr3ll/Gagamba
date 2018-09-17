@@ -1,9 +1,9 @@
 <div id="grimoire" class="hundred">
     <expanel class="school-wrapper" ng-repeat="school in schools track by $index">
-        <ex-label>
+        <exlabel>
             <div class="school-label" ng-bind-html="school.name"></div>
-        </ex-label>
-        <ex-content>
+        </exlabel>
+        <excontent>
             <div class="spell-list-wrapper" ng-class="">
                 <div class="spell-wrapper" ng-repeat="spellId in school.spells track by $index">
                     <spell spell-id="spellId" view="GRIMOIRE">
@@ -11,7 +11,7 @@
                     </spell>
                 </div>
             </div>
-        </ex-content>
+        </excontent>
     </expanel>
     <!--
     <div><i class="fas fa-gavel"></i> Bannmagie</div>

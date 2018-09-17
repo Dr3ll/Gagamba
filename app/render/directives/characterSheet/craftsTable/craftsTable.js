@@ -2,6 +2,7 @@ define(
     [
         'app',
         'angular',
+        'directives/utils/expanel/expanel',
         'services/CharacterService',
         'services/DatabaseService'
     ],
@@ -13,7 +14,8 @@ define(
                 return {
                     scope: {
                         showZeros: '<',
-                        type: '<'
+                        type: '<',
+                        label: '<'
                     },
                     templateUrl: 'directives/characterSheet/craftsTable/craftsTable.html',
                     controller: ['$scope', '$controller', 'Character', 'Database',
@@ -23,19 +25,19 @@ define(
                             $scope.setField(Character.FIELD.ATTRIBUTES);
 
                             let _fetchCraftInfo = function () {
-                                let craftsData = Database.getCrafts();
+                                let craftsData = Database.getCrafts($scope.type);
                                 for(let craftId in $scope.crafts) {
                                     let data = craftsData.get(parseInt(craftId));
                                     let c = $scope.crafts[craftId];
                                     for(let att in data) {
                                         c[att] = data[att];
                                     }
-                                };
+                                }
                             };
 
                             let _kickZeros = function () {
                                 let swap = [];
-                                for (let att of $scope.crafts) {
+                                for (let att in $scope.crafts) {
                                     if ($scope.crafts[att].skill.value > 0) {
                                         swap.push($scope.crafts[att]);
                                     }

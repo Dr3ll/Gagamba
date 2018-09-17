@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AA2CA,UAGC;EAFC,WAAW,EAAE,eAAe;EAC5B,GAAG,EAAE,8DAA8D;ACxCrE,YAAa;EACX,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,KAAK;EACb,2BAAe;IACb,KAAK,EAAE,IAAI;EAEb,6FAA0C;IACxC,KAAK,EAAE,IAAI;IACX,MAAM,EAAE,IAAI;IACZ,MAAM,EAAE,cAA2B;IACnC,gBAAgB,EAZH,OAAW;IAaxB,aAAa,EAAE,GAAG;IAClB,KAAK,EAAE,IAAI;IACX,MAAM,EAAE,GAAG;EAIb,uBAAW;IACT,gBAAgB,EAAE,uHAAiJ;EAErK,uBAAW;IACT,gBAAgB,EAAE,+OAC+H;EAEnJ,sBAAU;IACR,gBAAgB,EAAE,sWAE6H",
-"sources": ["../../../scss/common/constants.scss","../../../scss/directives/characterSheet/craftsTable.scss"],
-"names": [],
-"file": "craftsTable.css"
-}

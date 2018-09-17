@@ -10,8 +10,8 @@ define(
             function () {
                 return {
                     transclude: {
-                        'label': 'exLabel',
-                        'content': 'exContent'
+                        'label': 'exlabel',
+                        'content': 'excontent'
                     },
                     scope: {
                         toggled: '=?'

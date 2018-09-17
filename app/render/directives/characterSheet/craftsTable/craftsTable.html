@@ -1,12 +1,27 @@
 <div class="crafts-table">
-    <table>
-        <tr ng-repeat="craft in crafts track by $index">
-            <td>
-                <span ng-bind-html="craft.name"></span>
-            </td>
-            <td>
-                <span>{{craft.stat0}}  {{craft.stat0}}</span>
-            </td>
-        </tr>
-    </table>
+    <expanel>
+        <exlabel>
+            <span class="panel-label">{{label}}</span>
+        </exlabel>
+        <excontent>
+            <div class="craft-info">
+                <table>
+                    <tr ng-repeat="craft in crafts track by $index">
+                        <td class="craft-name">
+                            <span ng-bind-html="craft.name"></span>
+                        </td>
+                        <td class="craft-stat">
+                            <span>{{craft.stat0}}</span>
+                        </td>
+                        <td class="craft-stat">
+                            <span>{{craft.stat0}}</span>
+                        </td>
+                        <td class="craft-skill">
+                            <span>{{craft.skill.value}}</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </excontent>
+    </expanel>
 </div>

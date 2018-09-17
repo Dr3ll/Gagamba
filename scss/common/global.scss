@@ -16,7 +16,7 @@ body {
   font-family: Titillium Web;
   font-size: 1em;
   &::-webkit-scrollbar {
-    display: none;
+       display: none;
   }
 }
 
@@ -59,4 +59,8 @@ body {
     float: left;
     margin: 1px;
   }
+}
+
+.panel-label {
+  padding-left: 2px;
 }

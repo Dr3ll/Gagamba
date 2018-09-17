@@ -7,28 +7,42 @@ define([
         app.factory('Blowup', [
             function () {
 
-                let _pinnedPanel = undefined;
-                let _blocker = {
-                    enabled: false
+                let _scopes = new Map();
+
+                let _getScope = function (scopeId) {
+                    let scope = _scopes.get(scopeId);
+                    if (!scope) {
+                        scope = { pin: undefined, blocker: { enabled: false } };
+                        _scopes.set(scopeId, { pin: undefined, blocker: { enabled: false } } );
+                    }
+                    return scope;
                 };
 
                 return {
-                    push: function (scope) {
-                        if (_pinnedPanel) {
-                            _pinnedPanel.toggled = false;
+                    push: function (panel, scopeId) {
+                        let scope = _getScope(scopeId);
+
+                        if (scope.pin) {
+                            scope.pin.toggled = false;
                         }
-                        _pinnedPanel = scope;
-                        _blocker.enabled = true;
+                        scope.pin = panel;
+                        scope.blocker.enabled = true;
                     },
-                    pop: function () {
-                        if (_pinnedPanel) {
-                            _pinnedPanel.toggled = false;
+                    pop: function (scopeId) {
+                        let scope = _getScope(scopeId);
+
+                        if (scope.pin) {
+                            scope.pin.toggled = false;
                         }
-                        _pinnedPanel = undefined;
-                        _blocker.enabled = false;
+                        scope.pin = undefined;
+                        scope.blocker.enabled = false;
                     },
-                    blocker: function () {
-                        return _blocker;
+                    blocker: function (scopeId) {
+                        let scope = _getScope(scopeId);
+                        if (scope) {
+                            return scope.blocker;
+                        }
+                        return { enabled: false};
                     }
                 };
 

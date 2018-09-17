@@ -1,6 +1,8 @@
 @import '../../common/constants';
 
 .character-sheet {
+  overflow-y: hidden;
+  overflow-x: hidden;
   .layout-container {
     .component {
       position: relative;
@@ -33,14 +35,14 @@
       *width: 33.3333333333333%;
     }
   }
-  .blow-content {
+  .blow-content, .blowup.open .blow-content, .blowup:hover .blow-content {
     font-size: .8em;
-    right: 33.33333333% !important;
-    left: 33.33333333% !important;
-    top: 44% !important;
-    bottom: 20px !important;
-    border-radius: 0 !important;
-    border-width: 1px !important;
-    background: none !important;
+    right: 33.33333333% ;
+    left: 33.33333333%;
+    top: 44%;
+    bottom: 20px;
+    border-radius: 0;
+    border-width: 1px;
+    background: none;
   }
 }

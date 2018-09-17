@@ -4,7 +4,26 @@ $focus-line-color: $mana;
 $focus-bg-color: $mana_muted;
 
 .crafts-table {
-  width: 324px;
-  height: 100px;
-
+  width: 100%;
+  .craft-info {
+    overflow-y: scroll;
+    max-height: 50vh;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    table {
+      font-size: $fontSmall;
+      .craft-name {
+        width: 65%;
+        padding-left: 10px;
+      }
+      .craft-stat {
+        width: 10%;
+      }
+      .craft-skill {
+        width: 10%;
+        text-align: right;
+      }
+    }
+  }
 }

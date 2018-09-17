@@ -2,8 +2,10 @@
     <div class="actions">
         <button class="btn btn-action" ng-click="refresh()"><i class="fas fa-sync"></i></button>
     </div>
-    <div>
-        Fokus {{focus.t}}
+    <div class="focus-info">
+        <div>Fokus {{focus.t}}</div>
+        <div>Regeneration {{reg}}</div>
+
     </div>
     <div class="point-wrapper">
         <div class="consumed" ng-repeat="point in consumedBox track by $index"></div>

@@ -20,7 +20,8 @@ define([
 
                 let _schools = new Map();
                 let _spells = new Map();
-                let _crafts = new Map();
+                let _generalCrafts = new Map();
+                let _weaponTypes = new Map();
                 let _isLoaded = false;
 
                 let _trust = function(value) {
@@ -65,6 +66,16 @@ define([
                     return crafts;
                 };
 
+                let _packWeapons = function () {
+                    let weapons = Storage.SQLLoader.getPack(_dbPath);
+                    Storage.SQLLoader.getPack(_dbPath);
+                    weapons.push(_QUERRIES.WEAPON_TYPES, 'WEAPONS', 'id',
+                        function (row, ct) {
+                            row.name = _trust(row.name);
+                        });
+                    return weapons;
+                };
+
                 let _loadData = function () {
                     return $q(function (resolve, reject) {
                         let loader = new Future();
@@ -83,9 +94,18 @@ define([
                         loader.asynch(crafts.load,undefined,
                             function (container) {
                                 console.log('general crafts loaded');
-                                _crafts = container.get('CRAFTS');
+                                _generalCrafts = container.get('CRAFTS');
                             },
                             crafts, this
+                        );
+
+                        let weapons = _packWeapons();
+                        loader.asynch(weapons.load,undefined,
+                            function (container) {
+                                console.log('weapon types loaded');
+                                _weaponTypes = container.get('WEAPONS');
+                            },
+                            weapons, this
                         );
 
                         loader.unify(undefined, () => {
@@ -111,8 +131,21 @@ define([
                     getSpells: function () {
                         return _spells;
                     },
-                    getCrafts: function () {
-                        return _crafts;
+                    getCrafts: function (type) {
+                        switch (type) {
+                            case 0: {
+                                return _generalCrafts;
+                            }
+                            case 1: {
+                                return _weaponTypes;
+                            }
+                            case 2: {
+                                return _schools;
+                            }
+                            default: {
+                                return undefined;
+                            }
+                        }
                     },
                     getSpell: function (id) {
                         return _spells.get(id);

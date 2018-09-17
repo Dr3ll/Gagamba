@@ -37,6 +37,7 @@ define(
                                 }
 
                                 $scope.focus = Character.focus();
+                                $scope.reg = Character.focusReg();
                                 _updateBoxes();
                             };
 

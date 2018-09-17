@@ -102,7 +102,7 @@ define(
                 };
 
                 let _cast = function (spell, successDiscount) {
-                    let cost = _calcSpellCost(spell, _character.crafts(Character.CRAFT_TYPES.MAGIC), successDiscount);
+                    let cost = _calcSpellCost(spell, _character.crafts[_CRAFT_TYPES.MAGIC], successDiscount);
                     if (_applyFocusCost(cost)) {
                         if (cost.ch > 0) {
                             let temp = _character.status.channels;
@@ -134,7 +134,7 @@ define(
                         return true;
                     }
                     return false;
-                }
+                };
 
                 let _takeDamage = function(damage) {
                     if (_character.health.pt * 5 <=
@@ -239,16 +239,34 @@ define(
                     _characterQuicksave();
                 };
 
+                let _focusRegen = function () {
+                    let will = (_character.attributes[_ATTRIBUTES.WILLPOWER].value || 0);
+                    let multiplierf = 2;
+                    if (_character.strengths.indexOf('FOCUS_REG') >= 0) { // TODO: Item strengths
+                        multiplierf = 3;
+                    }
+                    let regf  = multiplierf * will;
+                    if (regf <= 0) { regf = 1; }
+
+                    return regf;
+                };
+
+                let _healthRegen = function () {
+                    let con = (_character.attributes[_ATTRIBUTES.CONSTITUTION].value || 0);
+                    let multiplierh = 2;
+                    if (_character.strengths.indexOf('HEALTH_REG') >= 0) { // TODO: Item strengths
+                        multiplierh = 3;
+                    }
+                    let regh  = multiplierh * con;
+                    if (regh <= 0) { regh = 1;}
+
+                    return regh;
+                };
+
                 let _sleep = function () {
                     if (_character) {
                         // Focus
-                        let will = (_character.attributes[_ATTRIBUTES.WILLPOWER] || 0);
-                        let multiplierf = 2;
-                        if (_character.strengths.indexOf('FOCUS_REG') >= 0) { // TODO: Item strengths
-                            multiplierf = 3;
-                        }
-                        let regf  = multiplierf * will;
-                        if (regf <= 0) { regf = 1; }
+                        let regf = _focusRegen();
 
                         _character.focus.ex = 0;
                         _character.focus.ch = 0;
@@ -257,13 +275,7 @@ define(
                         _dropAllChannels();
 
                         // Health
-                        let con = (_character.attributes[_ATTRIBUTES.WILLPOWER] || 0);
-                        let multiplierh = 2;
-                        if (_character.strengths.indexOf('HEALTH_REG') >= 0) { // TODO: Item strengths
-                            multiplierh = 3;
-                        }
-                        let regh  = multiplierh * will;
-                        if (regh <= 0) { regh = 1; }
+                        let regh = _healthRegen();
 
                         _character.health.ex = 0;
                         //_character.health.ch = 0; // TODO: poison and such
@@ -398,8 +410,14 @@ define(
                     focus: function () {
                         return _character.focus;
                     },
+                    focusReg: function() {
+                        return _focusRegen();
+                    },
                     health: function () {
                         return _character.health;
+                    },
+                    healthReg: function () {
+                        return _healthRegen();
                     },
                     channels: function () {
                         return _character.status.channels;

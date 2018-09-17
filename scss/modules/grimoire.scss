@@ -6,7 +6,7 @@ $seperatorColor: $stone;
   padding: $modulePadding;
 
   .school-label {
-    padding-left: 2px;
+    @extend .panel-label;
     border: 0px solid $seperatorColor;
     border-top-width: 1px;
   }
