@@ -31,10 +31,11 @@ $seperatorColor: $stone;
     width: 20px;
     height: 20px;
     border: 1px solid $ash;
-    background: $char;
+    background: $tar;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
   }
   .spell-info-wrapper {
     display: flex;
@@ -62,5 +63,15 @@ $seperatorColor: $stone;
       }
     }
   }
-
+  .modal {
+    label {
+      width: 40%;
+    }
+    input {
+      width: 32px;
+    }
+    .form-line {
+      justify-content: center;
+    }
+  }
 }

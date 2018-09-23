@@ -1,4 +1,5 @@
 @import '../../common/constants';
+@import '../../common/layer';
 
 $openBg: $ash;
 $openFontColor: $char;
@@ -17,13 +18,15 @@ $contentBg: rgba(30,30,30,.98);
 
   .blow-content {
     position: fixed;
+    z-index: $modalLayer + 100;
     right: 0;
     top: $navbarMargin;
     border: 1px solid transparent;
     border-width: 0 0 1px 1px;
-    background: $black_lozenge;
-    background-position-x: -1px;
-    background-position-x: -4px;
+    //background: $black_lozenge;
+    //background-position-x: -1px;
+    //background-position-x: -4px;
+    background-color: $char_t;
     padding: 20px 20px;
     opacity: 0;
     border-radius: 0 0 0 50%;
@@ -50,6 +53,9 @@ $contentBg: rgba(30,30,30,.98);
       opacity: .98;
       border-color: $ash;
       border-radius: 0%;
+      &:hover {
+        display: block;
+      }
     }
   }
 

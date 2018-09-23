@@ -1,5 +1,5 @@
 <div class="spell">
-    <button ng-if="isTome" class="btn btn-action" ng-click="cast()"><i class="fas fa-magic"></i></button>
+    <button ng-if="isTome" class="btn btn-action" ng-click="preCast()"><i class="fas fa-magic"></i></button>
     <blowup toggled="stickyToggled">
         <blowlabel>
             <div class="spell-label">
@@ -91,4 +91,5 @@
             </div>
         </blowcontent>
     </blowup>
+    <modal modal-scope="modalCast" modal-id="cast" template="directives/spell/cast_modal.html"></modal>
 </div>

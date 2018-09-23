@@ -16,20 +16,20 @@ define(
                     },
                     scope: {
                         toggled: '=?',
-                        scope: '@?'
+                        realm: '@?'
                     },
                     templateUrl: 'directives/utils/blowup/blowup.html',
                     controller: ['$scope', 'Blowup',
                         function ($scope, Blowup) {
 
                             $scope.toggled = false;
-                            $scope.scope = $scope.scope || 'def';
+                            $scope.realm = $scope.realm || 'def';
 
                             $scope.init = function () {
-                                $scope.blocker = Blowup.blocker($scope.scope);
+                                $scope.blocker = Blowup.blocker($scope.realm);
                                 $scope.$on('$destroy', function () {
                                     if ($scope.toggled) {
-                                        Blowup.pop($scope.scope);
+                                        Blowup.pop($scope.realm);
                                     }
                                 });
                             };
@@ -41,9 +41,9 @@ define(
                                     $scope.toggled = !$scope.toggled;
                                 }
                                 if ($scope.toggled) {
-                                    Blowup.push($scope, $scope.scope);
+                                    Blowup.push($scope, $scope.realm);
                                 } else {
-                                    Blowup.pop($scope.scope);
+                                    Blowup.pop($scope.realm);
                                 }
                             };
 

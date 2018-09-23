@@ -1,4 +1,5 @@
-@import '../common/constants';
+@import 'constants';
+@import 'layer';
 
 $transparent_logo: $gagamba_transparent;
 $bg_pattern: $black_lozenge;
@@ -13,11 +14,28 @@ body {
   height: 100%;
   background: $bg_pattern;
   color: $ash;
-  font-family: Titillium Web;
-  font-size: 1em;
+  font: $fontStandard Titillium Web !important;
   &::-webkit-scrollbar {
        display: none;
   }
+}
+
+button, input {
+  font: $fontStandard Titillium Web !important;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+::selection {
+  background: $hblood;
 }
 
 #nav {
@@ -30,7 +48,7 @@ body {
   background-repeat: no-repeat;
   background-size: 21%;
   position: absolute;
-  z-index: 0;
+  z-index: $baseLayer;
   top: 44px;
   bottom: 0;
   left: 0;

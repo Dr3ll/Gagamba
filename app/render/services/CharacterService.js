@@ -14,10 +14,10 @@ define(
             function ($rootScope, $timeout, Grimoire, Settings, CharacterLoader, Rules) {
 
                 const _RSTATES = {
-                    FRESH: 'fresh',
-                    CHANNELED: 'channeled',
-                    EXHAUSTED: 'exhausted',
-                    CONSUMED: 'consumed'
+                    FRESH: 'f',
+                    CHANNELED: 'ch',
+                    EXHAUSTED: 'ex',
+                    CONSUMED: 'co'
                 };
                 const _CRAFT_TYPES = { GENERAL: 0, WEAPON: 1, MAGIC: 2 };
                 const _FIELD = {
@@ -44,11 +44,21 @@ define(
 
                 let _character = undefined;
 
-                let _calcSpellCost = function (spell, magic, successDiscount) {
-                    successDiscount = successDiscount || {co: 0, ex: 0, ch: 0};
+                let _calcSpellCost = function (spell, empowered, magic, sDiscount) {
+                    let successDiscount = {co: 0, ex: 0, ch: 0};
+                    if (sDiscount) {
+                        successDiscount.co = sDiscount.co * -1;
+                        successDiscount.ch = sDiscount.ch * -1;
+                        successDiscount.ex = sDiscount.ex * -1;
+                    }
                     let skillDiscount = {co: 0, ex: 0, ch: 0};
                     let skillDiscountValue = magic[spell.school].discount;
                     let cost = {ex: spell.cost_ex, ch: spell.cost_ch, co: spell.cost_co};
+                    if (empowered) {
+                        cost.ex += spell.empower_cost_ex;
+                        cost.ch += spell.empower_cost_ch;
+                        cost.co += spell.empower_cost_co;
+                    }
 
                     // Substract consumed
                     if (cost.ex !== 0) {
@@ -89,8 +99,8 @@ define(
                     return cost;
                 };
 
-                let _applyFocusCost = function (cost) {
-                    if (_character.focus.t < (cost.ex + cost.ch + cost.co) + (_character.focus.ch + _character.focus.ex + _character.focus.co)) {
+                let _applyFocusCost = function (cost, grossCost) {
+                    if (_character.focus.t < (grossCost.ex + grossCost.ch + grossCost.co) + (_character.focus.ch + _character.focus.ex + _character.focus.co)) {
                         return false; // not enough focus
                     }
 
@@ -101,9 +111,9 @@ define(
                     return true;
                 };
 
-                let _cast = function (spell, successDiscount) {
-                    let cost = _calcSpellCost(spell, _character.crafts[_CRAFT_TYPES.MAGIC], successDiscount);
-                    if (_applyFocusCost(cost)) {
+                let _cast = function (spell, empowered, successDiscount) {
+                    let cost = _calcSpellCost(spell, empowered, _character.crafts[_CRAFT_TYPES.MAGIC], successDiscount);
+                    if (_applyFocusCost(cost, {ex: spell.cost_ex, ch: spell.cost_ch, co: spell.cost_co})) {
                         if (cost.ch > 0) {
                             let temp = _character.status.channels;
                             temp.push({spellId: spell.id, value: cost.ch});
@@ -451,10 +461,13 @@ define(
                             _callFieldChange(_FIELD.HEALTH);
                         }
                     },
-                    cast: function (id) {
-                        _cast(Grimoire.getSpell(id));
+                    cast: function (id, empowered, discount) {
+                        _cast(Grimoire.getSpell(id), empowered, discount);
                         _callFieldChange(_FIELD.FOCUS);
                         _callFieldChange(_FIELD.CHANNELS);
+                    },
+                    spellCost: function (id, empowered, discount) {
+                        return _calcSpellCost(Grimoire.getSpell(id), empowered, _character.crafts[_CRAFT_TYPES.MAGIC], discount)
                     },
                     sleep: function () {
                         if(_sleep()) {

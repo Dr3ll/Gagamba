@@ -1,11 +1,12 @@
 @import '../common/constants';
+@import '../common/layer';
 
 $bg_nav: rgba(32, 32, 32, .8);
 
 .navigation {
   position: fixed;
   width: 100%;
-  z-index: 1000;
+  z-index: $navigationLayer;
   top: 0;
   left: 0;
   right: 0;
@@ -50,7 +51,7 @@ $bg_nav: rgba(32, 32, 32, .8);
       top: 33px;
       left: -12px;
       width: 190px;
-      z-index: -100;
+      z-index: $navigationLayer - 100;
       border: 1px solid $ash_t;
       a, a:visited, a:focus, a:active {
         color: $ash;

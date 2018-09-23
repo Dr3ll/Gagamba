@@ -7,40 +7,42 @@ define([
         app.factory('Blowup', [
             function () {
 
-                let _scopes = new Map();
+                let _realms = new Map();
 
-                let _getScope = function (scopeId) {
-                    let scope = _scopes.get(scopeId);
-                    if (!scope) {
-                        scope = { pin: undefined, blocker: { enabled: false } };
-                        _scopes.set(scopeId, { pin: undefined, blocker: { enabled: false } } );
+                let _getRealm = function (realmId) {
+                    let realm = _realms.get(realmId);
+                    if (!realm) {
+                        realm = { pin: undefined, blocker: { enabled: false } };
+                        _realms.set(realmId, { pin: undefined, blocker: { enabled: false } } );
                     }
-                    return scope;
+                    return realm;
                 };
 
                 return {
-                    push: function (panel, scopeId) {
-                        let scope = _getScope(scopeId);
+                    push: function (panel, realmId) {
+                        let realm = _getRealm(realmId);
 
-                        if (scope.pin) {
-                            scope.pin.toggled = false;
+                        if (realm.pin) {
+                            realm.pin.toggled = false;
+                            realm.pin.toggled = false;
                         }
-                        scope.pin = panel;
-                        scope.blocker.enabled = true;
+                        realm.pin = panel;
+                        realm.blocker.enabled = true;
                     },
-                    pop: function (scopeId) {
-                        let scope = _getScope(scopeId);
+                    pop: function (realmId) {
+                        realmId = realmId || 'def';
+                        let realm = _getRealm(realmId);
 
-                        if (scope.pin) {
-                            scope.pin.toggled = false;
+                        if (realm.pin) {
+                            realm.pin.toggled = false;
                         }
-                        scope.pin = undefined;
-                        scope.blocker.enabled = false;
+                        realm.pin = undefined;
+                        realm.blocker.enabled = false;
                     },
-                    blocker: function (scopeId) {
-                        let scope = _getScope(scopeId);
-                        if (scope) {
-                            return scope.blocker;
+                    blocker: function (realmId) {
+                        let realm = _getRealm(realmId);
+                        if (realm) {
+                            return realm.blocker;
                         }
                         return { enabled: false};
                     }

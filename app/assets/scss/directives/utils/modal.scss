@@ -1,0 +1,64 @@
+@import '../../common/constants';
+@import '../../common/layer';
+
+$off-color: #000;
+
+.modal {
+  position: fixed;
+  z-index: $modalLayer;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10%;
+
+  .m-off {
+    z-index: $modalLayer;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $off-color;
+    opacity: .4;
+    -webkit-transition: opacity 300ms ease-out;
+  }
+
+  &.cloak {
+    opacity: 0;
+    pointer-events: none;
+    .m-off {
+      opacity: 0;
+    }
+  }
+
+  .m-content {
+    z-index: $modalLayer + 100;
+    padding: 15px;
+    min-width: 300px;
+    min-height: 200px;
+    width: fit-content;
+    height: fit-content;
+    background-color: $char_t;
+    color: $ash;
+    border: 1px solid $ash;
+    h1 {
+      font-size: $fontBig;
+    }
+    .m-include {
+      min-height: 168px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  .actions {
+    display: flex !important;
+    justify-content: space-evenly;
+    position: relative;
+    bottom: -19px;
+    margin-top: auto;
+  }
+}

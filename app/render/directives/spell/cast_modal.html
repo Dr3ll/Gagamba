@@ -1,0 +1,142 @@
+<div class="m-include">
+    <blowup toggled="stickyToggled">
+        <blowlabel>
+        <h1><span ng-bind-html="spellData.name"></span></h1>
+        </blowlabel>
+        <blowcontent>
+            <div class="close-blow" ng-show="stickyToggled" ng-click="closeSticky()"><i class="fas fa-times"></i></div>
+            <div class="spell-info-wrapper">
+                <span class="name">
+                    <span ng-bind-html="spellData.name"></span>
+                </span>
+                <table>
+                    <tbody>
+                    <tr class="tier">
+                        <td>Stufe:</td>
+                        <td>{{spellData.tier}}</td>
+                    </tr>
+                    <tr class="difficulty">
+                        <td>Schwierigkeit:</td>
+                        <td>
+                            <span ng-bind-html="spellData.difficulty"></span>
+                            <span ng-if="isTome" class="charSkill">
+                                <span>({{charSkill}})</span>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr class="cost">
+                        <td>Kosten:</td>
+                        <td class="spell-cost">
+                            <span ng-if="spellData.cost_ch !== 0">K{{spellData.cost_ch}}</span>
+                            <span ng-if="spellData.cost_ex !== 0">{{spellData.cost_ex}}</span>
+                            <span ng-if="spellData.cost_co !== 0">V{{spellData.cost_co}}</span>
+                        </td>
+                    </tr>
+                    <tr class="cast-time">
+                        <td>Zauberdauer:</td>
+                        <td>
+                            <span>{{spellData.cast_time}}</span><span ng-if="spellData.ticking">T</span>
+                        </td>
+                    </tr>
+                    <tr class="range">
+                        <td>Reichweite:</td>
+                        <td ng-bind-html="spellData.range"></td>
+                    </tr>
+                    <tr ng-if="spellData.duration !== null" class="duration">
+                        <td>Wirkungsdauer:</td>
+                        <td>{{spellData.duration}}</td>
+                    </tr>
+                    <tr ng-if="spellData.aoe !== null" class="range">
+                        <td>Reichweite:</td>
+                        <td>{{spellData.aoe}}</td>
+                    </tr>
+                    <tr ng-if="spellData.requirement !== null" class="requirement">
+                        <td>Voraussetzung:</td>
+                        <td>{{spellData.requirement}}</td>
+                    </tr>
+                    <tr class="description">
+                        <td colspan="2" ng-bind-html="spellData.description"></td>
+                    </tr>
+                    <tr class="empower">
+                        <td colspan="2">Verstärkung:</td>
+                    </tr>
+                    <tr class="empower-req">
+                        <td>Erfolgsgrade:</td>
+                        <td>{{spellData.empower_req}}</td>
+                    </tr>
+                    <tr class="empower-cost">
+                        <td>Kosten:</td>
+                        <td class="spell-cost">
+                            <span ng-if="spellData.empower_cost_ch !== 0">K{{spellData.empower_cost_ch}}</span>
+                            <span ng-if="spellData.empower_cost_ex !== 0">{{spellData.empower_cost_ex}}</span>
+                            <span ng-if="spellData.empower_cost_co !== 0">V{{spellData.empower_cost_co}}</span>
+                        </td>
+                    </tr>
+                    <tr class="empower-description">
+                        <td colspan="2" ng-bind-html="spellData.empower_description"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </blowcontent>
+    </blowup>
+    <div>
+        <div class="form-line">
+            <label for="empower">Verstärken</label>
+            <div class="form-manipulators">
+                <span class="form-checkbox"><input id="empower" type="checkbox" ng-model="castBox.empowered" ng-change="empowerChanged()"><span></span></span>
+            </div>
+        </div>
+        <div class="form-line">
+            <label for="cost">Kosten</label>
+            <div class="form-manipulators" id="cost">
+                <span ng-if="castBox.costDisplay.ch">K{{castBox.costDisplay.ch}}<span ng-if="castBox.costDisplay.ch">-</span></span>
+                <span ng-if="castBox.costDisplay.ex">{{castBox.costDisplay.ex}}<span ng-if="castBox.costDisplay.ex">-</span></span>
+                <span ng-if="castBox.costDisplay.co">V{{castBox.costDisplay.co}}</span>
+            </div>
+            <!--<div class="form-manipulators" id="cost">
+                <span ng-if="(castBox.costDisplay.ch + (castBox.empowered ? spellData.empower_cost_ch : 0))">K{{castBox.costDisplay.ch + (castBox.empowered ? spellData.empower_cost_ch : 0)}}
+                    <span ng-if="(castBox.costDisplay.co + (castBox.empowered ? spellData.empower_cost_co : 0))">-</span></span>
+                <span ng-if="(castBox.costDisplay.ex + (castBox.empowered ? spellData.empower_cost_ex : 0))">{{castBox.costDisplay.ex + (castBox.empowered ? spellData.empower_cost_ex : 0)}}
+                    <span ng-if="(castBox.costDisplay.ex + (castBox.empowered ? spellData.empower_cost_ex : 0))">-</span></span>
+                <span ng-if="(castBox.costDisplay.co + (castBox.empowered ? spellData.empower_cost_co : 0))">V{{castBox.costDisplay.co + (castBox.empowered ? spellData.empower_cost_co : 0)}}</span>
+            </div>-->
+        </div>
+        <div class="form-line">
+            <label for="successTiers">Erfolgsgrade</label>
+            <div class="form-manipulators">
+                <input class="form-input" id="successTiers" type="number" ng-model="castBox.successTiers">
+                <button class="btn btn-minor" ng-click="decrementSuccessTier()"><i class="fas fa-minus"></i></button>
+                <button class="btn btn-minor" ng-click="incrementSuccessTier()"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+        <div ng-if="spellData.cost_ex > 1" class="form-line">
+            <label for="discountEx">Erschöpft ({{castBox.potentialDiscount.ex}})</label>
+            <div class="form-manipulators">
+                <input class="form-input" id="discountEx" type="number" ng-model="castBox.discount.ex">
+                <button class="btn btn-minor" ng-click="decrementDiscount(RSTATES.EXHAUSTED)"><i class="fas fa-minus"></i></button>
+                <button class="btn btn-minor" ng-click="incrementDiscount(RSTATES.EXHAUSTED)"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+        <div ng-if="spellData.cost_ch > 1" class="form-line">
+            <label for="discountCh">Kanalisiert ({{castBox.potentialDiscount.ch}})</label>
+            <div class="form-manipulators">
+                <input class="form-input" id="discountCh" type="number" ng-model="castBox.discount.ch">
+                <button class="btn btn-minor" ng-click="decrementDiscount(RSTATES.CHANNELED)"><i class="fas fa-minus"></i></button>
+                <button class="btn btn-minor" ng-click="incrementDiscount(RSTATES.CHANNELED)"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+        <div ng-if="spellData.cost_co > 1" class="form-line">
+            <label for="discountCo">Verzehrt ({{castBox.potentialDiscount.co}})</label>
+            <div class="form-manipulators">
+                <input class="form-input" id="discountCo" type="number" ng-model="castBox.discount.co">
+                <button class="btn btn-minor" ng-click="decrementDiscount(RSTATES.CONSUMED)"><i class="fas fa-minus"></i></button>
+                <button class="btn btn-minor" ng-click="incrementDiscount(RSTATES.CONSUMED)"><i class="fas fa-plus"></i></button>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="btn btn-primary" ng-click="hide()">Abbrechen</button>
+        <button class="btn btn-primary" ng-click="cast()">Auslösen</button>
+    </div>
+</div>

@@ -1,8 +1,14 @@
+// Third party
+@import '../../../node_modules/bootstrap/dist/css/bootstrap-grid.css';
+@import '../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css';
+
+// Constants
 @import 'common/constants';
 
 // Common
 @import 'common/global';
 @import 'common/buttons';
+@import 'common/elements';
 
 // Modules
 @import 'modules/navigation';
@@ -13,6 +19,7 @@
 // Directives
 @import 'directives/utils/expanel';
 @import 'directives/utils/blowup';
+@import 'directives/utils/modal';
 @import 'directives/characterSheet/characterSheet';
 @import 'directives/characterSheet/focusMeter';
 @import 'directives/characterSheet/healthMeter';

@@ -35,7 +35,7 @@ $inactive-label: #777;
       }
     }
   }
-  .fresh, .consumed, .exhausted, .channeled {
+  .f, .co, .ex, .ch {
     width: 25px;
     height: 25px;
     border: 1px solid $health-line-color;
@@ -45,16 +45,16 @@ $inactive-label: #777;
     margin: 1px;
   }
 
-  .fresh {
+  .f {
   }
-  .channeled {
+  .ch {
     background-image: repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $health-line-color 0px, $health-line-color 17px);
   }
-  .exhausted {
+  .ex {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $health-line-color 0px, $health-line-color 17px),
     repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $health-line-color 0px, $health-line-color 17px);
   }
-  .consumed {
+  .co {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $health-line-color 0px, $health-line-color 17px),
     repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, $health-line-color 0px, $health-line-color 17px),
     repeating-linear-gradient(0deg, transparent, transparent 0px, transparent 0px, transparent 11px, $health-line-color 0px, $health-line-color 13px)

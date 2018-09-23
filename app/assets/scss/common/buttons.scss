@@ -1,0 +1,84 @@
+@import 'constants';
+
+.btn {
+  outline: none;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: $fontSmall;
+  text-decoration: none;
+  height: 36px;
+  display: inline-block;
+  &:focus {
+    outline: none;
+    cursor: pointer;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.btn-action {
+  padding: 0;
+  border-radius: 0;
+  width: 15px;
+  height: 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: .7em !important;
+  border: 0;
+  background: none;
+  color: $ash;
+  -webkit-transform: scaleX(-1);
+}
+
+%primary {
+  background-color: $tar;
+  color: $ash;
+  padding: 5px;
+  border: 1px solid $ash;
+}
+.btn-primary {
+  @extend %primary;
+  &:visited, &:active, &:focus {
+    @extend %primary;
+  }
+  &:hover {
+    background-color: $ash !important;
+    color: $char !important;
+  }
+}
+
+%secondary {
+  background-color: $tar;
+  color: $ash;
+  padding: 5px;
+  border: 1px solid $stone;
+}
+.btn-secondary {
+  @extend %secondary;
+  &:visited, &:active, &:focus {
+    @extend %secondary;
+  }
+  &:hover {
+    background-color: $ash;
+    color: $char;
+  }
+}
+
+%minor {
+  background-color: transparent;
+  color: $ash;
+  padding: 2px;
+  height: 1em;
+  border: 1px solid transparent;
+}
+.btn-minor {
+  @extend %minor;
+  &:visited, &:active, &:focus {
+    @extend %minor;
+  }
+  &:hover {
+    color: $dust;
+  }
+}

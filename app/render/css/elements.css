@@ -1,0 +1,11 @@
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+.form-input {
+  background-color: #1f1f1f;
+  color: #CCC;
+  border: 1px solid #CCC;
+  margin: 0;
+  padding-left: 5px; }
+
+/*# sourceMappingURL=elements.css.map */

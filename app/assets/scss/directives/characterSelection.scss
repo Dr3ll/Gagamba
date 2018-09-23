@@ -1,4 +1,5 @@
 @import '../common/constants';
+@import '../common/layer';
 
 .character-selection {
   .character-wrapper {
@@ -41,7 +42,7 @@
   &:hover {
     .actions {
       display: block;
-      z-index: 300;
+      z-index: $baseLayer + 300;
       .ac {
 
       }

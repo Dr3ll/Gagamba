@@ -1,3 +1,8 @@
+@import url(../../../node_modules/bootstrap/dist/css/bootstrap-grid.css);
+@import url(../../../node_modules/@fortawesome/fontawesome-free/css/all.min.css);
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
@@ -13,10 +18,23 @@ body {
   height: 100%;
   background: url("../../assets/images/black_lozenge.png");
   color: #CCC;
-  font-family: Titillium Web;
-  font-size: 1em; }
+  font: 1em Titillium Web !important; }
   body::-webkit-scrollbar {
     display: none; }
+
+button, input {
+  font: 1em Titillium Web !important; }
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  margin-bottom: 5px;
+  font-weight: normal; }
+
+::selection {
+  background: #BB0000; }
 
 #nav {
   position: static; }
@@ -58,6 +76,21 @@ body {
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+.btn {
+  outline: none;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 0.9em;
+  text-decoration: none;
+  height: 36px;
+  display: inline-block; }
+  .btn:focus {
+    outline: none;
+    cursor: pointer;
+    border-radius: 0;
+    box-shadow: none; }
+
 .btn-action {
   padding: 0;
   border-radius: 0;
@@ -66,11 +99,96 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: .7em;
+  font-size: .7em !important;
+  border: 0;
   background: none;
   color: #CCC;
   -webkit-transform: scaleX(-1); }
 
+.btn-primary, .btn-primary:visited, .btn-primary:active, .btn-primary:focus {
+  background-color: #1f1f1f;
+  color: #CCC;
+  padding: 5px;
+  border: 1px solid #CCC; }
+
+.btn-primary:hover {
+  background-color: #CCC !important;
+  color: #212121 !important; }
+
+.btn-secondary, .btn-secondary:visited, .btn-secondary:active, .btn-secondary:focus {
+  background-color: #1f1f1f;
+  color: #CCC;
+  padding: 5px;
+  border: 1px solid #333; }
+
+.btn-secondary:hover {
+  background-color: #CCC;
+  color: #212121; }
+
+.btn-minor, .btn-minor:visited, .btn-minor:active, .btn-minor:focus {
+  background-color: transparent;
+  color: #CCC;
+  padding: 2px;
+  height: 1em;
+  border: 1px solid transparent; }
+
+.btn-minor:hover {
+  color: #dcdcdc; }
+
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+.form-input {
+  background-color: #1f1f1f;
+  color: #CCC;
+  border: 1px solid #CCC;
+  margin: 0;
+  padding: 0 5px;
+  outline: none;
+  text-align: right;
+  height: 1em; }
+
+.form-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em; }
+  .form-checkbox input[type=checkbox] {
+    opacity: 0;
+    position: absolute; }
+  .form-checkbox span:first-of-type {
+    content: "";
+    background-color: #1f1f1f;
+    position: absolute;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    pointer-events: none;
+    border: 1px solid #CCC; }
+  .form-checkbox input:checked ~ span {
+    background-color: #CCC; }
+  .form-checkbox span:first-of-type:after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 free";
+    position: absolute;
+    display: none;
+    color: #212121;
+    font-size: .9em;
+    font-weight: 900; }
+  .form-checkbox input:checked ~ span:after {
+    display: inline-block; }
+
+.form-line {
+  display: flex;
+  flex-direction: row; }
+
+.form-manipulators {
+  min-width: 40%; }
+
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
@@ -115,7 +233,7 @@ body {
       top: 33px;
       left: -12px;
       width: 190px;
-      z-index: -100;
+      z-index: 900;
       border: 1px solid rgba(204, 204, 204, 0.9); }
       .navigation .dropout-anchor .dropout a, .navigation .dropout-anchor .dropout a:visited, .navigation .dropout-anchor .dropout a:focus, .navigation .dropout-anchor .dropout a:active {
         color: #CCC;
@@ -201,6 +319,9 @@ body {
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 .blowup .blow-label {
   cursor: pointer;
   user-select: none; }
@@ -209,13 +330,12 @@ body {
     background-color: #CCC; }
 .blowup .blow-content {
   position: fixed;
+  z-index: 2100;
   right: 0;
   top: 42px;
   border: 1px solid transparent;
   border-width: 0 0 1px 1px;
-  background: url("../../assets/images/black_lozenge.png");
-  background-position-x: -1px;
-  background-position-x: -4px;
+  background-color: rgba(33, 33, 33, 0.9);
   padding: 20px 20px;
   opacity: 0;
   border-radius: 0 0 0 50%;
@@ -233,8 +353,65 @@ body {
   opacity: .98;
   border-color: #CCC;
   border-radius: 0%; }
+  .blowup:hover .blow-content:hover, .blowup.open .blow-content:hover {
+    display: block; }
 .blowup.open .blow-content {
   display: block !important; }
+
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+.modal {
+  position: fixed;
+  z-index: 2000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 10%; }
+  .modal .m-off {
+    z-index: 2000;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    opacity: .4;
+    -webkit-transition: opacity 300ms ease-out; }
+  .modal.cloak {
+    opacity: 0;
+    pointer-events: none; }
+    .modal.cloak .m-off {
+      opacity: 0; }
+  .modal .m-content {
+    z-index: 2100;
+    padding: 15px;
+    min-width: 300px;
+    min-height: 200px;
+    width: fit-content;
+    height: fit-content;
+    background-color: rgba(33, 33, 33, 0.9);
+    color: #CCC;
+    border: 1px solid #CCC; }
+    .modal .m-content h1 {
+      font-size: 1.1em; }
+    .modal .m-content .m-include {
+      min-height: 168px;
+      display: flex;
+      flex-direction: column; }
+  .modal .actions {
+    display: flex !important;
+    justify-content: space-evenly;
+    position: relative;
+    bottom: -19px;
+    margin-top: auto; }
 
 @font-face {
   font-family: "Titillium Web";
@@ -267,8 +444,7 @@ body {
     top: 44%;
     bottom: 20px;
     border-radius: 0;
-    border-width: 1px;
-    background: none; }
+    border-width: 1px; }
 
 @font-face {
   font-family: "Titillium Web";
@@ -280,7 +456,7 @@ body {
   justify-content: space-between; }
   .focus-meter .point-wrapper {
     width: 300px; }
-  .focus-meter .fresh, .focus-meter .consumed, .focus-meter .exhausted, .focus-meter .channeled {
+  .focus-meter .f, .focus-meter .co, .focus-meter .ex, .focus-meter .ch {
     width: 25px;
     height: 25px;
     border: 1px solid #9CF;
@@ -288,11 +464,11 @@ body {
     border-radius: 3px;
     float: left;
     margin: 1px; }
-  .focus-meter .channeled {
+  .focus-meter .ch {
     background-image: repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px); }
-  .focus-meter .exhausted {
+  .focus-meter .ex {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px), repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px); }
-  .focus-meter .consumed {
+  .focus-meter .co {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px), repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #9CF 0px, #9CF 17px), repeating-linear-gradient(0deg, transparent, transparent 0px, transparent 0px, transparent 11px, #9CF 0px, #9CF 13px); }
 
 @font-face {
@@ -322,7 +498,7 @@ body {
         display: inline-flex;
         justify-content: flex-end;
         width: 300px; }
-  .health-meter .fresh, .health-meter .consumed, .health-meter .exhausted, .health-meter .channeled {
+  .health-meter .f, .health-meter .co, .health-meter .ex, .health-meter .ch {
     width: 25px;
     height: 25px;
     border: 1px solid #C66;
@@ -330,11 +506,11 @@ body {
     border-radius: 3px;
     float: left;
     margin: 1px; }
-  .health-meter .channeled {
+  .health-meter .ch {
     background-image: repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #C66 0px, #C66 17px); }
-  .health-meter .exhausted {
+  .health-meter .ex {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #C66 0px, #C66 17px), repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #C66 0px, #C66 17px); }
-  .health-meter .consumed {
+  .health-meter .co {
     background-image: repeating-linear-gradient(45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #C66 0px, #C66 17px), repeating-linear-gradient(-45deg, transparent, transparent 0px, transparent 0px, transparent 15px, #C66 0px, #C66 17px), repeating-linear-gradient(0deg, transparent, transparent 0px, transparent 0px, transparent 11px, #C66 0px, #C66 13px); }
 
 @font-face {
@@ -495,6 +671,9 @@ body {
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 .character-selection .character-wrapper {
   text-align: center; }
   .character-selection .character-wrapper .character:hover {
@@ -549,10 +728,11 @@ body {
   width: 20px;
   height: 20px;
   border: 1px solid #CCC;
-  background: #212121;
+  background: #1f1f1f;
   display: flex;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  cursor: pointer; }
 .spell .spell-info-wrapper {
   display: flex;
   flex-direction: column;
@@ -571,7 +751,16 @@ body {
     width: 100%; }
     .spell .spell-info-wrapper table tr td:first-of-type {
       width: 135px; }
+.spell .modal label {
+  width: 40%; }
+.spell .modal input {
+  width: 32px; }
+.spell .modal .form-line {
+  justify-content: center; }
 
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
