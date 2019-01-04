@@ -10,6 +10,7 @@ define([
                 let _realms = new Map();
 
                 let _getRealm = function (realmId) {
+                    realmId = realmId || 'def';
                     let realm = _realms.get(realmId);
                     if (!realm) {
                         realm = { pin: undefined, blocker: { enabled: false } };
@@ -24,13 +25,11 @@ define([
 
                         if (realm.pin) {
                             realm.pin.toggled = false;
-                            realm.pin.toggled = false;
                         }
                         realm.pin = panel;
                         realm.blocker.enabled = true;
                     },
                     pop: function (realmId) {
-                        realmId = realmId || 'def';
                         let realm = _getRealm(realmId);
 
                         if (realm.pin) {
