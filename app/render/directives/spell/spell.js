@@ -6,7 +6,7 @@ define(
         'directives/utils/modal/modal',
         'services/CharacterService',
         'services/GrimoireService',
-        'services/BlowupService'
+        'services/ToggleService'
     ],
     function (app) {
         'use strict';
@@ -19,8 +19,8 @@ define(
                         view: '@'
                     },
                     templateUrl: 'directives/spell/spell.html',
-                    controller: ['$scope', 'Character', 'Grimoire', 'Blowup',
-                        function ($scope, Character, Grimoire, Blowup) {
+                    controller: ['$scope', 'Character', 'Grimoire', 'Toggle',
+                        function ($scope, Character, Grimoire, Toggle) {
 
                             $scope.spellData = {};
                             $scope.stickyToggled = false;
@@ -56,6 +56,12 @@ define(
                                 $scope.modalCast.cast = $scope.cast;
                                 $scope.modalCast.spellData = $scope.spellData;
 
+                                let personalCost = Character.spellCost($scope.spellData.id, false, { ch: 0, co: 0, ex: 0 });
+
+                                $scope.modalCast.spellData.cost_ch = personalCost.ch;
+                                $scope.modalCast.spellData.cost_ex = personalCost.ex;
+                                $scope.modalCast.spellData.cost_co = personalCost.co;
+
                                 if ($scope.isTome) {
                                     let spell = Grimoire.getSpell($scope.spellId);
                                     $scope.charSkill = Character.getSkillLevel(spell.school);
@@ -63,7 +69,7 @@ define(
                             };
 
                             $scope.closeSticky = function () {
-                                Blowup.pop();
+                                Toggle.pop();
                             };
 
                             $scope.preCast = function () {

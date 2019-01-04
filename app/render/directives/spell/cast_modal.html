@@ -90,8 +90,8 @@
         <div class="form-line">
             <label for="cost">Kosten</label>
             <div class="form-manipulators" id="cost">
-                <span ng-if="castBox.costDisplay.ch">K{{castBox.costDisplay.ch}}<span ng-if="castBox.costDisplay.ch">-</span></span>
-                <span ng-if="castBox.costDisplay.ex">{{castBox.costDisplay.ex}}<span ng-if="castBox.costDisplay.ex">-</span></span>
+                <span ng-if="castBox.costDisplay.ch">K{{castBox.costDisplay.ch}}<span ng-if="castBox.costDisplay.ch && castBox.costDisplay.co">-</span></span>
+                <span ng-if="castBox.costDisplay.ex">{{castBox.costDisplay.ex}}<span ng-if="castBox.costDisplay.ex  && castBox.costDisplay.co">-</span></span>
                 <span ng-if="castBox.costDisplay.co">V{{castBox.costDisplay.co}}</span>
             </div>
             <!--<div class="form-manipulators" id="cost">

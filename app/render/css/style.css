@@ -18,7 +18,8 @@ body {
   height: 100%;
   background: url("../../assets/images/black_lozenge.png");
   color: #CCC;
-  font: 1em Titillium Web !important; }
+  font: 1em Titillium Web !important;
+  overflow-y: hidden; }
   body::-webkit-scrollbar {
     display: none; }
 
@@ -298,6 +299,9 @@ h1, h2, h3, h4, h5, h6 {
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 .expanel .exp-label {
   cursor: pointer;
   user-select: none; }
@@ -341,7 +345,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0 0 0 50%;
   -webkit-transition: opacity 200ms, border-color 400ms; }
 .blowup.closed .blow-content {
-  left: 100%;
+  left: 200%;
   opacity: 0;
   pointer-events: none; }
 .blowup:hover .blow-label, .blowup.open .blow-label {
@@ -597,7 +601,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%; }
   .character-base-props .blow-content, .character-base-props .blowup.open .blow-content, .character-base-props .blowup:hover .blow-content {
     position: absolute;
-    top: 50%;
+    top: 141px;
     right: 13px;
     left: -17px;
     height: fit-content; }
@@ -706,6 +710,9 @@ h1, h2, h3, h4, h5, h6 {
 .character-selection .shard-wrapper {
   width: 100%; }
 
+@font-face {
+  font-family: "Titillium Web";
+  src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }
 @font-face {
   font-family: "Titillium Web";
   src: url("../../assets/fonts/Titillium_Web/TitilliumWeb-Light.ttf"); }

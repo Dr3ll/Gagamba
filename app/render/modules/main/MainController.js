@@ -47,7 +47,6 @@ define(
                                         } else {
                                             $scope.activeCharacter = defaultChar;
                                         }
-
                                         $scope.checked = true;
                                     }
                                 );

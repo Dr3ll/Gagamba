@@ -15,6 +15,7 @@ body {
   background: $bg_pattern;
   color: $ash;
   font: $fontStandard Titillium Web !important;
+  overflow-y: hidden;
   &::-webkit-scrollbar {
        display: none;
   }

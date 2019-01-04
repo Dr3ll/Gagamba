@@ -4,7 +4,7 @@ define([
     ], function (app) {
         'use strict';
 
-        app.factory('Blowup', [
+        app.factory('Toggle', [
             function () {
 
                 let _realms = new Map();

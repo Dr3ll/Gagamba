@@ -1,7 +1,8 @@
 define(
     [
         'app',
-        'angular'
+        'angular',
+        'services/ToggleService'
     ],
     function (app) {
         'use strict';
@@ -14,19 +15,29 @@ define(
                         'content': 'excontent'
                     },
                     scope: {
-                        toggled: '=?'
+                        toggled: '=?',
+                        realm: '@?'
                     },
                     templateUrl: 'directives/utils/expanel/expanel.html',
-                    controller: ['$scope',
-                        function ($scope) {
+                    controller: ['$scope', 'Toggle',
+                        function ($scope, Toggle) {
 
                             $scope.toggled = $scope.toggled || false;
 
                             $scope.init = function () {
                             };
 
-                            $scope.toggle = function () {
-                                $scope.toggled = !$scope.toggled;
+                            $scope.toggle = function (state) {
+                                if (state !== undefined) {
+                                    $scope.toggled = state;
+                                } else {
+                                    $scope.toggled = !$scope.toggled;
+                                }
+                                if ($scope.toggled) {
+                                    Toggle.push($scope, $scope.realm);
+                                } else {
+                                    Toggle.pop($scope.realm);
+                                }
                             };
 
                             $scope.init();

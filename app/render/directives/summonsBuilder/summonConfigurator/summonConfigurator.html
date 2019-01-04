@@ -1,0 +1,66 @@
+<div>
+   <div>
+      <ul>
+         <li ng-click="toStep(0)">Korpus</li>
+         <li ng-click="toStep(1)">Typ</li>
+         <li ng-click="toStep(2)">Zusätzliche Fähigkeiten</li>
+         <li ng-click="toStep(3)">Rolle</li>
+         <li ng-click="toStep(4)">Feinschliff</li>
+      </ul>
+   </div>
+
+
+   <!-- Body -->
+   <div ng-show="isStep(0)">
+
+      <div ng-repeat="k in buildingBlocks.body track by $index" ng-mouseover="callHover('body', $index)" ng-click="callSelect('body', $index)">
+         <i class="fas fa-dragon"></i> {{k.label}}
+      </div>
+
+   </div>
+
+   <!-- Type -->
+   <div ng-show="isStep(1)">
+      <div>
+         <span>Art</span>
+
+         <div ng-repeat="k in buildingBlocks.body track by $index" ng-mouseover="callHover('kind', $index)" ng-click="callSelect('kind', $index)">
+            <i class="fas fa-dragon"></i> {{k.label}}
+         </div>
+
+      </div>
+
+      <div>
+         <span>Element</span>
+
+         <div ng-repeat="k in buildingBlocks.body track by $index" ng-mouseover="callHover('element', $index)" ng-click="callSelect('element', $index)">
+            <i class="fas fa-dragon"></i> {{k.label}}
+         </div>
+
+      </div>
+   </div>
+
+   <!-- Abilities -->
+   <div ng-show="isStep(2)">
+
+      <div ng-repeat="k in buildingBlocks.body track by $index" ng-mouseover="callHover('ability', $index)" ng-click="callSelect('ability', $index)">
+         <i class="fas fa-dragon"></i> {{k.label}}
+      </div>
+
+   </div>
+
+   <!-- Role -->
+   <div ng-show="isStep(3)">
+
+      <div ng-repeat="k in buildingBlocks.body track by $index" ng-mouseover="callHover('role', $index)" ng-click="callSelect('role', $index)">
+         <i class="fas fa-dragon"></i> {{k.label}}
+      </div>
+
+   </div>
+
+   <!-- Fine tuning -->
+   <div ng-show="isStep(4)">
+
+   </div>
+
+</div>

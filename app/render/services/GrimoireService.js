@@ -33,7 +33,9 @@ define([
                 };
 
                 return {
-                    isGrimoireLoaded: Database.isDataLoaded,
+                    isGrimoireLoaded: function () {
+                        return Database.isDataLoaded();
+                    },
                     subscribeLoadingDone: Database.subscribeLoadingDone,
                     getSchools: function() {
                         return Database.getSchools();

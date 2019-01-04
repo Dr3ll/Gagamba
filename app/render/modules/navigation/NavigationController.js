@@ -28,7 +28,7 @@ define(
                     $scope.init();
 
                     $scope.backToCharSelection = function () {
-                        Character.setCharacter(undefined);
+                        Character.setCharacter();
                     };
 
                     $scope.rest = function () {

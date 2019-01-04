@@ -6,14 +6,14 @@
         <div>
             <a class="btn" ui-sref="root.grimoire">Grimoire</a>
         </div>
+        <div>
+            <a class="btn" ui-sref="root.summonsbuilder">Beschwörbare Wesen</a>
+        </div>
         <div class="dropout-anchor">
             <span class="btn">Bücher</span>
             <div class="dropout">
                 <a ng-repeat="book in books track by $index" ui-sref="root.books" ng-click="setBook($index)">{{book.label || book.fileName}}</a>
             </div>
-        </div>
-        <div>
-            <a class="btn">Another thing</a>
         </div>
     </div>
     <div class="right-side">

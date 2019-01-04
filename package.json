@@ -9,7 +9,7 @@
     "rebuild": "electron-rebuild -f -w sqlite3"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "5.2.0",
+    "@fortawesome/fontawesome-free": "5.4.0",
     "asar": "0.7.2",
     "electron": "2.0.6",
     "electron-rebuild": "1.8.2",

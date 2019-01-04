@@ -2,7 +2,7 @@ define(
     [
         'app',
         'angular',
-        'services/BlowupService'
+        'services/ToggleService'
     ],
     function (app) {
         'use strict';
@@ -19,17 +19,17 @@ define(
                         realm: '@?'
                     },
                     templateUrl: 'directives/utils/blowup/blowup.html',
-                    controller: ['$scope', 'Blowup',
-                        function ($scope, Blowup) {
+                    controller: ['$scope', 'Toggle',
+                        function ($scope, Toggle) {
 
                             $scope.toggled = false;
                             $scope.realm = $scope.realm || 'def';
 
                             $scope.init = function () {
-                                $scope.blocker = Blowup.blocker($scope.realm);
+                                $scope.blocker = Toggle.blocker($scope.realm);
                                 $scope.$on('$destroy', function () {
                                     if ($scope.toggled) {
-                                        Blowup.pop($scope.realm);
+                                        Toggle.pop($scope.realm);
                                     }
                                 });
                             };
@@ -41,9 +41,9 @@ define(
                                     $scope.toggled = !$scope.toggled;
                                 }
                                 if ($scope.toggled) {
-                                    Blowup.push($scope, $scope.realm);
+                                    Toggle.push($scope, $scope.realm);
                                 } else {
-                                    Blowup.pop($scope.realm);
+                                    Toggle.pop($scope.realm);
                                 }
                             };
 

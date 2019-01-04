@@ -236,12 +236,14 @@ define(
                 };
 
                 let _prepData = function () {
-                    let spellIds = _character.spells;
-                    let spells = [];
-                    for(let i = 0; i < spellIds.length; i++) {
-                        spells.push(Grimoire.getSpell(spellIds[i]));
+                    if (_character) {
+                        let spellIds = _character.spells;
+                        let spells = [];
+                        for (let i = 0; i < spellIds.length; i++) {
+                            spells.push(Grimoire.getSpell(spellIds[i]));
+                        }
+                        _character.tome = Grimoire.sortTome(spells);
                     }
-                    _character.tome = Grimoire.sortTome(spells);
                 };
 
                 let _callFieldChange = function (field) {
@@ -373,7 +375,7 @@ define(
                             Settings.setDefaultCharacter(null);
                         }
 
-                        if (Grimoire.isGrimoireLoaded) {
+                        if (Grimoire.isGrimoireLoaded()) {
                             _prepData();
                             $rootScope.$emit('characterSelected');
                         } else {

@@ -4,7 +4,8 @@ define(
         'modules/grimoire/GrimoireController',
         'modules/books/BooksController',
         'modules/booksDummy/BooksDummyController',
-        'modules/navigation/NavigationController'
+        'modules/navigation/NavigationController',
+        'modules/summonsBuilder/SummonsBuilderController'
     ], function() {
         'use strict';
 
@@ -62,8 +63,16 @@ define(
                             }
                         }
                     })
+                    .state('root.summonsbuilder', {
+                        url: '/',
+                        views: {
+                            'content@': {
+                                controller: 'SummonsBuilderController',
+                                templateUrl: 'modules/summonsBuilder/summonsBuilder.html'
+                            }
+                        }
+                    })
                 ;
-
             }
         }
     }

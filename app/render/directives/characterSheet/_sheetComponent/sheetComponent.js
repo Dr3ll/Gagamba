@@ -16,14 +16,16 @@ define(
                         }
                     });
 
-                    $scope.field = undefined;
+                    $scope.fields = [];
 
                     $scope.refresh = function() {
-                        Character.refresh($scope.field);
+                        for (let i = 0; i < $scope.fields.length; i++) {
+                            Character.refresh($scope.fields[i]);
+                        }
                     };
 
                     $scope.setField = function (field) {
-                        $scope.field = field;
+                        $scope.fields.push(field);
                         Character.subscribeCharacterChanged($scope, function () {
                             if (Character.isCharacterLoaded()) {
                                 $scope.init();
@@ -31,8 +33,7 @@ define(
                         }, field);
                     };
 
-                    $scope.init = function () { /* abstract */
-                    };
+                    $scope.init = function () {}; /* abstract */
                 }
             ]);
     }

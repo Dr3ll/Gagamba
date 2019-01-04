@@ -5,8 +5,8 @@ define([
     ], function (app) {
         'use strict';
 
-        app.factory('Database', ['$rootScope', '$q', '$sce', 'Storage',
-            function ($rootScope, $q, $sce, Storage) {
+        app.factory('Database', ['$rootScope', '$q', '$timeout', '$sce', 'Storage',
+            function ($rootScope, $q, $timeout, $sce, Storage) {
 
                 const Future = require('../main/classes/Future/_future');
                 const _dbPath = '../app/assets/db/gagamba.db';
@@ -23,6 +23,11 @@ define([
                 let _generalCrafts = new Map();
                 let _weaponTypes = new Map();
                 let _isLoaded = false;
+
+                let _flagLoadingDone = function() {
+                    _isLoaded = true;
+                    $rootScope.$emit('dbLoadingDone');
+                };
 
                 let _trust = function(value) {
                     if (value !== null && value !== undefined) {
@@ -109,10 +114,12 @@ define([
                         );
 
                         loader.unify(undefined, () => {
-                            console.log("SQLite db loaded");
-                            _isLoaded = true;
-                            $rootScope.$emit('dbLoadingDone');
-                            resolve();
+                            $timeout( function() {
+                                console.log("SQLite db loaded");
+                                _flagLoadingDone();
+
+                                resolve();
+                            }, 100);
                         });
                     });
                 };
@@ -121,7 +128,9 @@ define([
 
                 return {
                     load: _loadData,
-                    isDataLoaded: _isLoaded,
+                    isDataLoaded: function () {
+                        return _isLoaded;
+                    },
                     subscribeLoadingDone: function (service, handler) {
                         return $rootScope.$on('dbLoadingDone', handler);
                     },

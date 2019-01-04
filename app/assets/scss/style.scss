@@ -15,6 +15,7 @@
 @import 'modules/main';
 @import 'modules/grimoire';
 @import 'modules/books';
+@import 'modules/summonsBuilder';
 
 // Directives
 @import 'directives/utils/expanel';
@@ -29,5 +30,6 @@
 @import 'directives/characterSheet/moonshards';
 @import 'directives/characterSheet/tome';
 @import 'directives/characterSelection';
+@import 'directives/summonsBuilder/summonStats';
 @import 'directives/spell';
 @import 'directives/book';
