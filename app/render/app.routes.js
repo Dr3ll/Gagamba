@@ -5,7 +5,8 @@ define(
         'modules/books/BooksController',
         'modules/booksDummy/BooksDummyController',
         'modules/navigation/NavigationController',
-        'modules/summonsBuilder/SummonsBuilderController'
+        'modules/summonsBuilder/SummonsBuilderController',
+        'modules/characterBuilder/CharacterBuilderController'
     ], function() {
         'use strict';
 
