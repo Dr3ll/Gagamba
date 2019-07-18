@@ -94,6 +94,10 @@ class Store {
             fileLoader.unify(undefined, () => {
                 let characterData = [];
                 this._charactersFiles.forEach( char => {
+                    if (char.file === undefined) { return; }    // The file is probably not a valid json
+                    if (char.file.data === undefined) {
+                        char.file.data = {};
+                    }
                     char.file.data.fileName = char.file.fileName;
                     characterData.push(char.file.data);
                 });
@@ -108,6 +112,9 @@ class Store {
         if (file === undefined) {
             file = new SaveFile({configName: fileName}, this._characterContainer);
             file.load(undefined, () => {
+                if (file.data === undefined) {
+                    file.data = {};
+                }
                 file.data.fileName = file.fileName;
                 callback.apply(target, [file.data]);
             }, file.loader);
