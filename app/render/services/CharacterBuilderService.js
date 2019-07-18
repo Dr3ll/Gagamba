@@ -7,6 +7,7 @@ define([
         app.factory('CharacterBuilder', [
             function () {
 
+
                 let _character = {};
 
                 let _newCharacter = function() {
@@ -569,6 +570,8 @@ define([
                         }
                     };
                 };
+
+
 
                 return {
                     getCharacter: function () {

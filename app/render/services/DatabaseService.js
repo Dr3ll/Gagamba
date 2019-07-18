@@ -15,13 +15,15 @@ define([
                     GENERAL_CRAFTS: "SELECT * FROM Craft AS c WHERE c.type = 1 ORDER BY c.name",
                     WEAPON_TYPES: "SELECT * FROM Craft AS c WHERE c.type = 2 ORDER BY c.name",
                     SCHOOLS: "SELECT * FROM Craft AS c WHERE c.type = 3 ORDER BY c.name",
-                    SPELLS: "SELECT * FROM Spell AS s ORDER BY s.tier"
+                    SPELLS: "SELECT * FROM Spell AS s ORDER BY s.tier",
+                    RACES: "SELECT * FROM Race AS r ORDER BY r.name"
                 };
 
                 let _schools = new Map();
                 let _spells = new Map();
                 let _generalCrafts = new Map();
                 let _weaponTypes = new Map();
+                let _races = new Map();
                 let _isLoaded = false;
 
                 let _flagLoadingDone = function() {
@@ -81,6 +83,18 @@ define([
                     return weapons;
                 };
 
+                let _packRaces = function () {
+                    let races = Storage.SQLLoader.getPack(_dbPath);
+                    Storage.SQLLoader.getPack(_dbPath);
+                    races.push(_QUERRIES.RACES, 'RACES', 'id',
+                        function (row, ct) {
+                            row.description = _trust(row.description);
+                            row.physical = _trust(row.physical);
+                            row.spread = _trust(row.spread);
+                        });
+                    return races;
+                };
+
                 let _loadData = function () {
                     return $q(function (resolve, reject) {
                         let loader = new Future();
@@ -111,6 +125,15 @@ define([
                                 _weaponTypes = container.get('WEAPONS');
                             },
                             weapons, this
+                        );
+
+                        let races = _packRaces();
+                        loader.asynch(races.load,undefined,
+                            function (container) {
+                                console.log('races loaded');
+                                _races = container.get('RACES');
+                            },
+                            races, this
                         );
 
                         loader.unify(undefined, () => {
@@ -158,6 +181,9 @@ define([
                     },
                     getSpell: function (id) {
                         return _spells.get(id);
+                    },
+                    getRaces: function () {
+                        return _races;
                     }
                 };
 

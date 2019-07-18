@@ -42,6 +42,8 @@ define(
                     WIT: 'WIT'
                 };
 
+                let _saveDelay = undefined;
+
                 let _character = undefined;
 
                 let _calcSpellCost = function (spell, empowered, magic, sDiscount) {
@@ -217,8 +219,6 @@ define(
                     }
                     return false;
                 };
-
-                let _saveDelay = undefined;
 
                 let _characterQuicksave = function () {
                     if (Settings.quicksaveEnabled() &&
@@ -443,7 +443,7 @@ define(
                     languages: function () {
                         return _character.languages;
                     },
-                    experience: function () {
+                    experienceTotals: function () {
                         return _character.experience;
                     },
                     moonshards: function () {

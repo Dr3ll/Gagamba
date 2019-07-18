@@ -54,6 +54,11 @@ define(
                                 $scope.modalCast.castBox = $scope.castBox;
                                 $scope.modalCast.RSTATES = $scope.RSTATES;
                                 $scope.modalCast.cast = $scope.cast;
+
+                                if (!$scope.spellData) {
+                                    return;
+                                }
+
                                 $scope.modalCast.spellData = $scope.spellData;
 
                                 let personalCost = Character.spellCost($scope.spellData.id, false, { ch: 0, co: 0, ex: 0 });

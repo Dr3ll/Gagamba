@@ -18,7 +18,10 @@
     </div>
     <div class="right-side">
         <div>
-            <button class="btn" ng-click="toggleCheats()" title="Cheatmodus"><i ng-show="cheatsOn" class="fas fa-lock-open warning"></i><i ng-show="!cheatsOn" class="fas fa-lock"></i></button>
+            <button class="btn" ng-class="{ 'active': levelingOn }" ng-click="toggleLeveling()" title="Level up"><i ng-show="levelingOn" class="fas fa-level-up-alt"></i><i ng-show="!levelingOn" class="fas fa-level-up-alt"></i></button>
+        </div>
+        <div>
+            <button class="btn" ng-class="{ 'active': cheatsOn }" ng-click="toggleCheats()" title="Cheatmodus"><i ng-show="cheatsOn" class="fas fa-lock-open warning"></i><i ng-show="!cheatsOn" class="fas fa-lock"></i></button>
         </div>
         <div>
             <button class="btn" ng-click="sleep()" title="Ruhephase"><i class="fas fa-hourglass"></i></button>

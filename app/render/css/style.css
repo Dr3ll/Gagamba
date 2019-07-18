@@ -213,6 +213,9 @@ h1, h2, h3, h4, h5, h6 {
     border: 1px solid #dcdcdc;
     color: #CCC;
     min-width: 36px; }
+    .navigation .btn.active {
+      background-color: #CCC;
+      color: #1f1f1f; }
     .navigation .btn:hover {
       background-color: #CCC;
       color: #212121; }
@@ -617,15 +620,26 @@ h1, h2, h3, h4, h5, h6 {
     .crafts-table .craft-info::-webkit-scrollbar {
       display: none; }
     .crafts-table .craft-info table {
+      width: 100%;
       font-size: 0.9em; }
       .crafts-table .craft-info table .craft-name {
-        width: 65%;
+        width: 34%;
         padding-left: 10px; }
       .crafts-table .craft-info table .craft-stat {
-        width: 10%; }
+        width: 1%; }
       .crafts-table .craft-info table .craft-skill {
-        width: 10%;
+        width: 1%;
         text-align: right; }
+      .crafts-table .craft-info table .leveling {
+        width: 10%; }
+        .crafts-table .craft-info table .leveling .wrapper {
+          display: flex;
+          justify-content: space-around; }
+        .crafts-table .craft-info table .leveling .inc {
+          cursor: pointer;
+          font-size: 0.8em; }
+      .crafts-table .craft-info table td {
+        width: 1px; }
 
 @font-face {
   font-family: "Titillium Web";

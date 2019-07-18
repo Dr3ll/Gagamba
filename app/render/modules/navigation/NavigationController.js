@@ -14,6 +14,7 @@ define(
 
                     $scope.init = function () {
                         $scope.cheatsOn = Rules.cheatEnabled();
+                        $scope.levelingOn = Rules.levelingEnabled();
 
                         if (Books.isLoaded()) {
                             $scope.books = Books.books();
@@ -52,6 +53,11 @@ define(
                         Rules.toggleCheats();
                         $scope.cheatsOn = Rules.cheatEnabled();
                     };
+
+                    $scope.toggleLeveling = function () {
+                        Rules.toggleLeveling();
+                        $scope.levelingOn = Rules.levelingEnabled();
+                    }
                 }
             ]
         );

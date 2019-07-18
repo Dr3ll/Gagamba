@@ -33,7 +33,7 @@ define(
 
                                 $scope.name = Character.name();
                                 $scope.properties = Character.properties();
-                                $scope.experience = Character.experience();
+                                $scope.experience = Character.experienceTotals();
                                 $scope.languages = Character.languages();
                                 $scope.level = Character.level();
                                 $scope.battle = Character.battle();

@@ -23,6 +23,10 @@ $bg_nav: rgba(32, 32, 32, .8);
     border: 1px solid $dust;
     color: $ash;
     min-width: 36px;
+    &.active {
+      background-color: $ash;
+      color: $tar;
+    }
     &:hover {
       background-color: $ash;
       color: $char;

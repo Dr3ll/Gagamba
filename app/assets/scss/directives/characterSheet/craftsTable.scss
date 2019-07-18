@@ -12,17 +12,32 @@ $focus-bg-color: $mana_muted;
       display: none;
     }
     table {
+      width: 100%;
       font-size: $fontSmall;
       .craft-name {
-        width: 65%;
+        width: 34%;
         padding-left: 10px;
       }
       .craft-stat {
-        width: 10%;
+        width: 1%;
       }
       .craft-skill {
-        width: 10%;
+        width: 1%;
         text-align: right;
+      }
+      .leveling {
+        width: 10%;
+        .wrapper {
+          display: flex;
+          justify-content: space-around;
+        }
+        .inc {
+          cursor: pointer;
+          font-size: 0.8em;
+        }
+      }
+      td {
+        width: 1px;
       }
     }
   }

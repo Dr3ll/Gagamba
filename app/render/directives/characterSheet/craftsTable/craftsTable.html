@@ -19,6 +19,13 @@
                         <td class="craft-skill">
                             <span>{{craft.skill.value}}</span>
                         </td>
+                        <td class="leveling" ng-if="leveling">
+                            <div class="wrapper">
+                                <div class="inc" ng-disabled="lowest(craft)" ng-click="sub(craft)"><i class="fas fa-minus-circle"></i></div>
+                                <div class="inc" ng-disabled="!highest(craft)" ng-click="add(craft)"><i class="fas fa-plus-circle"></i></div>
+                            </div>
+                        </td>
+                        <td></td>
                     </tr>
                 </table>
             </div>
